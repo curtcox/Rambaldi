@@ -1,4 +1,9 @@
 #################
+## NetBeans
+#################
+nbproject/private/
+
+#################
 ## Eclipse
 #################
 
@@ -44,6 +49,7 @@ local.properties
 # Build results
 [Dd]ebug/
 [Rr]elease/
+target/
 *_i.c
 *_p.c
 *.ilk
@@ -62,6 +68,7 @@ local.properties
 *.vspscc
 .builds
 *.dotCover
+*.class
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
