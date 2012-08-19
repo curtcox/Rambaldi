@@ -1,4 +1,9 @@
 #################
+## IntelliJ
+#################
+.idea/workspace.xml
+
+#################
 ## NetBeans
 #################
 nbproject/private/
