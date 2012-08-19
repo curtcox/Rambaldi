@@ -7,5 +7,7 @@ package net.rambaldi;
 public final class Request
     extends Transaction
 {
-    
+    public Request(Timestamp timestamp) {
+        super(timestamp);
+    }
 }

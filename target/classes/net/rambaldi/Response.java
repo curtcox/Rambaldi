@@ -10,6 +10,7 @@ public class Response
     public final Request request;
     
     public Response(Request request) {
+        super(request.timestamp);
         this.request = request;
     }
 }

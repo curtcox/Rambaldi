@@ -5,7 +5,7 @@ package net.rambaldi;
  * @author Curt
  */
 public class SingleTransactionQueue
-    implements TransactionSource, TransactionSink
+    implements TransactionSource, TransactionSink, java.io.Serializable
 {
     private Transaction transaction;
     private boolean empty = true;
