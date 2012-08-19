@@ -1,10 +1,12 @@
 package net.rambaldi;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import tests.acceptance.Copier;
 
 /**
  *
@@ -15,7 +17,7 @@ public class SimpleTransactionProcessorTest {
     SingleTransactionQueue  in; 
     SingleTransactionQueue out; 
     SingleTransactionQueue err; 
-    SimpleTransactionProcessor system;
+    SimpleTransactionProcessor processor;
     Context context;
     
     @Before
@@ -26,11 +28,11 @@ public class SimpleTransactionProcessorTest {
         context = null;
     }
 
-    SimpleTransactionProcessor system(RequestProcessor requestProcessor) {
+    SimpleTransactionProcessor processor(RequestProcessor requestProcessor) {
         return new SimpleTransactionProcessor(in,out,err,context,requestProcessor,null);
     }
     
-    SimpleTransactionProcessor system() {
+    SimpleTransactionProcessor processor() {
         return new SimpleTransactionProcessor(in,out,err,context,new EchoProcessor(),null);
     }
     
@@ -38,7 +40,7 @@ public class SimpleTransactionProcessorTest {
     public void process_takes_request_from_in() {
         Transaction transaction = new Request(null);
         in.put(transaction);
-        system().process();
+        processor().process();
         assertEquals(transaction,in.take());
     }
     
@@ -46,14 +48,14 @@ public class SimpleTransactionProcessorTest {
     public void process_throws_exception_for_unknown_transaction_type() {
         Transaction transaction = new Transaction(null){};
         in.put(transaction);
-        system().process();
+        processor().process();
     }
 
     @Test
     public void process_echo_writes_requests_to_out() {
         Request request = new Request(null);
         in.put(request);
-        system().process();
+        processor().process();
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
         assertEquals(request,response.request);
@@ -72,7 +74,7 @@ public class SimpleTransactionProcessorTest {
             }
         };
         
-        system(processor).process();
+        processor(processor).process();
         
         assertEquals(request,called.get("request"));
     }
@@ -89,7 +91,7 @@ public class SimpleTransactionProcessorTest {
         };
         
         assertTrue(out.isEmpty());
-        system(processor).process();
+        processor(processor).process();
         
         assertTrue(out.isEmpty());
     }
@@ -106,10 +108,16 @@ public class SimpleTransactionProcessorTest {
             }
         };
         
-        system(processor).process();
+        processor(processor).process();
         
         assertFalse(out.isEmpty());
         assertEquals(response,out.take());
     }
 
+    @Test
+    public void is_serializable() throws Exception {
+        SimpleTransactionProcessor processor = processor();
+        SimpleTransactionProcessor copy = Copier.copy(processor);
+        assertTrue(copy instanceof SimpleTransactionProcessor);
+    }
 }

@@ -2,6 +2,7 @@ package net.rambaldi;
 
 import static junit.framework.Assert.*;
 import org.junit.Test;
+import tests.acceptance.Copier;
 
 /**
  *
@@ -22,4 +23,12 @@ public class SingleTransactionQueueTest {
         assertEquals(in,queue.take());
         assertTrue(queue.isEmpty());
     }
+    
+    @Test
+    public void is_serializable() throws Exception {
+        SingleTransactionQueue queue = new SingleTransactionQueue();
+        SingleTransactionQueue copy = Copier.copy(queue);
+        assertTrue(copy instanceof SingleTransactionQueue);
+    }
+
 }

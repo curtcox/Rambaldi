@@ -5,7 +5,7 @@ package net.rambaldi;
  * @author Curt
  */
 public class EchoProcessor 
-    implements RequestProcessor
+    implements RequestProcessor, java.io.Serializable
 {
 
     @Override

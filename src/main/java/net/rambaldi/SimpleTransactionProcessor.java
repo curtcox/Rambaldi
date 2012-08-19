@@ -1,19 +1,19 @@
 package net.rambaldi;
 
 /**
- *
+ * The simplest implementation of TransactionProcessor
  * @author Curt
  */
-public class SimpleTransactionProcessor 
-    implements TransactionProcessor
+public final class SimpleTransactionProcessor 
+    implements TransactionProcessor, java.io.Serializable
 {
 
-    private final TransactionSource in;
-    private final TransactionSink out;
-    private final TransactionSink err;
-    private final Context context;
-    private final RequestProcessor requests;
-    private final ResponseProcessor responses;
+    public final TransactionSource in;
+    public final TransactionSink out;
+    public final TransactionSink err;
+    public final Context context;
+    public final RequestProcessor requests;
+    public final ResponseProcessor responses;
 
     public SimpleTransactionProcessor(TransactionSource in, TransactionSink out, TransactionSink err,
             Context context, RequestProcessor requests, ResponseProcessor responses)

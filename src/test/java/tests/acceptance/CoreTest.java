@@ -1,5 +1,6 @@
 package tests.acceptance;
 
+import java.io.IOException;
 import net.rambaldi.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -64,10 +65,47 @@ public class CoreTest {
         TimestampResponse response2 = (TimestampResponse) out.take();
         assertSame(request2,response2.request);
         assertSame(t2,response2.timestamp);
-        assertSame(t1,response2.previousRequest);
-        
+        assertSame(t1,response2.previousRequest);        
     }
 
+    /**
+     *I should be able to persist state between requests
+     */
+    @Test
+    public void Persist_state_between_requests() throws Exception {
+        Timestamp t1 = new Timestamp(1);
+        Timestamp t2 = new Timestamp(2);
+        SingleTransactionQueue  in = new SingleTransactionQueue(); 
+        SingleTransactionQueue out = new SingleTransactionQueue(); 
+        SingleTransactionQueue err = null;
+        TimestampProcessor stamper = new TimestampProcessor();
+        Context            context = new SimpleContext();
+        Request           request1 = new Request(t1);
+        SimpleTransactionProcessor processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
+        
+        in.put(request1);
+        processor.process();
+        
+        assertFalse(out.isEmpty());
+        TimestampResponse response1 = (TimestampResponse) out.take();
+        assertSame(request1,response1.request);
+        assertSame(t1,response1.timestamp);
+        assertNull(null,response1.previousRequest);
+        
+        processor = Copier.copy(processor);
+        in = (SingleTransactionQueue) processor.in;
+        out = (SingleTransactionQueue) processor.out;
+        
+        Request request2 = new Request(t2);
+        in.put(request2);
+        processor.process();
+        assertFalse(out.isEmpty());
+        TimestampResponse response2 = (TimestampResponse) out.take();
+        assertEquals(request2,response2.request);
+        assertEquals(t2,response2.timestamp);
+        assertEquals(t1,response2.previousRequest);        
+    }
+    
     /**
      * I should be able to handle responses asynchronously from requests
      */

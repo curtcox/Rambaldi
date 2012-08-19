@@ -5,7 +5,7 @@ package net.rambaldi;
  * @author Curt
  */
 public final class SimpleContext
-    implements Context
+    implements Context, java.io.Serializable
 {
 
     private Object state;

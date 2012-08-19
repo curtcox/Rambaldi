@@ -9,7 +9,7 @@ import net.rambaldi.Timestamp;
  * Just for testing.
  */
 final class TimestampProcessor
-    implements RequestProcessor
+    implements RequestProcessor, java.io.Serializable
 {
 
     @Override
