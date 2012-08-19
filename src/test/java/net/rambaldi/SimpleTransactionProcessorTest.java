@@ -38,7 +38,7 @@ public class SimpleTransactionProcessorTest {
     
     @Test
     public void process_takes_request_from_in() {
-        Transaction transaction = new Request(null);
+        Transaction transaction = new Request("",null);
         in.put(transaction);
         processor().process();
         assertEquals(transaction,in.take());
@@ -46,14 +46,14 @@ public class SimpleTransactionProcessorTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void process_throws_exception_for_unknown_transaction_type() {
-        Transaction transaction = new Transaction(null){};
+        Transaction transaction = new Transaction(null,null){};
         in.put(transaction);
         processor().process();
     }
 
     @Test
     public void process_echo_writes_requests_to_out() {
-        Request request = new Request(null);
+        Request request = new Request("",null);
         in.put(request);
         processor().process();
         assertFalse(out.isEmpty());
@@ -63,7 +63,7 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_uses_RequestProcessor_for_Requests() {
-        final Request   request = new Request(null);
+        final Request   request = new Request("",null);
         final Map called = new HashMap();
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -81,7 +81,7 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_discards_RequestProcessor_null_responses() {
-        final Request   request = new Request(null);
+        final Request   request = new Request("",null);
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
             @Override
@@ -98,8 +98,8 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_puts_RequestProcessor_non_null_responses_to_out() {
-        final Request   request = new Request(null);
-        final Response response = new Response(request);
+        final Request   request = new Request("",null);
+        final Response response = new Response("",request);
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
             @Override

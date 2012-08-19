@@ -1,5 +1,6 @@
 package net.rambaldi;
 
+import java.io.Serializable;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import tests.acceptance.Copier;
@@ -14,7 +15,7 @@ public class SimpleContextTest {
     public void getState_returns_previously_setState() {
         SimpleContext context = new SimpleContext();
         
-        Object state = new Object();
+        Serializable state = new Serializable() {};
         
         context.setState(state);
         Object result = context.getState();

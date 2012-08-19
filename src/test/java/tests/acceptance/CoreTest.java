@@ -21,7 +21,7 @@ public class CoreTest {
         SingleTransactionQueue err = null;
         EchoProcessor         echo = new EchoProcessor();
         Context            context = null;
-        Request            request = new Request(null);
+        Request            request = new Request("",null);
         SimpleTransactionProcessor system = new SimpleTransactionProcessor(in,out,err,context,echo,null);
         
         in.put(request);
@@ -44,7 +44,7 @@ public class CoreTest {
         SingleTransactionQueue err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();
-        Request           request1 = new Request(t1);
+        Request           request1 = new Request("",t1);
         SimpleTransactionProcessor processor1 = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
         
         in.put(request1);
@@ -58,7 +58,7 @@ public class CoreTest {
         
         SimpleTransactionProcessor processor2 = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
         
-        Request request2 = new Request(t2);
+        Request request2 = new Request("",t2);
         in.put(request2);
         processor2.process();
         assertFalse(out.isEmpty());
@@ -80,7 +80,7 @@ public class CoreTest {
         SingleTransactionQueue err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();
-        Request           request1 = new Request(t1);
+        Request           request1 = new Request("",t1);
         SimpleTransactionProcessor processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
         
         in.put(request1);
@@ -96,7 +96,7 @@ public class CoreTest {
         in = (SingleTransactionQueue) processor.in;
         out = (SingleTransactionQueue) processor.out;
         
-        Request request2 = new Request(t2);
+        Request request2 = new Request("",t2);
         in.put(request2);
         processor.process();
         assertFalse(out.isEmpty());

@@ -4,10 +4,10 @@ package net.rambaldi;
  * An immutable Request.
  * @author Curt
  */
-public final class Request
+public class Request
     extends Transaction
 {
-    public Request(Timestamp timestamp) {
-        super(timestamp);
+    public Request(String value, Timestamp timestamp) {
+        super(value.getBytes(),timestamp);
     }
 }

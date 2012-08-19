@@ -16,7 +16,7 @@ public class SingleTransactionQueueTest {
         SingleTransactionQueue queue = new SingleTransactionQueue();
         assertTrue(queue.isEmpty());
         
-        Transaction in = new Transaction(null){};
+        Transaction in = new Transaction(null,null){};
         queue.put(in);
         assertFalse(queue.isEmpty());
         

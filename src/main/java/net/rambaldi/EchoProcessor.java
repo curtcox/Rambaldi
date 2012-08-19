@@ -10,7 +10,7 @@ public class EchoProcessor
 
     @Override
     public Response process(Request request, Context context) {
-        return new Response(request);
+        return new Response(request.bytes,request);
     }
     
 }

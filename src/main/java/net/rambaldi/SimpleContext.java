@@ -1,14 +1,16 @@
 package net.rambaldi;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Curt
  */
 public final class SimpleContext
-    implements Context, java.io.Serializable
+    implements Context, Serializable
 {
 
-    private Object state;
+    private Serializable state;
     
     @Override
     public Entity getEntity(String name) {
@@ -16,12 +18,12 @@ public final class SimpleContext
     }
 
     @Override
-    public Object getState() {
+    public Serializable getState() {
         return state;
     }
 
     @Override
-    public void setState(Object state) {
+    public void setState(Serializable state) {
         this.state = state;
     }
     

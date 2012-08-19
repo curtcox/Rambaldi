@@ -9,8 +9,28 @@ public class Response
 {
     public final Request request;
     
-    public Response(Request request) {
-        super(request.timestamp);
+    public Response(String value,Request request) {
+        super(value.getBytes(),request.timestamp);
         this.request = request;
     }
+
+    public Response(byte[] bytes,Request request) {
+        super(bytes,request.timestamp);
+        this.request = request;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        Response that = (Response) o;
+        return request.equals(that.request);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }
