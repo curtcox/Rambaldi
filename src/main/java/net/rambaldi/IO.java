@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- *
+ * For serializing and deserializing serializable objects. 
  * @author Curt
  */
 public final class IO {

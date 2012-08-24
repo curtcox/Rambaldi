@@ -1,7 +1,6 @@
 package net.rambaldi;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 import org.junit.Test;
 import tests.acceptance.Copier;
 
@@ -13,13 +12,6 @@ public class RequestTest {
         Request copy = Copier.copy(transaction);
 
         assertEquals(transaction,copy);
-    }
-
-    @Test
-    public void bytes_is_set_from_constructor_string() {
-        String expected = "jello";
-        String actual = new String(new Request(expected,new Timestamp(1)).bytes);
-        assertEquals(expected,actual);
     }
 
     @Test
@@ -38,4 +30,34 @@ public class RequestTest {
         assertFalse(request1.equals(request2));
     }
 
+    @Test
+    public void serialization_returns_equivalent_request() {
+        Transaction expected = new Request("",new Timestamp(0));
+        Transaction actual = (Transaction) IO.deserialize(IO.serialize(expected));
+        
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void toString_includes_timestamp() {
+        Timestamp timestamp = new Timestamp(0);
+        Request request = new Request("",timestamp);
+        assertTrue(request.toString().contains(timestamp.toString()));
+    }
+
+    @Test
+    public void toString_includes_value() {
+        Request request = new Request("jello",new Timestamp(0));
+        assertTrue(request.toString().contains("jello"));
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void constructor_throw_NPE_for_null_value() {
+        new Request(null,new Timestamp(1));
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void constructor_throw_NPE_for_null_timestamp() {
+        new Request("",null);
+    }
 }

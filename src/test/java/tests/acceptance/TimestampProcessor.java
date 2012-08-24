@@ -15,7 +15,7 @@ final class TimestampProcessor
     @Override
     public TimestampResponse process(Request request, Context context) {
         Timestamp previous = (Timestamp) context.getState();
-        context.setState(request.timestamp);
+        context.setState(request.getTimestamp());
         return new TimestampResponse(request,previous);
     }
     

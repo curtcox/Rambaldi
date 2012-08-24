@@ -1,6 +1,5 @@
 package tests.acceptance;
 
-import net.rambaldi.IO;
 import net.rambaldi.Request;
 import net.rambaldi.Response;
 import net.rambaldi.Timestamp;
@@ -15,7 +14,7 @@ final class TimestampResponse
     final Timestamp previousRequest;
     
     TimestampResponse(Request request, Timestamp previousRequest) {
-        super(IO.serialize(previousRequest),request);
+        super(request.value,request);
         this.previousRequest = previousRequest;
     }
 }

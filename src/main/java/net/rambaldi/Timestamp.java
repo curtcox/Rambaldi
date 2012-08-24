@@ -1,5 +1,7 @@
 package net.rambaldi;
 
+import java.util.Date;
+
 /**
  * An immutable, typesafe timestamp.
  * @author Curt
@@ -31,4 +33,8 @@ public final class Timestamp
         return (int) millis;
     }
 
+    @Override
+    public String toString() {
+        return new Date(millis).toString();
+    }
 }

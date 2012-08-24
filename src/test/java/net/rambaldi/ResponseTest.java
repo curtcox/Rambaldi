@@ -1,5 +1,7 @@
 package net.rambaldi;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import tests.acceptance.Copier;
@@ -28,6 +30,15 @@ public class ResponseTest {
         Response response2 = new Response("",new Request("different",new Timestamp(1)));
 
         assertFalse(response1.equals(response2));
+    }
+
+    @Test
+    public void serialization_returns_equivalent_response() {
+        Request   request = new Request("",new Timestamp(0));
+        Response expected = new Response("",request);
+        Response   actual = (Response) IO.deserialize(IO.serialize(expected));
+        
+        assertEquals(expected,actual);
     }
 
 }

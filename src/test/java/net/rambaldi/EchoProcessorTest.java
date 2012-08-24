@@ -13,7 +13,7 @@ public class EchoProcessorTest {
     @Test
     public void process_echos_request() {
         EchoProcessor echo = new EchoProcessor();
-        Request request = new Request("",null);
+        Request request = new Request("",new Timestamp(1));
         Context context = null;
         
         Response response = echo.process(request, context);

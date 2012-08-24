@@ -11,7 +11,7 @@ import tests.acceptance.Copier;
  *
  * @author Curt
  */
-public class SimpleTransactionProcessorTest {
+public class StreamTransactionProcessorTest {
 
     SingleTransactionQueue  in; 
     SingleTransactionQueue out; 
@@ -26,38 +26,45 @@ public class SimpleTransactionProcessorTest {
         context = null;
     }
 
-    SimpleTransactionProcessor processor(RequestProcessor requestProcessor) {
-        return new SimpleTransactionProcessor(in,out,err,context,requestProcessor,null);
+    StreamTransactionProcessor processor(RequestProcessor requestProcessor) {
+        return new StreamTransactionProcessor(
+                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),
+                context,requestProcessor,null);
     }
     
-    SimpleTransactionProcessor processor() {
-        return new SimpleTransactionProcessor(in,out,err,context,new EchoProcessor(),null);
+    StreamTransactionProcessor processor() {
+        return new StreamTransactionProcessor(
+                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),
+                context,new EchoProcessor(),null);
     }
-    
+
+    @Test(expected=IllegalArgumentException.class)
+    public void process_throws_exception_when_transaction_is_not_supported() {
+        Transaction transaction = transaction();
+        in.put(transaction);
+        processor().process();
+        assertEquals(transaction,in.take());
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void process_throws_exception_for_unknown_transaction_type() {
+        Transaction transaction = transaction();
+        in.put(transaction);
+        processor().process();
+    }
+
     @Test
     public void process_takes_request_from_in() {
-        Transaction transaction = request();
+        Transaction transaction = new Request("",new Timestamp(0));
         in.put(transaction);
         processor().process();
         assertEquals(transaction,in.take());
     }
     
-    @Test(expected=IllegalArgumentException.class)
-    public void process_throws_exception_for_unknown_transaction_type() {
-        Transaction transaction = new Transaction(){
-
-            @Override
-            public Timestamp getTimestamp() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        };
-        in.put(transaction);
-        processor().process();
-    }
 
     @Test
     public void process_echo_writes_requests_to_out() {
-        Request request = request();
+        Request request = new Request("",new Timestamp(0));
         in.put(request);
         processor().process();
         assertFalse(out.isEmpty());
@@ -67,7 +74,7 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_uses_RequestProcessor_for_Requests() {
-        final Request   request = request();
+        final Request   request = new Request("",new Timestamp(0));
         final Map called = new HashMap();
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -85,7 +92,7 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_discards_RequestProcessor_null_responses() {
-        final Request   request = request();
+        final Request   request = new Request("",new Timestamp(0));
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
             @Override
@@ -102,7 +109,7 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void process_puts_RequestProcessor_non_null_responses_to_out() {
-        final Request   request = request();
+        final Request   request = new Request("",new Timestamp(0));
         final Response response = new Response("",request);
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -120,12 +127,12 @@ public class SimpleTransactionProcessorTest {
 
     @Test
     public void is_serializable() throws Exception {
-        SimpleTransactionProcessor processor = processor();
-        SimpleTransactionProcessor copy = Copier.copy(processor);
-        assertTrue(copy instanceof SimpleTransactionProcessor);
+        StreamTransactionProcessor processor = processor();
+        StreamTransactionProcessor copy = Copier.copy(processor);
+        assertTrue(copy instanceof StreamTransactionProcessor);
     }
 
-    private Request request() {
-        return new Request("",new Timestamp(0));
+    private Transaction transaction() {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

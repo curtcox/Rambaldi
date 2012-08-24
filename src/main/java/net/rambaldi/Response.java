@@ -1,29 +1,33 @@
 package net.rambaldi;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * An immutable response to a request.
  * @author Curt
  */
 public class Response
-    extends Transaction
+    implements Transaction
 {
     public final Request request;
+    public final String value;
+    private final Timestamp timestamp;
     
     public Response(String value,Request request) {
-        super(value.getBytes(),request.timestamp);
         this.request = request;
+        this.value = value;
+        this.timestamp = request.getTimestamp();
     }
 
-    public Response(byte[] bytes,Request request) {
-        super(bytes,request.timestamp);
-        this.request = request;
+    @Override
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         Response that = (Response) o;
         return request.equals(that.request);
     }

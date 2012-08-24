@@ -1,5 +1,6 @@
 package net.rambaldi;
 
+import java.util.Date;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import tests.acceptance.Copier;
@@ -24,5 +25,13 @@ public class TimestampTest {
         assertEquals(stamp,copy);
         
         assertFalse(stamp.equals(Copier.copy(new Timestamp(7))));
+    }
+    
+    @Test
+    public void toString_contains_year() {
+        Timestamp timestamp = new Timestamp(0);
+        int year = new Date(timestamp.millis).getYear() + 1900;
+        
+        assertTrue(timestamp.toString().contains(Integer.toString(year)));
     }
 }
