@@ -5,13 +5,14 @@ import java.util.Map;
 import static junit.framework.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import tests.acceptance.Copier;
 
 /**
  *
  * @author Curt
  */
 public class StreamTransactionProcessorTest {
+
+    final IO io = new SimpleIO();
 
     SingleTransactionQueue  in; 
     SingleTransactionQueue out; 
@@ -20,35 +21,27 @@ public class StreamTransactionProcessorTest {
     
     @Before
     public void before() {
-             in = new SingleTransactionQueue(); 
-            out = new SingleTransactionQueue(); 
-            err = new SingleTransactionQueue(); 
+             in = new SingleTransactionQueue(io); 
+            out = new SingleTransactionQueue(io); 
+            err = new SingleTransactionQueue(io); 
         context = null;
     }
 
     StreamTransactionProcessor processor(RequestProcessor requestProcessor) {
         return new StreamTransactionProcessor(
-                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),
+                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,
                 context,requestProcessor,null);
     }
     
     StreamTransactionProcessor processor() {
         return new StreamTransactionProcessor(
-                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),
+                in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,
                 context,new EchoProcessor(),null);
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void process_throws_exception_when_transaction_is_not_supported() {
-        Transaction transaction = transaction();
-        in.put(transaction);
-        processor().process();
-        assertEquals(transaction,in.take());
-    }
-
-    @Test(expected=IllegalArgumentException.class)
     public void process_throws_exception_for_unknown_transaction_type() {
-        Transaction transaction = transaction();
+        Transaction transaction = new UnsupportedTransaction();
         in.put(transaction);
         processor().process();
     }
@@ -58,7 +51,7 @@ public class StreamTransactionProcessorTest {
         Transaction transaction = new Request("",new Timestamp(0));
         in.put(transaction);
         processor().process();
-        assertEquals(transaction,in.take());
+        assertTrue(in.isEmpty());
     }
     
 
@@ -125,14 +118,10 @@ public class StreamTransactionProcessorTest {
         assertEquals(response,out.take());
     }
 
-    @Test
-    public void is_serializable() throws Exception {
-        StreamTransactionProcessor processor = processor();
-        StreamTransactionProcessor copy = Copier.copy(processor);
-        assertTrue(copy instanceof StreamTransactionProcessor);
-    }
-
-    private Transaction transaction() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    static class UnsupportedTransaction implements Transaction {
+        @Override
+        public Timestamp getTimestamp() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 }

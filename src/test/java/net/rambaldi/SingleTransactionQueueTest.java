@@ -1,5 +1,6 @@
 package net.rambaldi;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import static junit.framework.Assert.*;
 import org.junit.Test;
@@ -11,10 +12,23 @@ import tests.acceptance.Copier;
  */
 public class SingleTransactionQueueTest {
 
-    
+    final IO io = new SimpleIO();
+
+    @Test
+    public void isEmpty_initially_returns_true() {
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
+        assertTrue(queue.isEmpty());       
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void put_rejects_null_transactions() {
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
+        queue.put(null);       
+    }
+
     @Test
     public void take_gets_put() {
-        SingleTransactionQueue queue = new SingleTransactionQueue();
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
         assertTrue(queue.isEmpty());
         
         Transaction in = transaction();
@@ -27,31 +41,32 @@ public class SingleTransactionQueueTest {
     
     @Test
     public void is_serializable() throws Exception {
-        SingleTransactionQueue queue = new SingleTransactionQueue();
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
         SingleTransactionQueue copy = Copier.copy(queue);
         assertTrue(copy instanceof SingleTransactionQueue);
     }
 
     @Test
     public void asInputStream_returns_stream_where_transactions_can_be_read_from() {
-        SingleTransactionQueue queue = new SingleTransactionQueue();
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
         Transaction transaction = transaction();
         queue.put(transaction);
         
-        InputTransactionSource in = new InputTransactionSource(queue.asInputStream());
+        InputStream inputStream = queue.asInputStream();
         
+        InputStreamAsTransactionSource in = new InputStreamAsTransactionSource(inputStream,io);      
         assertEquals(transaction,in.take());
     }
 
     @Test
     public void asOutputStream_returns_stream_where_transaction_can_be_written_to() {
-        SingleTransactionQueue queue = new SingleTransactionQueue();
+        SingleTransactionQueue queue = new SingleTransactionQueue(io);
         Transaction transaction = transaction();
         
-        final OutputStream OutputStream = queue.asOutputStream();
+        final OutputStream out = queue.asOutputStream();     
+        OutputStreamAsTransactionSink sink = new OutputStreamAsTransactionSink(out,io);      
+        sink.put(transaction);
         
-        OutputTransactionSink out = new OutputTransactionSink(OutputStream);
-        out.put(transaction);
         assertFalse(queue.isEmpty());
         assertEquals(transaction,queue.take());
     }

@@ -11,10 +11,13 @@ import org.junit.Test;
  */
 public class CoreTest {
 
+    final IO io = new SimpleIO();
+    
     @Test
     public void Read_from_queue_and_write_to_queue() {
-        SingleTransactionQueue  in = new SingleTransactionQueue(); 
-        SingleTransactionQueue out = new SingleTransactionQueue(); 
+        
+        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue out = new SingleTransactionQueue(io); 
         SingleTransactionQueue err = null;
         EchoProcessor         echo = new EchoProcessor();
         Context            context = null;
@@ -31,28 +34,28 @@ public class CoreTest {
 
     @Test
     public void Read_from_stdin_and_write_to_stdout() {
-        SingleTransactionQueue  in = new SingleTransactionQueue(); 
-        SingleTransactionQueue out = new SingleTransactionQueue(); 
+        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue out = new SingleTransactionQueue(io); 
         OutputStream           err = null;
         EchoProcessor echo = new EchoProcessor();
         Context    context = null;
         Request    request = request();
-        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err,context,echo,null);
+        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err,io,context,echo,null);
         
         in.put(request);
         system.process();
 
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
-        assertSame(request,response.request);
+        assertEquals(request,response.request);
     }
 
     @Test
     public void Save_state_between_requests() {
         Timestamp t1 = new Timestamp(1);
         Timestamp t2 = new Timestamp(2);
-        SingleTransactionQueue  in = new SingleTransactionQueue(); 
-        SingleTransactionQueue out = new SingleTransactionQueue(); 
+        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue out = new SingleTransactionQueue(io); 
         SingleTransactionQueue err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();
@@ -84,8 +87,8 @@ public class CoreTest {
     public void Persist_state_between_requests() throws Exception {
         Timestamp t1 = new Timestamp(1);
         Timestamp t2 = new Timestamp(2);
-        SingleTransactionQueue  in = new SingleTransactionQueue(); 
-        SingleTransactionQueue out = new SingleTransactionQueue(); 
+        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue out = new SingleTransactionQueue(io); 
         SingleTransactionQueue err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();

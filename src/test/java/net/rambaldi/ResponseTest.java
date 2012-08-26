@@ -1,12 +1,12 @@
 package net.rambaldi;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import tests.acceptance.Copier;
 
 public class ResponseTest {
+
+    final SimpleIO io = new SimpleIO();
 
     @Test
     public void is_serializable() throws Exception {
@@ -36,7 +36,7 @@ public class ResponseTest {
     public void serialization_returns_equivalent_response() {
         Request   request = new Request("",new Timestamp(0));
         Response expected = new Response("",request);
-        Response   actual = (Response) IO.deserialize(IO.serialize(expected));
+        Response   actual = (Response) io.deserialize(io.serialize(expected));
         
         assertEquals(expected,actual);
     }

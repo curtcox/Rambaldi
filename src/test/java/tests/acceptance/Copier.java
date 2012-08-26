@@ -2,6 +2,7 @@ package tests.acceptance;
 
 import java.io.Serializable;
 import net.rambaldi.IO;
+import net.rambaldi.SimpleIO;
 
 /**
  *
@@ -10,7 +11,8 @@ import net.rambaldi.IO;
 public final class Copier {
 
     public static <T extends Serializable> T copy(T serializable) {
-        Serializable copy = IO.deserialize(IO.serialize(serializable));
+        IO io = new SimpleIO();
+        Serializable copy = io.deserialize(io.serialize(serializable));
         return (T) copy;
     }
 

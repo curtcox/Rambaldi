@@ -34,6 +34,6 @@ public final class Request
     
     @Override
     public String toString() {
-        return timestamp.toString() + ":" + value;
+        return "request(" + timestamp + "," + value + ")";
     }
 }

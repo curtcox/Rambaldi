@@ -18,12 +18,12 @@ public class StreamTransactionProcessor
     public final ResponseProcessor responses;
 
     public StreamTransactionProcessor(
-            InputStream in, OutputStream out, OutputStream err,
+            InputStream in, OutputStream out, OutputStream err, IO io,
             Context context, RequestProcessor requests, ResponseProcessor responses)
     {
-        this.in = new InputTransactionSource(in);
-        this.out = new OutputTransactionSink(out);
-        this.err = new OutputTransactionSink(err);
+        this.in = new InputStreamAsTransactionSource(in,io);
+        this.out = new OutputStreamAsTransactionSink(out,io);
+        this.err = new OutputStreamAsTransactionSink(err,io);
         this.context = context;
         this.requests = requests;
         this.responses = responses;

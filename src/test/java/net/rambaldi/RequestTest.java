@@ -6,6 +6,8 @@ import tests.acceptance.Copier;
 
 public class RequestTest {
 
+    final SimpleIO io = new SimpleIO();
+
     @Test
     public void is_serializable() throws Exception {
         Request transaction = new Request("",new Timestamp(1));
@@ -33,7 +35,7 @@ public class RequestTest {
     @Test
     public void serialization_returns_equivalent_request() {
         Transaction expected = new Request("",new Timestamp(0));
-        Transaction actual = (Transaction) IO.deserialize(IO.serialize(expected));
+        Transaction actual = (Transaction) io.deserialize(io.serialize(expected));
         
         assertEquals(expected,actual);
     }
@@ -49,6 +51,12 @@ public class RequestTest {
     public void toString_includes_value() {
         Request request = new Request("jello",new Timestamp(0));
         assertTrue(request.toString().contains("jello"));
+    }
+
+    @Test
+    public void toString_includes_request_literal() {
+        Request request = new Request("",new Timestamp(0));
+        assertTrue(request.toString().toLowerCase().contains("request"));
     }
 
     @Test(expected=NullPointerException.class)

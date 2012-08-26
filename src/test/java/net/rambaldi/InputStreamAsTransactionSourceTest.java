@@ -10,15 +10,17 @@ import org.junit.Test;
  *
  * @author Curt
  */
-public class InputTransactionSourceTest {
+public class InputStreamAsTransactionSourceTest {
 
+    final SimpleIO io = new SimpleIO();
+    
     @Test
     public void take_request() throws IOException {
         Request expected = new Request("",new Timestamp(0));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Data.write(out, expected);
+        io.write(out, expected);
         ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-        InputTransactionSource source = new InputTransactionSource(in);
+        InputStreamAsTransactionSource source = new InputStreamAsTransactionSource(in,io);
         
         Transaction result = source.take();
         

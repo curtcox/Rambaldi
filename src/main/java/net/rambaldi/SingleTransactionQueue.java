@@ -1,77 +1,51 @@
 package net.rambaldi;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Provides multiple ways of connecting to a processor.
+ * Null transactions are rejected.
  * @author Curt
  */
-public class SingleTransactionQueue
+public final class SingleTransactionQueue
     implements TransactionSource, TransactionSink, java.io.Serializable
 {
     private Transaction transaction;
-    private boolean empty = true;
+    private final IO io;
+    
+    public SingleTransactionQueue(IO io) {
+        this.io = io;
+    }
     
     @Override
     public Transaction take() {
-        empty = true;
-        return transaction;
+        Transaction taken = transaction;
+        transaction = null;
+        return taken;
     }
 
     @Override
     public void put(Transaction transaction) {
-        empty = false;
+        Check.notNull(transaction);
         this.transaction = transaction;
     }
  
     public boolean isEmpty() {
-        return empty;
+        return transaction==null;
     }
     
+    /**
+     * Return an InputStream that Transactions can be read from as bytes.
+     */
     public InputStream asInputStream() {
-        final List<Integer> bytes = new ArrayList<>();
-        for (byte b : IO.serialize(take())) {
-            bytes.add((int) b);
-        }
-        return new InputStream() {
-            int i;
-            @Override
-            public int read() throws IOException {
-                return bytes.get(i++);
-            }
-        };
+        return new InputStreamFromTransactionSource(this,io);
     }
-    
+
+    /**
+     * Return an OutputStream that Transactions can be written to as bytes.
+     */
     public OutputStream asOutputStream() {
-        return new OutputStream() {
-            final ByteArrayOutputStream out = new ByteArrayOutputStream();
-            @Override
-            public void write(int b) throws IOException {
-                out.write(b);
-                if (lastByteInTransaction(b)) {
-                    put();
-                }
-            }
-            
-            boolean lastByteInTransaction(int b) {
-                byte[] bytes = out.toByteArray();
-                try {
-                    IO.deserialize(bytes);
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
-            }
-            
-            void put() {
-                Transaction transaction = (Transaction) IO.deserialize(out.toByteArray());
-                SingleTransactionQueue.this.put(transaction);
-            }
-        };
+        return new OutputStreamToTransactionSink(this,io);
     }
 }

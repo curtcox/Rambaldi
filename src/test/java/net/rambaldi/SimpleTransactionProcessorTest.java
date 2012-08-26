@@ -13,6 +13,8 @@ import tests.acceptance.Copier;
  */
 public class SimpleTransactionProcessorTest {
 
+    final IO io = new SimpleIO();
+
     SingleTransactionQueue  in; 
     SingleTransactionQueue out; 
     SingleTransactionQueue err; 
@@ -20,9 +22,9 @@ public class SimpleTransactionProcessorTest {
     
     @Before
     public void before() {
-             in = new SingleTransactionQueue(); 
-            out = new SingleTransactionQueue(); 
-            err = new SingleTransactionQueue(); 
+             in = new SingleTransactionQueue(io); 
+            out = new SingleTransactionQueue(io); 
+            err = new SingleTransactionQueue(io); 
         context = null;
     }
 
@@ -38,8 +40,9 @@ public class SimpleTransactionProcessorTest {
     public void process_takes_request_from_in() {
         Transaction transaction = request();
         in.put(transaction);
+        assertFalse(in.isEmpty());
         processor().process();
-        assertEquals(transaction,in.take());
+        assertTrue(in.isEmpty());
     }
     
     @Test(expected=IllegalArgumentException.class)
