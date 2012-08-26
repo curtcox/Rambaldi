@@ -1,7 +1,7 @@
 #################
 ## IntelliJ
 #################
-.idea/workspace.xml
+.idea/
 
 #################
 ## NetBeans
@@ -38,6 +38,10 @@ local.properties
 # PDT-specific
 .buildpath
 
+#################
+## Gradle
+#################
+.gradle
 
 #################
 ## Build Generated
@@ -46,7 +50,7 @@ local.properties
 [Dd]ebug/
 [Rr]elease/
 [Tt]arget/
-
+[Bb]uild/
 ############
 ## Windows
 ############
