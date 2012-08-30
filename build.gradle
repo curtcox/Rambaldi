@@ -1,0 +1,6 @@
+apply plugin: 'java'
+apply from: 'embeddedRepo.gradle'
+ 
+dependencies {
+  testCompile 'junit:junit:4.10'
+}

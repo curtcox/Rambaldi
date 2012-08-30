@@ -1,6 +1,10 @@
 package tests.acceptance;
 
 import java.io.OutputStream;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import net.rambaldi.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -9,7 +13,7 @@ import org.junit.Test;
  * Core acceptance tests.
  * @author Curt
  */
-public class CoreTest {
+public class Core_Test {
 
     final IO io = new SimpleIO();
     
@@ -33,13 +37,13 @@ public class CoreTest {
     }
 
     @Test
-    public void Read_from_stdin_and_write_to_stdout() {
+    public void Read_from_stream_and_write_to_stream() {
         SingleTransactionQueue  in = new SingleTransactionQueue(io); 
-        SingleTransactionQueue out = new SingleTransactionQueue(io); 
+        SingleTransactionQueue out = new SingleTransactionQueue(io);
         OutputStream           err = null;
-        EchoProcessor echo = new EchoProcessor();
-        Context    context = null;
-        Request    request = request();
+        EchoProcessor         echo = new EchoProcessor();
+        Context            context = null;
+        Request            request = request();
         StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err,io,context,echo,null);
         
         in.put(request);
@@ -116,31 +120,6 @@ public class CoreTest {
         assertEquals(request2,response2.request);
         assertEquals(t2,response2.getTimestamp());
         assertEquals(t1,response2.previousRequest);        
-    }
-    
-    @Test
-    public void Handle_responses_asynchronously_from_requests() {
-//        fail();
-    }
-
-    @Test
-    public void In_dev_I_should_be_able_to_hot_deploy_program_changes() {
-//        fail();
-    }
-
-    @Test
-    public void I_should_be_able_to_update_the_program_via_an_update_transaction() {
-//        fail();
-    }
-
-    @Test
-    public void I_should_be_able_to_migrate_state_via_an_update_transaction() {
-//        fail();
-    }
-
-    @Test
-    public void I_should_be_able_to_persist_to_disk_via_a_transaction() {
-//        fail();
     }
 
     private Request request() {

@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * A transaction processor that uses streams for IO.
+ * A TransactionProcessor that uses streams for IO.
  * @author Curt
  */
 public class StreamTransactionProcessor
