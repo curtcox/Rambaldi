@@ -2,6 +2,7 @@ package net.rambaldi;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * Provides multiple ways of connecting to a processor.
@@ -27,8 +28,7 @@ public final class SingleTransactionQueue
 
     @Override
     public void put(Transaction transaction) {
-        Check.notNull(transaction);
-        this.transaction = transaction;
+        this.transaction = Objects.requireNonNull(transaction);
     }
  
     public boolean isEmpty() {

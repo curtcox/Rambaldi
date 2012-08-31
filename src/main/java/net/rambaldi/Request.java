@@ -1,5 +1,7 @@
 package net.rambaldi;
 
+import java.util.Objects;
+
 /**
  * An immutable Request.
  * @author Curt
@@ -11,8 +13,8 @@ public final class Request
     private final Timestamp timestamp;
     
     public Request(String value, Timestamp timestamp) {
-        this.value = Check.notNull(value);
-        this.timestamp = Check.notNull(timestamp);
+        this.value = Objects.requireNonNull(value);
+        this.timestamp = Objects.requireNonNull(timestamp);
     }
 
     @Override

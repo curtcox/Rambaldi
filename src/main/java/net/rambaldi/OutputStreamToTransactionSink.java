@@ -3,6 +3,7 @@ package net.rambaldi;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * An OutputStream that puts to a TransactionSink
@@ -17,7 +18,7 @@ final class OutputStreamToTransactionSink
     private final IO io;
 
     public OutputStreamToTransactionSink(TransactionSink sink, IO io) {
-        this.sink = Check.notNull(sink);
+        this.sink = Objects.requireNonNull(sink);
         this.io = io;
     }
  

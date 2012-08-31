@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.Objects;
 
 /**
  * An InputStream, for streaming a TransactionSource as bytes.
@@ -17,8 +18,8 @@ final class InputStreamFromTransactionSource
     private final IO io;
 
     public InputStreamFromTransactionSource(TransactionSource source, IO io) {
-        this.source = Check.notNull(source);
-        this.io = Check.notNull(io);
+        this.source = Objects.requireNonNull(source);
+        this.io = Objects.requireNonNull(io);
     }
     
     /**

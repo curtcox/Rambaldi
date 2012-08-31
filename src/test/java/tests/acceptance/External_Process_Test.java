@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +37,7 @@ public class External_Process_Test {
         OutputStream           err = null;
         Request            request = request();
 
-        StreamServer server = TransactionProcessors.startExternal(in.asInputStream(),out.asOutputStream(),err,state);
+        StreamServer server = TransactionProcessors.newExternal(in.asInputStream(), out.asOutputStream(), err, state);
 
         assertFalse(server.isUp());
         server.start();

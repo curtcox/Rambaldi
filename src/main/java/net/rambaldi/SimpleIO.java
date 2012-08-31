@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * For serializing and deserializing serializable objects. 
@@ -21,7 +22,7 @@ public final class SimpleIO
 
     @Override
     public byte[] serialize(Serializable serializable) {
-        Check.notNull(serializable);
+        Objects.requireNonNull(serializable);
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             try (ObjectOutputStream out = new ObjectOutputStream(bytes)) {
@@ -35,7 +36,7 @@ public final class SimpleIO
 
     @Override
     public Serializable deserialize(byte[] bytes) {
-        Check.notNull(bytes);
+        Objects.requireNonNull(bytes);
         try {
             ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
             return (Serializable) in.readObject();
@@ -54,13 +55,13 @@ public final class SimpleIO
 
     @Override
     public Timestamp readTimestamp(InputStream in) throws IOException {
-        Check.notNull(in);
+        Objects.requireNonNull(in);
         return new Timestamp(data(in).readLong());
     }
 
     @Override
     public byte[] readBytes(InputStream in) throws IOException {
-        Check.notNull(in);
+        Objects.requireNonNull(in);
         DataInputStream data = data(in);
         byte[] bytes = new byte[data.readInt()];
         data.readFully(bytes);
@@ -79,8 +80,8 @@ public final class SimpleIO
 
     @Override
     public void write(OutputStream out, byte[] bytes) throws IOException {
-        Check.notNull(out);
-        Check.notNull(bytes);
+        Objects.requireNonNull(out);
+        Objects.requireNonNull(bytes);
         DataOutputStream data = data(out);
         data.writeInt(bytes.length);
         data.write(bytes);
@@ -88,14 +89,12 @@ public final class SimpleIO
 
     @Override
     public Transaction readTransaction(byte[] bytes) throws IOException, ClassNotFoundException {
-        Check.notNull(bytes);
-        return readTransaction(new ByteArrayInputStream(bytes));
+        return readTransaction(new ByteArrayInputStream(Objects.requireNonNull(bytes)));
     }
 
     @Override
     public Transaction readTransaction(InputStream in) throws IOException {
-        Check.notNull(in);
-        return (Transaction) deserialize(readBytes(in));
+        return (Transaction) deserialize(readBytes(Objects.requireNonNull(in)));
     }
 
 }
