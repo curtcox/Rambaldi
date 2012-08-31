@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import static org.junit.Assert.*;
 
 /**
- * Core acceptance tests.
+ * Acceptance tests for launching an external processor.
  * @author Curt
  */
 public class External_Process_Test {
@@ -23,7 +23,8 @@ public class External_Process_Test {
     @Before
     public void Before() {
         state = new StateOnDisk();
-        EchoProcessor         echo = new EchoProcessor();
+        state.setProcessor(new EchoProcessor());
+        state.persist();
     }
 
     @After
@@ -32,13 +33,17 @@ public class External_Process_Test {
     }
 
     @Test
-    public void Read_from_stdin_and_write_to_stdout() throws InterruptedException {
+    public void Read_from_standard_in_and_write_to_standard_out() throws InterruptedException {
         SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io);
         OutputStream           err = null;
         Request            request = request();
 
-        Process process = TransactionProcessors.startExternal(in.asInputStream(),out.asOutputStream(),err,state.path);
+        StreamServer server = TransactionProcessors.startExternal(in.asInputStream(),out.asOutputStream(),err,state);
+
+        assertFalse(server.isUp());
+        server.start();
+        assertTrue(server.isUp());
 
         in.put(request);
         Thread.sleep(1000);
@@ -47,6 +52,8 @@ public class External_Process_Test {
         Response response = (Response) out.take();
         assertEquals(request,response.request);
 
+        server.stop();
+        assertFalse(server.isUp());
     }
 
     private Request request() {

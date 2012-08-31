@@ -7,4 +7,10 @@ public class StateOnDisk {
 
     public void delete() {
     }
+
+    public void setProcessor(EchoProcessor echoProcessor) {
+    }
+
+    public void persist() {
+    }
 }

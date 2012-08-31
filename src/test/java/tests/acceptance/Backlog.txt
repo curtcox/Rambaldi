@@ -3,3 +3,48 @@
 @Test I_should_be_able_to_update_the_program_via_an_update_transaction
 @Test I_should_be_able_to_migrate_state_via_an_update_transaction
 @Test I_should_be_able_to_persist_to_disk_via_a_transaction
+
+I should be able to respond to requests on stdin with responses on stdout
+I should be able to save state between requests
+I should be able to handle responses asynchronously from requests
+In dev, I should be able to hot-deploy program changes
+I should only be able to see the filesystem in development
+I should be able to bring the server up and down
+I should be able to address the limitations and remedies -- What if I run out of memory?  etc...
+
+
+Transactions should be ACID
+I should be able to update the program via an update transaction
+I should be able to migrate state via an update transaction
+I should be able to persist state to disk via a persist transaction
+I should be able to restore persisted state from disk
+I should be able to replay transactions to reach the same state
+I should be able to update the system via a system update transaction
+I should be able to store blobs outside of the heap
+I should be able to view pages using a web browser
+I should be able to edit pages using a web browser
+I should be able to view the server side source of any page using a web browser (handler resolution, handler code, objects, view, etc...)
+I should be able to make changes that only I can see for testing
+I should be able to secure a page from view or modification
+I should be able to secure data from view or modification
+I should be able to recover from a bad program migration attempt
+I should be able to recover from a bad data migration attempt
+I should be protected against changes causing serialization or deserialization problems
+I should be able to back up the system with no down time
+I should be able to restore persisted state from disk
+Review Why Line for needed features
+Review "Inventing on Principle" for features
+Benchmark against other platforms -- TPC-W on Tomcat/MySQL/Linux?	http://jmob.ow2.org/tpcw.html	http://pharm.ece.wisc.edu/tpcw/CAECW2000.pdf
+I should be able to deploy in a servlet container with a shim
+I should be able to develop and deploy Enyo apps
+I should be able to develop and deploy GWT apps
+I should be able to develop and deploy Vaadin apps	https://github.com/halls/groovy-vaadin/blob/master/src/main/java/org/groovyvaadin/GroovyApplicationServlet.java
+I should be able to develop and deploy Gradle apps
+I should be able to develop and deploy Apollo apps
+I should be able to develop and deploy Stapler apps
+I should be able to use a fronting proxy to manage sessions and logins
+I should be able to use a fronting proxy to serve static resources
+I should be able to develop and deploy Enyo apps
+I should be able to replay and diagnose UAT failures using a single consolidated mechanism
+Review App Fuse for stack completeness
+I should be able to write apps in Javascript

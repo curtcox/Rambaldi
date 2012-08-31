@@ -9,7 +9,7 @@ import java.nio.file.Path;
  */
 public final class TransactionProcessors {
 
-    public static Process startExternal(InputStream inputStream, OutputStream outputStream, OutputStream err, Path path) {
+    public static StreamServer startExternal(InputStream inputStream, OutputStream outputStream, OutputStream err, StateOnDisk state) {
         return null;
     }
 }
