@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,11 +21,12 @@ import static org.junit.Assert.*;
 public class External_Process_Test {
 
     final IO io = new SimpleIO();
+    Path temp = Paths.get("tempDir");
     StateOnDisk state;
 
     @Before
     public void Before() throws Exception {
-        state = new StateOnDisk(Paths.get("tempDir"),io);
+        state = new StateOnDisk(temp,io);
         state.setProcessor(new EchoProcessor());
         state.persist();
     }

@@ -23,6 +23,7 @@ public final class StateOnDisk {
     }
 
     public void delete() throws IOException {
+        FileUtils.deleteRecursive(path.toFile());
         Files.delete(path);
     }
 
