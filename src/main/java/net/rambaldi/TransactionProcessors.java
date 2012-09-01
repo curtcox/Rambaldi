@@ -13,6 +13,8 @@ public final class TransactionProcessors {
 
     public static StreamServer newExternal(InputStream in, OutputStream out, OutputStream err, StateOnDisk state) {
         Objects.requireNonNull(in);
-        return new ProcessAsStreamServer(null);
+        ProcessBuilder builder = new ProcessBuilder();
+        ProcessFactory processFactory = new SimpleProcessFactory(builder);
+        return new ProcessAsStreamServer(processFactory);
     }
 }

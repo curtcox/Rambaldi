@@ -31,7 +31,7 @@ public class External_Process_Test {
     }
 
     @Test
-    public void Read_from_standard_in_and_write_to_standard_out() throws InterruptedException {
+    public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
         SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io);
         OutputStream           err = null;

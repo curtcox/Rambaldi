@@ -1,5 +1,7 @@
 package net.rambaldi;
 
+import java.io.IOException;
+
 /**
  * Wraps a Process to provide a StreamServer.
  */
@@ -20,7 +22,7 @@ public final class ProcessAsStreamServer
     }
 
     @Override
-    public void start() {
+    public void start() throws ProcessCreationException {
         process = factory.newInstance();
         up = true;
     }
