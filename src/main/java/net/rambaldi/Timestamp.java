@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Curt
  */
 public final class Timestamp
-    implements java.io.Serializable
+    implements Immutable, java.io.Serializable
 {
     
     public final long millis;

@@ -3,9 +3,7 @@ package net.rambaldi;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +13,7 @@ public class TransactionProcessorsTest {
 
     @Before
     public void Before() {
-        state = new StateOnDisk();
+        state = new StateOnDisk(Paths.get(""),new FakeObjectStore());
     }
 
     @Test(expected=NullPointerException.class)

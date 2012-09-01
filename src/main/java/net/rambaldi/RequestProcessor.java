@@ -3,7 +3,9 @@ package net.rambaldi;
 /**
  * Something that processes a request.
  */
-public interface RequestProcessor {
+public interface RequestProcessor
+    extends Immutable, java.io.Serializable
+{
 
     /**
      * Process the request, using context and possibly producing a response.

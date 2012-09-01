@@ -5,7 +5,7 @@ package net.rambaldi;
  * @author Curt
  */
 public interface Transaction 
-    extends java.io.Serializable
+    extends java.io.Serializable, Immutable
 {
     Timestamp getTimestamp();
 }

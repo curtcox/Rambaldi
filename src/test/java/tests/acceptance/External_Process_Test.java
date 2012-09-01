@@ -7,6 +7,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.Assert.*;
 
 /**
@@ -19,14 +23,14 @@ public class External_Process_Test {
     StateOnDisk state;
 
     @Before
-    public void Before() {
-        state = new StateOnDisk();
+    public void Before() throws Exception {
+        state = new StateOnDisk(Paths.get("tempDir"),io);
         state.setProcessor(new EchoProcessor());
         state.persist();
     }
 
     @After
-    public void After() {
+    public void After() throws Exception {
         state.delete();
     }
 
