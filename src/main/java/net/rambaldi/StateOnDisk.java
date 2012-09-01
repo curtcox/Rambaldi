@@ -2,13 +2,13 @@ package net.rambaldi;
 
 import java.nio.file.Path;
 
-public class StateOnDisk {
+public final class StateOnDisk {
     public Path path;
 
     public void delete() {
     }
 
-    public void setProcessor(EchoProcessor echoProcessor) {
+    public void setProcessor(RequestProcessor processor) {
     }
 
     public void persist() {

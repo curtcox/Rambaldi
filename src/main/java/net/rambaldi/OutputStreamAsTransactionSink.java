@@ -1,5 +1,10 @@
 package net.rambaldi;
 
+import net.rambaldi.SerializationException;
+import net.rambaldi.Transaction;
+import net.rambaldi.TransactionSink;
+import net.rambaldi.IO;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Objects;

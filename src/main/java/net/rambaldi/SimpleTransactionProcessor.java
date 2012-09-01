@@ -4,7 +4,7 @@ package net.rambaldi;
  * The simplest implementation of TransactionProcessor
  * @author Curt
  */
-public final class SimpleTransactionProcessor 
+public final class SimpleTransactionProcessor
     implements TransactionProcessor, java.io.Serializable
 {
 

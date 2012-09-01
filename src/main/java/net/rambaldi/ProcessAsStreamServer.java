@@ -1,11 +1,13 @@
 package net.rambaldi;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Wraps a Process to provide a StreamServer.
  */
-public final class ProcessAsStreamServer
+final class ProcessAsStreamServer
     implements StreamServer
 {
     private final ProcessFactory factory;
@@ -31,5 +33,15 @@ public final class ProcessAsStreamServer
     public void stop() {
         process.destroy();
         up = false;
+    }
+
+    @Override
+    public OutputStream getInput() {
+        return null;
+    }
+
+    @Override
+    public InputStream getOutput() {
+        return null;
     }
 }

@@ -1,11 +1,11 @@
 package tests.acceptance;
 
 import net.rambaldi.*;
+import net.rambaldi.IO;
+import net.rambaldi.SimpleIO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.OutputStream;
 
 import static org.junit.Assert.*;
 
@@ -32,22 +32,20 @@ public class External_Process_Test {
 
     @Test
     public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
-        SingleTransactionQueue  in = new SingleTransactionQueue(io);
-        SingleTransactionQueue out = new SingleTransactionQueue(io);
-        OutputStream           err = null;
-        Request            request = request();
+        Request request = request();
 
-        StreamServer server = TransactionProcessors.newExternal(in.asInputStream(), out.asOutputStream(), err, state);
+        StreamServer server = TransactionProcessors.newExternal(state);
+        TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
+        TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
 
         assertFalse(server.isUp());
         server.start();
         assertTrue(server.isUp());
 
-        in.put(request);
+        sink.put(request);
         Thread.sleep(1000);
 
-        assertFalse(out.isEmpty());
-        Response response = (Response) out.take();
+        Response response = (Response) source.take();
         assertEquals(request,response.request);
 
         server.stop();

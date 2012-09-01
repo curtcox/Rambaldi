@@ -3,7 +3,7 @@ package net.rambaldi;
 import java.io.Serializable;
 
 /**
- *
+ * A simple implementation of Context.
  * @author Curt
  */
 public final class SimpleContext

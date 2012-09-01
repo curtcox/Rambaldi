@@ -23,8 +23,11 @@ public class SimpleProcessFactoryTest {
     @Test
     public void newInstance_creates_process() throws Exception {
         ProcessBuilder builder = new ProcessBuilder();
+        builder.command("java");
         SimpleProcessFactory factory = new SimpleProcessFactory(builder);
-        assertNotNull(factory.newInstance());
+        Process process = factory.newInstance();
+        assertNotNull(process);
+        process.destroy();
     }
 
 }

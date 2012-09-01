@@ -9,7 +9,7 @@ import java.io.Serializable;
  * For serializing and deserializing serializable objects. 
  * @author Curt
  */
-public final class DebugIO
+final class DebugIO
     implements IO
 {
 

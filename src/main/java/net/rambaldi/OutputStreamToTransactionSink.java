@@ -1,5 +1,10 @@
 package net.rambaldi;
 
+import net.rambaldi.DeserializationException;
+import net.rambaldi.IO;
+import net.rambaldi.Transaction;
+import net.rambaldi.TransactionSink;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,7 +14,7 @@ import java.util.Objects;
  * An OutputStream that puts to a TransactionSink
  * @author Curt
  */
-final class OutputStreamToTransactionSink
+public final class OutputStreamToTransactionSink
     extends OutputStream
 {
 
@@ -41,7 +46,7 @@ final class OutputStreamToTransactionSink
     
     private Transaction read() throws IOException {
         try {
-            return (Transaction) io.readTransaction(out.toByteArray());
+            return io.readTransaction(out.toByteArray());
         } catch (ClassNotFoundException e) {
             throw new DeserializationException(e);
         }

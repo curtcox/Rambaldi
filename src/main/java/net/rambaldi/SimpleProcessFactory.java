@@ -3,7 +3,7 @@ package net.rambaldi;
 import java.io.IOException;
 import java.util.Objects;
 
-public final class SimpleProcessFactory
+final class SimpleProcessFactory
     implements ProcessFactory
 {
 
@@ -17,7 +17,7 @@ public final class SimpleProcessFactory
     public Process newInstance() throws ProcessCreationException {
         try {
             return builder.start();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ProcessCreationException(e);
         }
     }

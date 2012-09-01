@@ -7,7 +7,7 @@ import java.io.OutputStream;
  * A TransactionProcessor that uses streams for IO.
  * @author Curt
  */
-public class StreamTransactionProcessor
+public final class StreamTransactionProcessor
     implements TransactionProcessor, java.io.Serializable
 {
     public final TransactionSource in;

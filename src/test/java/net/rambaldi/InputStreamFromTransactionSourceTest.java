@@ -2,6 +2,7 @@ package net.rambaldi;
 
 import java.io.IOException;
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 /**

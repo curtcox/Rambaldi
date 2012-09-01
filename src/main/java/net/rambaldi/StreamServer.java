@@ -1,6 +1,6 @@
 package net.rambaldi;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * A server that reads commands and requests from an input stream and writes requests and responses to an
@@ -13,4 +13,8 @@ public interface StreamServer {
     void start() throws ProcessCreationException;
 
     void stop();
+
+    OutputStream getInput();
+
+    InputStream getOutput();
 }

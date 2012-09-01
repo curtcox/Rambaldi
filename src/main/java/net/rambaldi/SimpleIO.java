@@ -20,6 +20,8 @@ public final class SimpleIO
     implements IO, Serializable
 {
 
+    public static final SimpleIO IO = new SimpleIO();
+
     @Override
     public byte[] serialize(Serializable serializable) {
         Objects.requireNonNull(serializable);

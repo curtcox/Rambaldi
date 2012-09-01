@@ -3,6 +3,7 @@ package net.rambaldi;
 import java.util.HashMap;
 import java.util.Map;
 import static junit.framework.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import tests.acceptance.Copier;

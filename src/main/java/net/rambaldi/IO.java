@@ -1,12 +1,15 @@
 package net.rambaldi;
 
+import net.rambaldi.Timestamp;
+import net.rambaldi.Transaction;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 
 /**
- *
+ * Something that can read and write objects, so that they can be transported.
  * @author Curt
  */
 public interface IO {

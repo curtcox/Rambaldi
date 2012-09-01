@@ -3,6 +3,7 @@ package net.rambaldi;
 import java.io.InputStream;
 import java.io.OutputStream;
 import static junit.framework.Assert.*;
+
 import org.junit.Test;
 import tests.acceptance.Copier;
 
@@ -54,7 +55,7 @@ public class SingleTransactionQueueTest {
         
         InputStream inputStream = queue.asInputStream();
         
-        InputStreamAsTransactionSource in = new InputStreamAsTransactionSource(inputStream,io);      
+        InputStreamAsTransactionSource in = new InputStreamAsTransactionSource(inputStream,io);
         assertEquals(transaction,in.take());
     }
 
@@ -64,7 +65,7 @@ public class SingleTransactionQueueTest {
         Transaction transaction = transaction();
         
         final OutputStream out = queue.asOutputStream();     
-        OutputStreamAsTransactionSink sink = new OutputStreamAsTransactionSink(out,io);      
+        OutputStreamAsTransactionSink sink = new OutputStreamAsTransactionSink(out,io);
         sink.put(transaction);
         
         assertFalse(queue.isEmpty());
