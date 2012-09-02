@@ -71,4 +71,32 @@ public class ProcessAsStreamServerTest {
         assertFalse(server.isUp());
     }
 
+    @Test
+    public void getInput_delegates_to_process() throws Exception {
+        ProcessAsStreamServer server = new ProcessAsStreamServer(factory);
+        server.start();
+
+        assertSame(process.out,server.getInput());
+    }
+
+    @Test
+    public void getOutput_delegates_to_process() throws Exception {
+        ProcessAsStreamServer server = new ProcessAsStreamServer(factory);
+        server.start();
+
+        assertSame(process.in,server.getOutput());
+    }
+
+    @Test(expected=IllegalStateException.class)
+    public void getInput_throws_exception_when_process_not_started() throws Exception {
+        ProcessAsStreamServer server = new ProcessAsStreamServer(factory);
+        server.getInput();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void getOutput_throws_exception_when_process_not_started() throws Exception {
+        ProcessAsStreamServer server = new ProcessAsStreamServer(factory);
+        server.getOutput();
+    }
+
 }

@@ -37,11 +37,19 @@ final class ProcessAsStreamServer
 
     @Override
     public OutputStream getInput() {
-        return null;
+        makeSureStarted();
+        return process.getOutputStream();
     }
 
     @Override
     public InputStream getOutput() {
-        return null;
+        makeSureStarted();
+        return process.getInputStream();
+    }
+
+    private void makeSureStarted() {
+        if (!up) {
+            throw new IllegalStateException("Process has not been started");
+        }
     }
 }

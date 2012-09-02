@@ -1,13 +1,15 @@
 package net.rambaldi;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
 final class FakeProcess extends Process {
 
-    InputStream in;
-    InputStream err;
-    OutputStream out;
+    InputStream in = new ByteArrayInputStream(new byte[0]);
+    InputStream err = new ByteArrayInputStream(new byte[0]);
+    OutputStream out = new ByteArrayOutputStream();
     int value;
     boolean hasExited;
 

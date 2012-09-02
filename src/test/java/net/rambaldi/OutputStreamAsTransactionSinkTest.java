@@ -16,6 +16,16 @@ public class OutputStreamAsTransactionSinkTest {
     final SimpleIO io = new SimpleIO();
 
     @Test(expected=NullPointerException.class)
+    public void constructor_requires_stream() throws IOException {
+        new OutputStreamAsTransactionSink(null,io);
+    }
+
+    @Test(expected=NullPointerException.class)
+    public void constructor_requires_io() throws IOException {
+        new OutputStreamAsTransactionSink(new ByteArrayOutputStream(),null);
+    }
+
+    @Test(expected=NullPointerException.class)
     public void put_rejects_null_transactions() throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         OutputStreamAsTransactionSink sink = new OutputStreamAsTransactionSink(out,io);
@@ -32,7 +42,7 @@ public class OutputStreamAsTransactionSinkTest {
         sink.put(expected);
         
         out.close();
-        Transaction result = (Transaction) io.readTransaction(new ByteArrayInputStream(out.toByteArray()));
+        Transaction result = io.readTransaction(new ByteArrayInputStream(out.toByteArray()));
         assertEquals(result,expected);
     }
    

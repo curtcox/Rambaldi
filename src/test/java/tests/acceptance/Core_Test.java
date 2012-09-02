@@ -19,7 +19,7 @@ public class Core_Test {
     @Test
     public void Read_from_queue_and_write_to_queue() {
         
-        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
         SingleTransactionQueue err = null;
         EchoProcessor         echo = new EchoProcessor();
@@ -39,11 +39,11 @@ public class Core_Test {
     public void Read_from_stream_and_write_to_stream() {
         SingleTransactionQueue  in = new SingleTransactionQueue(io); 
         SingleTransactionQueue out = new SingleTransactionQueue(io);
-        OutputStream           err = null;
+        SingleTransactionQueue err = new SingleTransactionQueue(io);
         EchoProcessor         echo = new EchoProcessor();
         Context            context = null;
         Request            request = request();
-        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err,io,context,echo,null);
+        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,context,echo,null);
         
         in.put(request);
         system.process();

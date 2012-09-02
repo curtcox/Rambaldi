@@ -1,7 +1,6 @@
 package net.rambaldi;
 
-import java.io.IOException;
-import java.util.Objects;
+import static java.util.Objects.*;
 
 final class SimpleProcessFactory
     implements ProcessFactory
@@ -10,7 +9,7 @@ final class SimpleProcessFactory
     private final ProcessBuilder builder;
 
     SimpleProcessFactory(ProcessBuilder builder) {
-        this.builder = Objects.requireNonNull(builder);
+        this.builder = requireNonNull(builder);
     }
 
     @Override
