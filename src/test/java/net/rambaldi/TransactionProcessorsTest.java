@@ -27,4 +27,9 @@ public class TransactionProcessorsTest {
         StreamServer server = TransactionProcessors.newExternal(state);
         assertNotNull(server);
     }
+
+    @Test
+    public void x() {
+
+    }
 }

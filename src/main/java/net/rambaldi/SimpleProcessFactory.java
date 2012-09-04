@@ -15,7 +15,8 @@ final class SimpleProcessFactory
     @Override
     public Process newInstance() throws ProcessCreationException {
         try {
-            return builder.start();
+            Process process = builder.start();
+            return process;
         } catch (Exception e) {
             throw new ProcessCreationException(e);
         }

@@ -1,7 +1,6 @@
 package net.rambaldi;
 
-import java.io.File;
-import java.net.URL;
+import java.nio.file.Path;
 
 /**
  * Tools for dealing with transaction processors.
@@ -9,17 +8,10 @@ import java.net.URL;
 public final class TransactionProcessors {
 
     public static StreamServer newExternal(StateOnDisk state) {
-        ProcessBuilder builder = new ProcessBuilder();
-        File classpath = getClasspath();
-        builder.command("java","-cp",classpath.toString(),Main.class.getCanonicalName());
-        builder.directory(state.path.toFile());
+        Path path = state.path;
+        ProcessBuilder builder = new JavaProcessBuilder(path).getConfigured();
         ProcessFactory processFactory = new SimpleProcessFactory(builder);
-        return new ProcessAsStreamServer(processFactory);
+        return new ProcessAsStreamServer(processFactory, System.err);
     }
 
-    private static File getClasspath() {
-        URL location = TransactionProcessors.class.getProtectionDomain().getCodeSource().getLocation();
-        String external = location.toExternalForm();
-        return new File(external);
-    }
 }

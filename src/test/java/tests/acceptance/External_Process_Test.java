@@ -44,11 +44,10 @@ public class External_Process_Test {
         assertFalse(server.isUp());
 
         server.start();
+        assertTrue(server.isUp());
+
         TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
         TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
-
-        server.start();
-        assertTrue(server.isUp());
 
         sink.put(request);
         Thread.sleep(1000);

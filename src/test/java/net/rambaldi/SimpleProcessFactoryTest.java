@@ -29,5 +29,4 @@ public class SimpleProcessFactoryTest {
         assertNotNull(process);
         process.destroy();
     }
-
 }
