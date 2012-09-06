@@ -11,19 +11,22 @@ import java.util.Objects;
 public final class StateOnDisk {
 
     public final Path path;
+    private final FileSystem fileSystem;
     private final ObjectStore store;
     private RequestProcessor processor;
 
-    public StateOnDisk(Path dir, IO io) {
-        this(dir,new SimpleObjectStore(dir,io));
+    public StateOnDisk(Path dir, IO io, FileSystem fileSystem) {
+        this(dir,new SimpleObjectStore(dir,io,fileSystem));
     }
+
     public StateOnDisk(Path dir, ObjectStore store) {
         path = Objects.requireNonNull(dir);
         this.store = Objects.requireNonNull(store);
+        this.fileSystem = new SimpleFileSystem();
     }
 
     public void delete() throws IOException {
-        FileUtils.deleteRecursive(path.toFile());
+        fileSystem.deleteRecursive(path);
     }
 
     public void setProcessor(RequestProcessor processor) {
@@ -31,7 +34,7 @@ public final class StateOnDisk {
     }
 
     public void persist() throws IOException {
-        Files.createDirectories(path);
+        fileSystem.createDirectories(path);
         store.write(RequestProcessor.class, processor);
     }
 

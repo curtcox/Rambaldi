@@ -20,13 +20,14 @@ import static org.junit.Assert.*;
  */
 public class External_Process_Test {
 
-    final IO io = new SimpleIO();
+    final IO io = new DebugIO(new SimpleIO(),System.out);
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
+    FileSystem fileSystem = new SimpleFileSystem();
 
     @Before
     public void Before() throws Exception {
-        state = new StateOnDisk(temp,io);
+        state = new StateOnDisk(temp,io,fileSystem);
         state.setProcessor(new EchoProcessor());
         state.persist();
     }
@@ -50,6 +51,7 @@ public class External_Process_Test {
         TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
 
         sink.put(request);
+        server.getInput().flush();
         Thread.sleep(1000);
 
         Response response = (Response) source.take();

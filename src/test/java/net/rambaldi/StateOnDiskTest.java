@@ -3,8 +3,6 @@ package net.rambaldi;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,6 +12,7 @@ public class StateOnDiskTest {
 
     Path path = Paths.get("dir");
     ObjectStore store = new FakeObjectStore();
+    FileSystem fileSystem = new FakeFileSystem();
     StateOnDisk state = new StateOnDisk(path,store);
 
     @Before
@@ -28,7 +27,7 @@ public class StateOnDiskTest {
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_store() {
-        new StateOnDisk(path, (IO) null);
+        new StateOnDisk(path, null, fileSystem);
     }
 
     @Test
@@ -48,12 +47,19 @@ public class StateOnDiskTest {
     }
 
     @Test
-    public void getProcessor_return_processor_set() {
+    public void getProcessor_returns_processor_set() {
         EchoProcessor processor = new EchoProcessor();
 
         state.setProcessor(processor);
 
         assertEquals(processor, state.getProcessor());
+    }
+
+    @Test
+    public void getProcessor_loads_processor() {
+        EchoProcessor expected = new EchoProcessor();
+        RequestProcessor actual = state.getProcessor();
+        assertEquals(expected,actual);
     }
 
     @Test

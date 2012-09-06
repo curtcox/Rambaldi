@@ -41,9 +41,10 @@ public class Core_Test {
         SingleTransactionQueue out = new SingleTransactionQueue(io);
         SingleTransactionQueue err = new SingleTransactionQueue(io);
         EchoProcessor         echo = new EchoProcessor();
-        Context            context = null;
+        ResponseProcessor responses = new SimpleResponseProcessor();
+        Context            context = new SimpleContext();
         Request            request = request();
-        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,context,echo,null);
+        StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,context,echo,responses);
         
         in.put(request);
         system.process();

@@ -14,7 +14,17 @@ import org.junit.Test;
 public class InputStreamAsTransactionSourceTest {
 
     final SimpleIO io = new SimpleIO();
-    
+
+    @Test(expected = NullPointerException.class)
+    public void constructor_requires_InputStream() {
+        new InputStreamAsTransactionSource(null,io);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void constructor_requires_io() {
+        new InputStreamAsTransactionSource(new ByteArrayInputStream(new byte[0]),null);
+    }
+
     @Test
     public void take_request() throws IOException {
         Request expected = new Request("",new Timestamp(0));

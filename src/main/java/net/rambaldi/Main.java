@@ -1,27 +1,40 @@
 package net.rambaldi;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Paths;
+import static java.util.Objects.*;
 
 public final class Main {
 
-    final IO io = new SimpleIO();
+    final IO io;
     final StreamTransactionProcessor system;
-    final StateOnDisk state = new StateOnDisk(Paths.get(""),io);
+    final StateOnDisk state;
 
-    Main() {
-        Context context = null;
+    Main(IO io, StateOnDisk state, InputStream in, OutputStream out, OutputStream err) {
+        this.io = requireNonNull(io);
+        this.state = requireNonNull(state);
+        Context context = new SimpleContext();
         RequestProcessor requestProcessor = state.getProcessor();
-        system = new StreamTransactionProcessor(System.in,System.out,System.err,io,context,requestProcessor,null);
+        ResponseProcessor responses = new SimpleResponseProcessor();
+        system = new StreamTransactionProcessor(in,out,err,io,context,requestProcessor,responses);
     }
 
     void run() {
+        int i = 0;
         for (;;) {
+            System.err.println("processing " + ++i);
             system.process();
         }
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
+        System.err.println("Starting main");
+
+        IO io = new SimpleIO();
+           io = new DebugIO(io,System.err);
+        StateOnDisk state = new StateOnDisk(Paths.get(""),io,new SimpleFileSystem());
+        Main main = new Main(io,state,System.in,System.out,System.err);
         main.run();
     }
 }
