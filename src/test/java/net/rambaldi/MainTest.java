@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class MainTest {
 
-    final IO io = new DebugIO(new SimpleIO(),System.out);
+    IO io = new SimpleIO();
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     ProcessFactory processFactory;
@@ -28,6 +28,7 @@ public class MainTest {
 
     @Before
     public void Before() throws Exception {
+        //io = new DebugIO(io,System.out);
         state = new StateOnDisk(temp,io,new FakeFileSystem());
         state.setProcessor(new EchoProcessor());
         state.persist();
