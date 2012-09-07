@@ -32,7 +32,7 @@ public class Core_Test {
 
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
-        assertSame(request,response.request);
+        assertSame(request, response.request);
     }
 
     @Test
@@ -56,70 +56,38 @@ public class Core_Test {
 
     @Test
     public void Save_state_between_requests() {
-        Timestamp t1 = new Timestamp(1);
-        Timestamp t2 = new Timestamp(2);
-        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
+        SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
         SingleTransactionQueue err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();
-        Request           request1 = new Request("",t1);
-        SimpleTransactionProcessor processor1 = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
-        
+        SimpleTransactionProcessor processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
+
+        Timestamp t1 = new Timestamp(1);
+        Request request1 = new Request("",t1);
+
         in.put(request1);
-        processor1.process();
+        processor.process();
 
         assertFalse(out.isEmpty());
         TimestampResponse response1 = (TimestampResponse) out.take();
-        assertSame(request1,response1.request);
-        assertSame(t1,response1.getTimestamp());
-        assertNull(null,response1.previousRequest);
-        
-        SimpleTransactionProcessor processor2 = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
-        
+        assertTimestampResponse(request1,t1,null,response1);
+
+        processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
+
+        Timestamp t2 = new Timestamp(2);
         Request request2 = new Request("",t2);
         in.put(request2);
-        processor2.process();
+        processor.process();
         assertFalse(out.isEmpty());
         TimestampResponse response2 = (TimestampResponse) out.take();
-        assertSame(request2,response2.request);
-        assertSame(t2,response2.getTimestamp());
-        assertSame(t1,response2.previousRequest);        
+        assertTimestampResponse(request2,t2,t1,response2);
     }
 
-    @Test
-    public void Persist_state_between_requests() throws Exception {
-        Timestamp t1 = new Timestamp(1);
-        Timestamp t2 = new Timestamp(2);
-        SingleTransactionQueue  in = new SingleTransactionQueue(io); 
-        SingleTransactionQueue out = new SingleTransactionQueue(io); 
-        SingleTransactionQueue err = null;
-        TimestampProcessor stamper = new TimestampProcessor();
-        Context            context = new SimpleContext();
-        Request           request1 = new Request("",t1);
-        SimpleTransactionProcessor processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
-        
-        in.put(request1);
-        processor.process();
-        
-        assertFalse(out.isEmpty());
-        TimestampResponse response1 = (TimestampResponse) out.take();
-        assertSame(request1,response1.request);
-        assertSame(t1,response1.getTimestamp());
-        assertNull(null,response1.previousRequest);
-        
-        processor = Copier.copy(processor);
-        in = (SingleTransactionQueue) processor.in;
-        out = (SingleTransactionQueue) processor.out;
-        
-        Request request2 = new Request("",t2);
-        in.put(request2);
-        processor.process();
-        assertFalse(out.isEmpty());
-        TimestampResponse response2 = (TimestampResponse) out.take();
-        assertEquals(request2,response2.request);
-        assertEquals(t2,response2.getTimestamp());
-        assertEquals(t1,response2.previousRequest);        
+    private void assertTimestampResponse(Request request, Timestamp t, Timestamp previous, TimestampResponse response) {
+        assertSame(request,response.request);
+        assertSame(t,response.getTimestamp());
+        assertSame(previous,response.previousRequest);
     }
 
     private Request request() {

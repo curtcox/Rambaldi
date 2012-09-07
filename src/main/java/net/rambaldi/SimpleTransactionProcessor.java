@@ -5,7 +5,7 @@ package net.rambaldi;
  * @author Curt
  */
 public final class SimpleTransactionProcessor
-    implements TransactionProcessor, java.io.Serializable
+    implements TransactionProcessor
 {
 
     public final TransactionSource in;

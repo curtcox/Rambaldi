@@ -6,7 +6,8 @@ import net.rambaldi.RequestProcessor;
 import net.rambaldi.Timestamp;
 
 /**
- * Just for testing.
+ * Returns a response with the previous (potentially null) timestamp.
+ * This artificial processor just exists as a RequestProcessor that uses context to store state.
  */
 final class TimestampProcessor
     implements RequestProcessor, java.io.Serializable

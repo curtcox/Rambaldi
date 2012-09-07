@@ -8,7 +8,7 @@ import static java.util.Objects.*;
  * @author Curt
  */
 public final class StreamTransactionProcessor
-    implements TransactionProcessor, java.io.Serializable
+    implements TransactionProcessor
 {
     public final TransactionSource in;
     public final TransactionSink out;

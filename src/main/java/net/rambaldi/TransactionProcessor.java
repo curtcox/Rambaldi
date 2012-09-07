@@ -8,7 +8,6 @@ import java.io.Serializable;
  * @author Curt
  */
 public interface TransactionProcessor
-    extends Serializable
 {
     void process();
 }

@@ -122,13 +122,6 @@ public class SimpleTransactionProcessorTest {
         assertEquals(response,out.take());
     }
 
-    @Test
-    public void is_serializable() throws Exception {
-        SimpleTransactionProcessor processor = processor();
-        SimpleTransactionProcessor copy = Copier.copy(processor);
-        assertTrue(copy instanceof SimpleTransactionProcessor);
-    }
-
     private Request request() {
         return new Request("",new Timestamp(0));
     }
