@@ -1,9 +1,8 @@
 package net.rambaldi;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
+import static java.util.Objects.*;
 
 /**
  * Persistent state on disk.
@@ -16,13 +15,13 @@ public final class StateOnDisk {
     private RequestProcessor processor;
 
     public StateOnDisk(Path dir, IO io, FileSystem fileSystem) {
-        this(dir,new SimpleObjectStore(dir,io,fileSystem));
+        this(dir,new SimpleObjectStore(dir,io,fileSystem),fileSystem);
     }
 
-    public StateOnDisk(Path dir, ObjectStore store) {
-        path = Objects.requireNonNull(dir);
-        this.store = Objects.requireNonNull(store);
-        this.fileSystem = new SimpleFileSystem();
+    public StateOnDisk(Path dir, ObjectStore store, FileSystem fileSystem) {
+        path = requireNonNull(dir);
+        this.store = requireNonNull(store);
+        this.fileSystem = requireNonNull(fileSystem);
     }
 
     public void delete() throws IOException {

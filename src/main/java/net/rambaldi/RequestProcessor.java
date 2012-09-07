@@ -1,10 +1,12 @@
 package net.rambaldi;
 
+import java.io.Serializable;
+
 /**
  * Something that processes a request.
  */
 public interface RequestProcessor
-    extends Immutable, java.io.Serializable
+    extends Immutable, Serializable
 {
 
     /**

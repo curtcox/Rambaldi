@@ -21,19 +21,16 @@ public final class Main {
     }
 
     void run() {
-        int i = 0;
         for (;;) {
-            System.err.println("processing " + ++i);
             system.process();
         }
     }
 
     public static void main(String[] args) {
-        System.err.println("Starting main");
-
         IO io = new SimpleIO();
-           io = new DebugIO(io,System.err);
+        //   io = new DebugIO(io,System.err);
         StateOnDisk state = new StateOnDisk(Paths.get(""),io,new SimpleFileSystem());
+        state.load();
         Main main = new Main(io,state,System.in,System.out,System.err);
         main.run();
     }

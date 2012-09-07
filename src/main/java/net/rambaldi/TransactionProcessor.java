@@ -1,10 +1,14 @@
 package net.rambaldi;
 
+import java.io.Serializable;
+
 /**
  * Something that processes transactions.
+ * See also RequestProcessor and ResponseProcessor.
  * @author Curt
  */
-interface TransactionProcessor {
-
+public interface TransactionProcessor
+    extends Serializable
+{
     void process();
 }

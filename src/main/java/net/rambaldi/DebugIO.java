@@ -30,7 +30,7 @@ public final class DebugIO
     @Override
     public Serializable deserialize(byte[] bytes) {
         print("deserialize(%1s)",bytes);
-        Serializable result = deserialize(bytes);
+        Serializable result = io.deserialize(bytes);
         print("deserialize(%1s):%2s",bytes,result);
         return result;
     }

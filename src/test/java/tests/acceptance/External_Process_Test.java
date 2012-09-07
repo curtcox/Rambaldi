@@ -20,13 +20,14 @@ import static org.junit.Assert.*;
  */
 public class External_Process_Test {
 
-    final IO io = new DebugIO(new SimpleIO(),System.out);
+    IO io = new SimpleIO();
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem();
 
     @Before
     public void Before() throws Exception {
+        //io = new DebugIO(io,System.out);
         state = new StateOnDisk(temp,io,fileSystem);
         state.setProcessor(new EchoProcessor());
         state.persist();

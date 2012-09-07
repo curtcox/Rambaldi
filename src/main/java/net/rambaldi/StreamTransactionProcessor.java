@@ -32,7 +32,6 @@ public final class StreamTransactionProcessor
 
     @Override
     public void process() {
-        System.err.println("Processing ...");
         Transaction transaction = in.take();
         if (transaction instanceof Request) {
             Request request = (Request) transaction;

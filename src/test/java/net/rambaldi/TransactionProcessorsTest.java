@@ -13,7 +13,7 @@ public class TransactionProcessorsTest {
 
     @Before
     public void Before() {
-        state = new StateOnDisk(Paths.get(""),new FakeObjectStore());
+        state = new StateOnDisk(Paths.get(""),new FakeObjectStore(),new FakeFileSystem());
     }
 
     @Test(expected=NullPointerException.class)
@@ -28,8 +28,4 @@ public class TransactionProcessorsTest {
         assertNotNull(server);
     }
 
-    @Test
-    public void x() {
-
-    }
 }

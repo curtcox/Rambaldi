@@ -22,7 +22,6 @@ public final class InputStreamAsTransactionSource
     @Override
     public Transaction take() {
         try {
-            System.err.println("Taking...");
             return io.readTransaction(in);
         } catch (IOException e) {
             throw new DeserializationException(e);

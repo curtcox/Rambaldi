@@ -2,6 +2,7 @@ package net.rambaldi;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public final class SimpleFileSystem
@@ -13,7 +14,7 @@ public final class SimpleFileSystem
     }
     /**
      * By default File#delete fails for non-empty directories, it works like "rm".
-     * We need something a little more brutual - this does the equivalent of "rm -r"
+     * We need something a little more brutal - this does the equivalent of "rm -r"
      * @param path Root File Path
      */
     private static void deleteRecursive(File path) {
@@ -29,14 +30,16 @@ public final class SimpleFileSystem
 
     @Override
     public void createDirectories(Path path) throws IOException {
+        Files.createDirectories(path);
     }
 
     @Override
     public void write(Path path, byte[] bytes) throws IOException {
+        Files.write(path,bytes);
     }
 
     @Override
     public byte[] readAllBytes(Path path) throws IOException {
-        return new byte[0];
+        return Files.readAllBytes(path);
     }
 }
