@@ -1,14 +1,10 @@
 package tests.acceptance;
 
 import net.rambaldi.*;
-import net.rambaldi.IO;
-import net.rambaldi.SimpleIO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
@@ -16,13 +12,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Acceptance tests for launching an external processor.
- * @author Curt
- */
-public class External_Process_Test {
+public class Performance_Test {
 
     IO io = new SimpleIO();
     Path temp = Paths.get("tempDir");
@@ -31,7 +25,6 @@ public class External_Process_Test {
 
     @Before
     public void Before() throws Exception {
-        //io = new DebugIO(io,System.out);
         state = new StateOnDisk(temp,io,fileSystem);
         state.setProcessor(new EchoProcessor());
         state.persist();
@@ -43,31 +36,34 @@ public class External_Process_Test {
     }
 
     @Test
-    public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
-        Request request = request();
-
-        StreamServer server = TransactionProcessors.newExternal(state);
-        assertFalse(server.isUp());
-
-        server.start();
-        assertTrue(server.isUp());
-
-        TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
-        TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
-
-        sink.put(request);
-        server.getInput().flush();
-        Thread.sleep(1000);
-
-        Response response = (Response) source.take();
-        assertEquals(request,response.request);
-
-        server.stop();
-        assertFalse(server.isUp());
+    public void Read_100_requests_from_standard_in_and_write_to_standard_out() throws Exception {
+        readAndWriteRequestsTakesAtMost(100,1);
     }
 
     @Test
-    public void Read_2_requests_from_standard_in_and_write_to_standard_out() throws Exception {
+    public void Read_1_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
+        readAndWriteRequestsTakesAtMost(1000,10);
+    }
+
+    @Test
+    public void Read_10_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
+        readAndWriteRequestsTakesAtMost(10000,10);
+    }
+
+    @Test
+    public void Read_100_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
+        readAndWriteRequestsTakesAtMost(100000,40);
+    }
+
+    private void readAndWriteRequestsTakesAtMost(int max, int allowedSeconds) throws Exception {
+        long start = System.currentTimeMillis();
+        readAndWriteRequests(max);
+        long end = System.currentTimeMillis();
+        long durationSeconds = (end - start) / 1000;
+        assertTrue(max + " should finish in " + allowedSeconds + " but took " + durationSeconds,durationSeconds <= allowedSeconds);
+    }
+
+    private void readAndWriteRequests(final int max) throws Exception {
         final Request request = request();
 
         final StreamServer server = TransactionProcessors.newExternal(state);
@@ -82,30 +78,34 @@ public class External_Process_Test {
         FutureTask<Integer> requests = new FutureTask<>(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
-                sink.put(request);
-                sink.put(request);
+                for (int i=0; i<max; i++) {
+                    sink.put(request);
+                }
                 server.getInput().flush();
-                return 2;
+                return max;
             }
         });
 
         FutureTask<Integer> responses = new FutureTask<>(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
-                Response response = (Response) source.take();
-                assertEquals(request,response.request);
-                response = (Response) source.take();
-                assertEquals(request,response.request);
-                return 2;
+                for (int i=0; i<max; i++) {
+                    Response response = (Response) source.take();
+                    assertEquals(request, response.request);
+                }
+                return max;
             }
         });
 
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         executorService.submit(requests);
         executorService.submit(responses);
+
         executorService.shutdown();
-        assertEquals(2, (int) requests.get());
-        assertEquals(2,(int)responses.get());
+
+        assertEquals(max,(int)requests.get());
+        assertEquals(max,(int)responses.get());
+
         server.stop();
         assertFalse(server.isUp());
     }
