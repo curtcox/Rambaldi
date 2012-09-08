@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70635958-1d7b-48eb-bec8-4253b5afc08e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/Performance_Test.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HTTPEchoProcessor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java" />
     </list>
     <ignored path="rambaldi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,15 +62,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TimestampProcessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/TimestampProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="56" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Backlog.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Backlog.txt">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,40 +71,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Performance_Test.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Performance_Test.java">
+      <file leaf-file-name="HTTP_Test.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="22" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.3207547">
+            <state line="68" column="0" selection-start="2515" selection-end="2515" vertical-scroll-proportion="0.94670844">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2556#2852#0" expanded="true" />
-                <element signature="e#2841#2842#0" expanded="true" />
-                <element signature="e#2913#3254#0" expanded="true" />
-                <element signature="e#3243#3244#0" expanded="true" />
+                <element signature="e#736#1438#0" expanded="true" />
+                <element signature="e#1427#1428#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="External_Process_Test.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java">
+      <file leaf-file-name="URL.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="47" selection-start="1802" selection-end="1802" vertical-scroll-proportion="-211.0">
+            <state line="967" column="25" selection-start="36860" selection-end="36860" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="URLStreamHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URLStreamHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="30" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2386#2649#0" expanded="true" />
-                <element signature="e#2638#2639#0" expanded="true" />
-                <element signature="e#2710#3087#0" expanded="true" />
-                <element signature="e#3076#3077#0" expanded="true" />
+                <element signature="e#0#21956#0" expanded="false" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutputStreamAsTransactionSink.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/OutputStreamAsTransactionSink.java">
+      <file leaf-file-name="URLConnection.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URLConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="11" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
+            <state line="411" column="33" selection-start="15526" selection-end="15526" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EchoProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/EchoProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="13" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HTTPEchoProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HTTPEchoProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="17" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Core_Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Core_Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="9" selection-start="3330" selection-end="3416" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,9 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/TransactionProcessorsTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/StateOnDisk.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/StateOnDiskTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/FakeFileSystem.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/DebugIO.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/InputStreamAsTransactionSource.java" />
@@ -150,6 +169,9 @@
         <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/TimestampProcessor.java" />
         <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java" />
         <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/Performance_Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/EchoProcessor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HTTPEchoProcessor.java" />
+        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
       </list>
     </option>
   </component>
@@ -442,6 +464,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="net.rambaldi.http" />
       <recent name="net.rambaldi" />
       <recent name="tests.acceptance" />
     </key>
@@ -453,29 +476,7 @@
       <recent name="net" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Performance_Test">
-    <configuration default="false" name="StreamTransactionProcessorTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.StreamTransactionProcessorTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.HTTP_Test">
     <configuration default="false" name="SimpleObjectStoreTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -548,6 +549,28 @@
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="PACKAGE_NAME" value="tests.acceptance" />
       <option name="MAIN_CLASS_NAME" value="tests.acceptance.Performance_Test" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="HTTP_Test" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="tests.acceptance" />
+      <option name="MAIN_CLASS_NAME" value="tests.acceptance.HTTP_Test" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -787,11 +810,11 @@
       <item index="0" class="java.lang.String" itemvalue="JUnit.Unit Tests" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.UATs" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.StateOnDiskTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.StreamTransactionProcessorTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SimpleObjectStoreTest" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.Core_Test" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.External_Process_Test" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.Performance_Test" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SimpleObjectStoreTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.Core_Test" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.External_Process_Test" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.Performance_Test" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.HTTP_Test" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -911,56 +934,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/InputStreamAsTransactionSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="739" selection-end="739" vertical-scroll-proportion="0.492674">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/DebugIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="33" selection-start="174" selection-end="174" vertical-scroll-proportion="0.33862433">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/MainTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="31" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/SimpleTransactionProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="29" selection-start="121" selection-end="147" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/StreamTransactionProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="35" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/SimpleTransactionProcessorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="111" column="22" selection-start="3233" selection-end="3233" vertical-scroll-proportion="0.0">
@@ -994,41 +967,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Core_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="18" selection-start="3286" selection-end="3286" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/TimestampProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="56" selection-start="685" selection-end="685" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Backlog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/OutputStreamAsTransactionSink.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="11" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="47" selection-start="1802" selection-end="1802" vertical-scroll-proportion="-211.0">
+        <state line="65" column="47" selection-start="1802" selection-end="1802" vertical-scroll-proportion="1.3050314">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2386#2649#0" expanded="true" />
@@ -1039,15 +980,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/OutputStreamAsTransactionSink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="11" selection-start="489" selection-end="489" vertical-scroll-proportion="0.44043887">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/TimestampProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="56" selection-start="685" selection-end="685" vertical-scroll-proportion="0.53291535">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Performance_Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="22" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.3207547">
+        <state line="46" column="30" selection-start="1253" selection-end="1253" vertical-scroll-proportion="0.4009434">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2556#2852#0" expanded="true" />
             <element signature="e#2841#2842#0" expanded="true" />
             <element signature="e#2913#3254#0" expanded="true" />
             <element signature="e#3243#3244#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Backlog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Core_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="9" selection-start="3330" selection-end="3416" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/EchoProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HTTPEchoProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URLStreamHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="30" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#21956#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="967" column="25" selection-start="36860" selection-end="36860" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0/src.zip!/java/net/URLConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="411" column="33" selection-start="15526" selection-end="15526" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="0" selection-start="2515" selection-end="2515" vertical-scroll-proportion="0.94670844">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#736#1438#0" expanded="true" />
+            <element signature="e#1427#1428#0" expanded="true" />
           </folding>
         </state>
       </provider>
