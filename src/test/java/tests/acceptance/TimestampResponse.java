@@ -1,8 +1,8 @@
 package tests.acceptance;
 
-import net.rambaldi.Request;
-import net.rambaldi.Response;
-import net.rambaldi.Timestamp;
+import net.rambaldi.process.Request;
+import net.rambaldi.process.Response;
+import net.rambaldi.process.Timestamp;
 
 /**
  *

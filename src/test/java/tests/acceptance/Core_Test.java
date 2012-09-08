@@ -1,11 +1,11 @@
 package tests.acceptance;
 
-import java.io.OutputStream;
+import java.io.PrintStream;
 
-import net.rambaldi.*;
 import static org.junit.Assert.*;
 
-import net.rambaldi.IO;
+import net.rambaldi.process.IO;
+import net.rambaldi.process.*;
 import org.junit.Test;
 
 /**
@@ -21,7 +21,7 @@ public class Core_Test {
         
         SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
-        SingleTransactionQueue err = null;
+        PrintStream            err = null;
         EchoProcessor         echo = new EchoProcessor();
         Context            context = null;
         Request            request = request();
@@ -56,9 +56,9 @@ public class Core_Test {
 
     @Test
     public void Save_state_between_requests() {
-        SingleTransactionQueue  in = new SingleTransactionQueue(io);
+        SingleTransactionQueue in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
-        SingleTransactionQueue err = null;
+        PrintStream            err = null;
         TimestampProcessor stamper = new TimestampProcessor();
         Context            context = new SimpleContext();
         SimpleTransactionProcessor processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
@@ -71,7 +71,7 @@ public class Core_Test {
 
         assertFalse(out.isEmpty());
         TimestampResponse response1 = (TimestampResponse) out.take();
-        assertTimestampResponse(request1,t1,null,response1);
+        assertTimestampResponse(request1, t1, null, response1);
 
         processor = new SimpleTransactionProcessor(in,out,err,context,stamper,null);
 
@@ -87,7 +87,7 @@ public class Core_Test {
     private void assertTimestampResponse(Request request, Timestamp t, Timestamp previous, TimestampResponse response) {
         assertSame(request,response.request);
         assertSame(t,response.getTimestamp());
-        assertSame(previous,response.previousRequest);
+        assertSame(previous, response.previousRequest);
     }
 
     private Request request() {

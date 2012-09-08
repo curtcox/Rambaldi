@@ -1,14 +1,10 @@
 package tests.acceptance;
 
-import net.rambaldi.*;
-import net.rambaldi.IO;
-import net.rambaldi.SimpleIO;
+import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;

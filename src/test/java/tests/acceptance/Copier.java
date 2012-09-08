@@ -1,8 +1,8 @@
 package tests.acceptance;
 
 import java.io.Serializable;
-import net.rambaldi.IO;
-import net.rambaldi.SimpleIO;
+import net.rambaldi.process.IO;
+import net.rambaldi.process.SimpleIO;
 
 /**
  *

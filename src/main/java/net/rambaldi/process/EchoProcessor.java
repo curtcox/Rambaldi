@@ -1,15 +1,11 @@
-package net.rambaldi.http;
-
-import net.rambaldi.process.*;
-import net.rambaldi.process.Response;
-import net.rambaldi.process.Context;
+package net.rambaldi.process;
 
 /**
  * A processor that echos the given request.
  * @author Curt
  */
-public class HttpEchoProcessor
-    implements HttpRequestProcessor
+public class EchoProcessor 
+    implements RequestProcessor
 {
 
     @Override

@@ -1,6 +1,6 @@
 package tests.acceptance;
 
-import net.rambaldi.*;
+import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class Performance_Test {
 
     @Test
     public void Read_1_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
-        readAndWriteRequestsTakesAtMost(1000,10);
+        readAndWriteRequestsTakesAtMost(1000, 10);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class Performance_Test {
 
     @Test
     public void Read_100_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
-        readAndWriteRequestsTakesAtMost(100000,40);
+        readAndWriteRequestsTakesAtMost(100000, 40);
     }
 
     private void readAndWriteRequestsTakesAtMost(int max, int allowedSeconds) throws Exception {

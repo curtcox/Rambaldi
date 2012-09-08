@@ -1,9 +1,9 @@
 package tests.acceptance;
 
-import net.rambaldi.Context;
-import net.rambaldi.Request;
-import net.rambaldi.RequestProcessor;
-import net.rambaldi.Timestamp;
+import net.rambaldi.process.Context;
+import net.rambaldi.process.Timestamp;
+import net.rambaldi.process.Request;
+import net.rambaldi.process.RequestProcessor;
 
 /**
  * Returns a response with the previous (potentially null) timestamp.
