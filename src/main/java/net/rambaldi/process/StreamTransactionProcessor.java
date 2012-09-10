@@ -35,7 +35,7 @@ public final class StreamTransactionProcessor
         Transaction transaction = in.take();
         if (transaction instanceof Request) {
             Request request = (Request) transaction;
-            Response response = requests.process(request, context);
+            Response response = process(request);
             if (response!=null) {
                 out.put(response);
             }
@@ -43,5 +43,10 @@ public final class StreamTransactionProcessor
         }
         throw new IllegalArgumentException();
     }
-    
+
+    @Override
+    public Response process(Request request) {
+        return requests.process(request, context);
+    }
+
 }

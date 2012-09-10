@@ -7,11 +7,16 @@ import java.nio.file.Path;
  */
 public final class TransactionProcessors {
 
-    public static StreamServer newExternal(StateOnDisk state) {
+    public static TransactionProcessor newInstance(StateOnDisk state) {
+        return null;
+    }
+
+    public static TransactionProcessor newExternal(StateOnDisk state, IO io) {
         Path path = state.path;
         ProcessBuilder builder = new JavaProcessBuilder(path).getConfigured();
         ProcessFactory processFactory = new SimpleProcessFactory(builder);
-        return new ProcessAsStreamServer(processFactory, System.err);
+        StreamServer streams = new ProcessAsStreamServer(processFactory, System.err);
+        return new StreamServerAsTransactionProcessor(streams,io);
     }
 
 }

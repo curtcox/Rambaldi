@@ -9,8 +9,7 @@ import net.rambaldi.process.Context;
  * @author Curt
  */
 public class HttpEchoProcessor
-    implements HttpRequestProcessor
-{
+    implements RequestProcessor {
 
     @Override
     public Response process(Request request, Context context) {

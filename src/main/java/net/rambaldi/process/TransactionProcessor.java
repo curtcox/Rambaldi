@@ -1,5 +1,6 @@
 package net.rambaldi.process;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -9,5 +10,6 @@ import java.io.Serializable;
  */
 public interface TransactionProcessor
 {
-    void process();
+    void process() throws Exception;
+    Response process(Request request) throws Exception;
 }

@@ -8,8 +8,10 @@ public final class DeserializationException
     extends RuntimeException
 {
 
+    public DeserializationException() {}
+
     public DeserializationException(Exception e) {
         super(e);
     }
-    
+
 }

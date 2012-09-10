@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 public class TransactionProcessorsTest {
 
     StateOnDisk state;
+    IO io = new FakeIO();
 
     @Before
     public void Before() {
@@ -19,13 +20,13 @@ public class TransactionProcessorsTest {
     @Test(expected=NullPointerException.class)
     public void newExternal_requires_state() {
         state = null;
-        TransactionProcessors.newExternal(state);
+        TransactionProcessors.newExternal(state,io);
     }
 
     @Test
     public void newExternal_returns_processor() {
-        StreamServer server = TransactionProcessors.newExternal(state);
-        assertNotNull(server);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        assertNotNull(processor);
     }
 
 }

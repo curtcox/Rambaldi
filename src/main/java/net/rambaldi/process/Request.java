@@ -6,7 +6,7 @@ import java.util.Objects;
  * An immutable Request.
  * @author Curt
  */
-public final class Request
+public class Request
     implements Transaction
 {
     public final String value;
@@ -15,6 +15,11 @@ public final class Request
     public Request(String value, Timestamp timestamp) {
         this.value = Objects.requireNonNull(value);
         this.timestamp = Objects.requireNonNull(timestamp);
+    }
+
+    @Override
+    final public Timestamp getTimestamp() {
+        return timestamp;
     }
 
     @Override
@@ -28,12 +33,7 @@ public final class Request
     public int hashCode() {
         return value.hashCode() ^ timestamp.hashCode();
     }
-    
-    @Override
-    public Timestamp getTimestamp() {
-        return timestamp;
-    }
-    
+
     @Override
     public String toString() {
         return "request(" + timestamp + "," + value + ")";

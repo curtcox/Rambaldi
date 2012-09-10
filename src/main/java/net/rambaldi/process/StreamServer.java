@@ -8,13 +8,29 @@ import java.io.*;
  */
 public interface StreamServer {
 
+    /**
+     * Return true if this server is up.
+     */
     boolean isUp();
 
+    /**
+     * Start processing transactions.
+     * @throws ProcessCreationException
+     */
     void start() throws ProcessCreationException;
 
+    /*
+     * Stop processing transactions.
+     */
     void stop();
 
+    /**
+     * Return the stream where transactions that need to be processed are written to.
+     */
     OutputStream getInput();
 
+    /**
+     * Return the stream where processed transactions are written to.
+     */
     InputStream getOutput();
 }

@@ -63,51 +63,14 @@ public class Performance_Test {
         assertTrue(max + " should finish in " + allowedSeconds + " but took " + durationSeconds,durationSeconds <= allowedSeconds);
     }
 
-    private void readAndWriteRequests(final int max) throws Exception {
+    private void readAndWriteRequests(int max) throws Exception {
         final Request request = request();
 
-        final StreamServer server = TransactionProcessors.newExternal(state);
-        assertFalse(server.isUp());
-
-        server.start();
-        assertTrue(server.isUp());
-
-        final TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
-        final TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
-
-        FutureTask<Integer> requests = new FutureTask<>(new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                for (int i=0; i<max; i++) {
-                    sink.put(request);
-                }
-                server.getInput().flush();
-                return max;
-            }
-        });
-
-        FutureTask<Integer> responses = new FutureTask<>(new Callable<Integer>() {
-            @Override
-            public Integer call() throws Exception {
-                for (int i=0; i<max; i++) {
-                    Response response = (Response) source.take();
-                    assertEquals(request, response.request);
-                }
-                return max;
-            }
-        });
-
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-        executorService.submit(requests);
-        executorService.submit(responses);
-
-        executorService.shutdown();
-
-        assertEquals(max,(int)requests.get());
-        assertEquals(max,(int)responses.get());
-
-        server.stop();
-        assertFalse(server.isUp());
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        for (int i=0; i<max; i++) {
+            Response response = processor.process(request);
+            assertEquals(request, response.request);
+        }
     }
 
     private Request request() {
