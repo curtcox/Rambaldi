@@ -34,28 +34,4 @@ public final class StreamServerAsTransactionProcessor
         return (Response) source.take();
     }
 
-//    @Test
-//    public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
-//        Request request = request();
-//
-//        StreamServer server = TransactionProcessors.newExternal(state);
-//        assertFalse(server.isUp());
-//
-//        server.start();
-//        assertTrue(server.isUp());
-//
-//        TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
-//        TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
-//
-//        sink.put(request);
-//        server.getInput().flush();
-//        Thread.sleep(1000);
-//
-//        Response response = (Response) source.take();
-//        assertEquals(request,response.request);
-//
-//        server.stop();
-//        assertFalse(server.isUp());
-//    }
-
 }

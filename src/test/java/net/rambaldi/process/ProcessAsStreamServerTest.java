@@ -77,6 +77,7 @@ public class ProcessAsStreamServerTest {
         server.stop();
     }
 
+    @Test
     public void stop_exits_process() throws Exception {
         ProcessAsStreamServer server = new ProcessAsStreamServer(factory, err);
         server.start();

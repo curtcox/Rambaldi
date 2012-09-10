@@ -11,11 +11,12 @@ public final class TransactionProcessors {
         return null;
     }
 
-    public static TransactionProcessor newExternal(StateOnDisk state, IO io) {
+    public static TransactionProcessor newExternal(StateOnDisk state, IO io) throws ProcessCreationException {
         Path path = state.path;
         ProcessBuilder builder = new JavaProcessBuilder(path).getConfigured();
         ProcessFactory processFactory = new SimpleProcessFactory(builder);
         StreamServer streams = new ProcessAsStreamServer(processFactory, System.err);
+        streams.start();
         return new StreamServerAsTransactionProcessor(streams,io);
     }
 
