@@ -11,7 +11,7 @@ import java.io.OutputStream;
 public class FakeStreamServer
     implements StreamServer
 {
-    public ByteArrayInputStream output = new ByteArrayInputStream(new byte[0]);
+    public InputStream output = new ByteArrayInputStream(new byte[0]);
     public ByteArrayOutputStream input = new ByteArrayOutputStream();
 
     @Override public boolean isUp() { return false; }

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.EOFException;
+import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +20,7 @@ public class StreamServerAsTransactionProcessorTest {
 
     @Before
     public void before() {
-        io = new DebugIO(io,System.err);
+        //io = new DebugIO(io,System.err);
         processor = new StreamServerAsTransactionProcessor(server,io);
     }
 
@@ -62,44 +63,23 @@ public class StreamServerAsTransactionProcessorTest {
     @Test
     public void process_returns_response_from_server() throws Exception {
         Request request = new Request("",new Timestamp(0));
+        Response expected = new Response("",request);
+        server.output = responseFromServer(expected);
+        processor = new StreamServerAsTransactionProcessor(server,io);
 
         Response response = processor.process(request);
 
-        assertEquals(request,response.request);
+        assertEquals(expected, response);
     }
 
-    @Test
-    public void process_request_produces_response_from_processor() throws Exception {
-        Request request = new Request("",new Timestamp(0));
-
-        Response response = processor.process(request);
-
-        assertEquals(request,response.request);
+    private InputStream responseFromServer(final Response response) {
+        TransactionSource source = new TransactionSource() {
+            @Override
+            public Transaction take() {
+                return response;
+            }
+        };
+        return new InputStreamFromTransactionSource(source,io);
     }
-
-
-    //    @Test
-//    public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
-//        Request request = request();
-//
-//        StreamServer server = TransactionProcessors.newExternal(state);
-//        assertFalse(server.isUp());
-//
-//        server.start();
-//        assertTrue(server.isUp());
-//
-//        TransactionSink sink = new OutputStreamAsTransactionSink(server.getInput(),io);
-//        TransactionSource source = new InputStreamAsTransactionSource(server.getOutput(),io);
-//
-//        sink.put(request);
-//        server.getInput().flush();
-//        Thread.sleep(1000);
-//
-//        Response response = (Response) source.take();
-//        assertEquals(request,response.request);
-//
-//        server.stop();
-//        assertFalse(server.isUp());
-//    }
 
 }
