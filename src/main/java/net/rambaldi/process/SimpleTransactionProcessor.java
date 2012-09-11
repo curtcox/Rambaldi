@@ -1,13 +1,14 @@
 package net.rambaldi.process;
 
 import java.io.PrintStream;
+import java.util.concurrent.Callable;
 
 /**
  * The simplest implementation of TransactionProcessor
  * @author Curt
  */
 public final class SimpleTransactionProcessor
-    implements TransactionProcessor
+    implements TransactionProcessor, Callable
 {
 
     public final TransactionSource in;
@@ -27,7 +28,7 @@ public final class SimpleTransactionProcessor
     }
 
     @Override
-    public void process() {
+    public Void call() {
         Transaction transaction = in.take();
         if (transaction instanceof Request) {
             Request request = (Request) transaction;
@@ -35,7 +36,7 @@ public final class SimpleTransactionProcessor
             if (response!=null) {
                 out.put(response);
             }
-            return;
+            return null;
         }
         throw new IllegalArgumentException();
     }

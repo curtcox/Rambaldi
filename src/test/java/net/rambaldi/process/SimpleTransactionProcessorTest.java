@@ -39,16 +39,16 @@ public class SimpleTransactionProcessorTest {
     }
     
     @Test
-    public void process_takes_request_from_in() {
+    public void call_takes_request_from_in() {
         Transaction transaction = request();
         in.put(transaction);
         assertFalse(in.isEmpty());
-        processor().process();
+        processor().call();
         assertTrue(in.isEmpty());
     }
     
     @Test(expected=IllegalArgumentException.class)
-    public void process_throws_exception_for_unknown_transaction_type() {
+    public void call_throws_exception_for_unknown_transaction_type() {
         Transaction transaction = new Transaction(){
 
             @Override
@@ -57,21 +57,21 @@ public class SimpleTransactionProcessorTest {
             }
         };
         in.put(transaction);
-        processor().process();
+        processor().call();
     }
 
     @Test
-    public void process_echo_writes_requests_to_out() {
+    public void call_echo_writes_requests_to_out() {
         Request request = request();
         in.put(request);
-        processor().process();
+        processor().call();
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
         assertEquals(request,response.request);
     }
 
     @Test
-    public void process_uses_RequestProcessor_for_Requests() {
+    public void call_uses_RequestProcessor_for_Requests() {
         final Request   request = request();
         final Map called = new HashMap();
         in.put(request);
@@ -83,13 +83,13 @@ public class SimpleTransactionProcessorTest {
             }
         };
         
-        processor(processor).process();
+        processor(processor).call();
         
         assertEquals(request,called.get("request"));
     }
 
     @Test
-    public void process_discards_RequestProcessor_null_responses() {
+    public void call_discards_RequestProcessor_null_responses() {
         final Request   request = request();
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -100,13 +100,13 @@ public class SimpleTransactionProcessorTest {
         };
         
         assertTrue(out.isEmpty());
-        processor(processor).process();
+        processor(processor).call();
         
         assertTrue(out.isEmpty());
     }
 
     @Test
-    public void process_puts_RequestProcessor_non_null_responses_to_out() {
+    public void call_puts_RequestProcessor_non_null_responses_to_out() {
         final Request   request = request();
         final Response response = new Response("",request);
         in.put(request);
@@ -117,7 +117,7 @@ public class SimpleTransactionProcessorTest {
             }
         };
         
-        processor(processor).process();
+        processor(processor).call();
         
         assertFalse(out.isEmpty());
         assertEquals(response,out.take());

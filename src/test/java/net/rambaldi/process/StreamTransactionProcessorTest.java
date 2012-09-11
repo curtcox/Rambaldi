@@ -85,33 +85,37 @@ public class StreamTransactionProcessorTest {
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void process_throws_exception_for_unknown_transaction_type() {
+    public void call_throws_exception_for_unknown_transaction_type() {
         Transaction transaction = new UnsupportedTransaction();
         inQueue.put(transaction);
-        processor().process();
+        processor().call();
     }
 
     @Test
-    public void process_takes_request_from_in() {
+    public void call_takes_request_from_in() {
         Transaction transaction = new Request("",new Timestamp(0));
         inQueue.put(transaction);
-        processor().process();
+
+        processor().call();
+
         assertTrue(inQueue.isEmpty());
     }
     
 
     @Test
-    public void process_echo_writes_requests_to_out() {
+    public void call_echo_writes_requests_to_out() {
         Request request = new Request("",new Timestamp(0));
         inQueue.put(request);
-        processor().process();
+
+        processor().call();
+
         assertFalse(outQueue.isEmpty());
         Response response = (Response) outQueue.take();
         assertEquals(request,response.request);
     }
 
     @Test
-    public void process_uses_RequestProcessor_for_Requests() {
+    public void call_uses_RequestProcessor_for_Requests() {
         final Request   request = new Request("",new Timestamp(0));
         final Map called = new HashMap();
         inQueue.put(request);
@@ -123,13 +127,13 @@ public class StreamTransactionProcessorTest {
             }
         };
         
-        processor(processor).process();
+        processor(processor).call();
         
         assertEquals(request,called.get("request"));
     }
 
     @Test
-    public void process_discards_RequestProcessor_null_responses() {
+    public void call_discards_RequestProcessor_null_responses() {
         final Request   request = new Request("",new Timestamp(0));
         inQueue.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -140,13 +144,13 @@ public class StreamTransactionProcessorTest {
         };
         
         assertTrue(outQueue.isEmpty());
-        processor(processor).process();
+        processor(processor).call();
         
         assertTrue(outQueue.isEmpty());
     }
 
     @Test
-    public void process_puts_RequestProcessor_non_null_responses_to_out() {
+    public void call_puts_RequestProcessor_non_null_responses_to_out() {
         final Request   request = new Request("",new Timestamp(0));
         final Response response = new Response("",request);
         inQueue.put(request);
@@ -157,7 +161,7 @@ public class StreamTransactionProcessorTest {
             }
         };
         
-        processor(processor).process();
+        processor(processor).call();
         
         assertFalse(outQueue.isEmpty());
         assertEquals(response,outQueue.take());

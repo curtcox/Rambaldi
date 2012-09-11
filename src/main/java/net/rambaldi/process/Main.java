@@ -22,7 +22,7 @@ public final class Main {
 
     void run() {
         for (;;) {
-            system.process();
+            system.call();
         }
     }
 

@@ -10,6 +10,5 @@ import java.io.Serializable;
  */
 public interface TransactionProcessor
 {
-    void process() throws Exception;
     Response process(Request request) throws Exception;
 }

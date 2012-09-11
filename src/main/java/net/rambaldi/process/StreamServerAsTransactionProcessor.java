@@ -23,11 +23,6 @@ public final class StreamServerAsTransactionProcessor
     }
 
     @Override
-    public void process() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public Response process(Request request) throws Exception {
         sink.put(request);
         out.flush();

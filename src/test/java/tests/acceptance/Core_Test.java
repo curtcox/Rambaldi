@@ -28,7 +28,7 @@ public class Core_Test {
         SimpleTransactionProcessor system = new SimpleTransactionProcessor(in,out,err,context,echo,null);
         
         in.put(request);
-        system.process();
+        system.call();
 
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
@@ -47,7 +47,7 @@ public class Core_Test {
         StreamTransactionProcessor system = new StreamTransactionProcessor(in.asInputStream(),out.asOutputStream(),err.asOutputStream(),io,context,echo,responses);
         
         in.put(request);
-        system.process();
+        system.call();
 
         assertFalse(out.isEmpty());
         Response response = (Response) out.take();
@@ -67,7 +67,7 @@ public class Core_Test {
         Request request1 = new Request("",t1);
 
         in.put(request1);
-        processor.process();
+        processor.call();
 
         assertFalse(out.isEmpty());
         TimestampResponse response1 = (TimestampResponse) out.take();
@@ -78,7 +78,7 @@ public class Core_Test {
         Timestamp t2 = new Timestamp(2);
         Request request2 = new Request("",t2);
         in.put(request2);
-        processor.process();
+        processor.call();
         assertFalse(out.isEmpty());
         TimestampResponse response2 = (TimestampResponse) out.take();
         assertTimestampResponse(request2,t2,t1,response2);
