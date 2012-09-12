@@ -13,7 +13,10 @@ import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
-public class HttpRequestReader
+/**
+ * For reading HttpRequestS from an InputStream.
+ */
+public final class HttpRequestReader
     implements TransactionSource
 {
     private final InputStream inputStream;

@@ -104,10 +104,4 @@ public class SimpleHttpServerTest {
         server.start();
         assertTrue(out.toByteArray().length>0);
     }
-
-//    @Test
-//    public void start_causes_request_to_be_written_to_server() throws IOException {
-//        server.start();
-//        assertTrue(processor.input.toByteArray().length > 0);
-//    }
 }
