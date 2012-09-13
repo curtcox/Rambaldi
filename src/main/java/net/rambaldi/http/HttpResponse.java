@@ -4,7 +4,11 @@ import net.rambaldi.process.Request;
 import net.rambaldi.process.Response;
 import net.rambaldi.process.Timestamp;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import static java.util.Objects.requireNonNull;
 
@@ -21,11 +25,27 @@ public final class HttpResponse
     public final HttpRequest request;
 
     public static enum Status {
-        OK
+        OK(200);
+        int code;
+        Status(int code) {
+            this.code = code;
+        }
+        @Override
+        public String toString() {
+            return code + " " + name();
+        }
     }
 
     public static enum ContentType {
-        TextHtml, TextPlain
+        TextHtml("text/html"), TextPlain("text/plain");
+        String value;
+        ContentType(String value) {
+            this.value = value;
+        }
+        @Override
+        public String toString() {
+            return value;
+        }
     }
 
     private HttpResponse(Builder builder) {
@@ -61,11 +81,18 @@ public final class HttpResponse
         public Builder              content(String content) { this.content = requireNonNull(content); return this; }
     }
 
-    public String        status() { return status.toString(); }
-    public String          date() { return date.toString(); }
-    public String   contentType() { return contentType.toString(); }
+    public String        status() { return "HTTP/1.0 " + status; }
+    public String          date() { return "Date: " + format(date); }
+    public String   contentType() { return "Content-Type: " + contentType.toString(); }
     public String contentLength() { return "Content-Length: " + content.length(); }
     public String       content() { return content; }
+
+    private static String format(Timestamp timestamp) {
+        SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        format.setCalendar(calendar);
+        return format.format(new Date(timestamp.millis));
+    }
 
     @Override
     public String toString() {

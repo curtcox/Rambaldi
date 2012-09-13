@@ -1,7 +1,6 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.FakeTransactionProcessor;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.process.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +9,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.FutureTask;
 
 import static org.junit.Assert.*;
 
@@ -26,11 +27,19 @@ public class SimpleHttpServerTest {
     FakeExecutor executor = new FakeExecutor();
     class FakeExecutor implements Executor {
         boolean isExecuting;
+        ExecutionException threw;
+        boolean interrupted;
         @Override
         public void execute(Runnable command) {
             isExecuting = true;
+            FutureTask task = (FutureTask) command;
             try {
-                command.run();
+                task.run();
+                task.get();
+            } catch (InterruptedException e) {
+                interrupted = true;
+            } catch (ExecutionException e) {
+                threw = e;
             } finally {
                 isExecuting = false;
             }
@@ -43,9 +52,10 @@ public class SimpleHttpServerTest {
         public boolean acceptWasCalled;
         public FakeSocket socket = new FakeSocket();
         public boolean acceptWasCalledFromExecutor;
-
+        public int port;
         public FakeServerSocket(int port) throws IOException {
             super();
+            this.port = port;
         }
 
         @Override
@@ -99,9 +109,28 @@ public class SimpleHttpServerTest {
         assertTrue(serverSocket.acceptWasCalledFromExecutor);
     }
 
+    @Test(expected = Exception.class)
+    public void failed_process_causes_exception_to_be_thrown() throws Throwable {
+        server.start();
+        if (executor.threw!=null) {
+            throw executor.threw;
+        }
+    }
+
     @Test
-    public void start_causes_output_to_be_written_back_to_socket() throws IOException {
+    public void start_causes_output_to_be_written_back_to_socket() throws Throwable {
+        processor.response = HttpResponse.builder().request(request).build();
         server.start();
         assertTrue(out.toByteArray().length>0);
     }
+
+    @Test
+    public void start_causes_response_to_be_written_back_to_socket() throws Throwable {
+        HttpResponse expected = HttpResponse.builder().request(request).build();
+        processor.response = expected;
+        server.start();
+        String actual = new String(out.toByteArray());
+        assertEquals(expected.toString(),actual);
+    }
+
 }

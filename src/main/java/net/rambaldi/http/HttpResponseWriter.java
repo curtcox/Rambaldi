@@ -6,6 +6,7 @@ import net.rambaldi.process.TransactionSink;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 
@@ -23,6 +24,9 @@ public final class HttpResponseWriter
 
     @Override
     public void put(Transaction transaction) {
+        if (!(transaction instanceof HttpResponse)) {
+            throw new IllegalArgumentException(transaction + " is not a HttpResponse");
+        }
         HttpResponse response = (HttpResponse) transaction;
         try {
             out.write(response.toString().getBytes());

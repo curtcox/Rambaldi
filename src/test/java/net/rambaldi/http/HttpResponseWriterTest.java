@@ -1,5 +1,7 @@
 package net.rambaldi.http;
 
+import net.rambaldi.process.Request;
+import net.rambaldi.process.Response;
 import net.rambaldi.process.Timestamp;
 import org.junit.Test;
 
@@ -20,18 +22,29 @@ public class HttpResponseWriterTest {
         new HttpResponseWriter(null);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
+    public void put_requires_HttpResponse() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        HttpResponseWriter writer = new HttpResponseWriter(out);
+        writer.put(new Response("",new Request("",new Timestamp(0))));
+    }
+
+        @Test
     public void put_writes_response_string_output_to_stream() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         HttpResponseWriter writer = new HttpResponseWriter(out);
-        HttpRequest request = new HttpRequest("",new Timestamp(0), HttpRequest.Method.GET);
-        HttpResponse response = HttpResponse.builder()
-                .content("")
-                .request(request)
-                .build();
+        HttpResponse     response = newHttpResponse();
 
         writer.put(response);
 
         assertEquals(response.toString(), new String(out.toByteArray()));
+    }
+
+    private HttpResponse newHttpResponse() {
+        HttpRequest request = new HttpRequest("",new Timestamp(0), HttpRequest.Method.GET);
+        return HttpResponse.builder()
+                .content("")
+                .request(request)
+                .build();
     }
 }
