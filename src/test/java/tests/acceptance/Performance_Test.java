@@ -3,14 +3,11 @@ package tests.acceptance;
 import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -26,7 +23,7 @@ public class Performance_Test {
     @Before
     public void Before() throws Exception {
         state = new StateOnDisk(temp,io,fileSystem);
-        state.setProcessor(new EchoProcessor());
+        state.setRequestProcessor(new EchoProcessor());
         state.persist();
     }
 
@@ -50,7 +47,7 @@ public class Performance_Test {
         readAndWriteRequestsTakesAtMost(10000,10);
     }
 
-    @Test
+    @Test @Ignore // This passes, but takes a while
     public void Read_100_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
         readAndWriteRequestsTakesAtMost(100000, 40);
     }

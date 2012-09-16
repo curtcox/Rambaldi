@@ -15,7 +15,7 @@ public final class Main {
         this.io = requireNonNull(io);
         this.state = requireNonNull(state);
         Context context = new SimpleContext();
-        RequestProcessor requestProcessor = state.getProcessor();
+        RequestProcessor requestProcessor = state.getRequestProcessor();
         ResponseProcessor responses = new SimpleResponseProcessor();
         system = new StreamTransactionProcessor(in,out,err,io,context,requestProcessor,responses);
     }

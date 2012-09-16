@@ -12,7 +12,7 @@ public final class StateOnDisk {
     public final Path path;
     private final FileSystem fileSystem;
     private final ObjectStore store;
-    private RequestProcessor processor;
+    private RequestProcessor requestProcessor;
 
     public StateOnDisk(Path dir, IO io, FileSystem fileSystem) {
         this(dir,new SimpleObjectStore(dir,io,fileSystem),fileSystem);
@@ -28,20 +28,20 @@ public final class StateOnDisk {
         fileSystem.deleteRecursive(path);
     }
 
-    public void setProcessor(RequestProcessor processor) {
-        this.processor = processor;
+    public void setRequestProcessor(RequestProcessor requestProcessor) {
+        this.requestProcessor = requestProcessor;
     }
 
     public void persist() throws IOException {
         fileSystem.createDirectories(path);
-        store.write(RequestProcessor.class, processor);
+        store.write(RequestProcessor.class, requestProcessor);
     }
 
     public void load() {
-        processor = store.read(RequestProcessor.class);
+        requestProcessor = store.read(RequestProcessor.class);
     }
 
-    public RequestProcessor getProcessor() {
-        return processor;
+    public RequestProcessor getRequestProcessor() {
+        return requestProcessor;
     }
 }

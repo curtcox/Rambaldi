@@ -9,11 +9,11 @@ import net.rambaldi.process.Context;
  * @author Curt
  */
 public class HttpEchoProcessor
-    implements RequestProcessor {
+    implements HttpTransactionProcessor
+{
 
     @Override
-    public Response process(Request request, Context context) {
-        return new Response(request.value,request);
+    public HttpResponse process(HttpRequest request) {
+        return HttpResponse.builder().request(request).build();
     }
-    
 }

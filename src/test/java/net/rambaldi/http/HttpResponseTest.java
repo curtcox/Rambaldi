@@ -12,7 +12,7 @@ import static org.junit.Assert.assertSame;
 
 public class HttpResponseTest {
 
-    HttpRequest request = new HttpRequest("",new Timestamp(0), Method.GET);
+    HttpRequest request = HttpRequest.builder().build();
 
     @Test(expected = NullPointerException.class)
     public void builder_requires_content() {
@@ -82,7 +82,7 @@ public class HttpResponseTest {
     @Test
     public void Http_1_0_200_OK_HTML() {
         String response = HttpResponse.builder()
-                .request(new HttpRequest("", new Timestamp(0), Method.GET))
+                .request(HttpRequest.builder().build())
                 .status(Status.OK)
                 .date(new Timestamp(0))
                 .contentType(ContentType.TextHtml)

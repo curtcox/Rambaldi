@@ -55,14 +55,14 @@ public class StateOnDiskTest {
     public void getProcessor_returns_processor_set() {
         EchoProcessor processor = new EchoProcessor();
 
-        state.setProcessor(processor);
+        state.setRequestProcessor(processor);
 
-        assertEquals(processor, state.getProcessor());
+        assertEquals(processor, state.getRequestProcessor());
     }
 
     @Test
     public void getProcessor_returns_null_if_it_has_not_been_loaded() {
-        RequestProcessor actual = state.getProcessor();
+        RequestProcessor actual = state.getRequestProcessor();
         assertEquals(null,actual);
     }
 
@@ -71,7 +71,7 @@ public class StateOnDiskTest {
         EchoProcessor expected = new EchoProcessor();
         store.write(RequestProcessor.class,expected);
         state.load();
-        RequestProcessor actual = state.getProcessor();
+        RequestProcessor actual = state.getRequestProcessor();
         assertEquals(expected,actual);
     }
 
@@ -80,11 +80,11 @@ public class StateOnDiskTest {
         assertFalse(Files.exists(path));
         StateOnDisk state1 = new StateOnDisk(path,store,fileSystem);
         EchoProcessor processor = new EchoProcessor();
-        state1.setProcessor(processor);
+        state1.setRequestProcessor(processor);
         state1.persist();
         StateOnDisk state2 = new StateOnDisk(path,store,fileSystem);
         state2.load();
-        assertEquals(processor, state2.getProcessor());
+        assertEquals(processor, state2.getRequestProcessor());
     }
 
     @Test

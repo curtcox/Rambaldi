@@ -19,10 +19,10 @@ import static java.util.Objects.requireNonNull;
 public final class HttpRequestReader
     implements TransactionSource
 {
-    private final InputStream inputStream;
+    private BufferedReader reader;
 
     public HttpRequestReader(InputStream inputStream) {
-        this.inputStream = requireNonNull(inputStream);
+        reader = new BufferedReader(new InputStreamReader(requireNonNull(inputStream)));
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class HttpRequestReader
             if (lines.isEmpty()) {
                 throw new DeserializationException();
             }
-            return new HttpRequest("",new Timestamp(0), HttpRequest.Method.GET);
+            return HttpRequest.builder().build();
         } catch (IOException e) {
             throw new DeserializationException(e);
         }
@@ -40,8 +40,10 @@ public final class HttpRequestReader
 
     private Map<String,String> readLines() throws IOException {
         Map<String,String> lines = new HashMap<>();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         for (String line = reader.readLine(); line!=null; line=reader.readLine()) {
+            if (line.trim().isEmpty()) {
+                return lines;
+            }
             lines.put(line,line);
         }
         return lines;

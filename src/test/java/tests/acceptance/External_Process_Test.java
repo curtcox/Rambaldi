@@ -7,10 +7,6 @@ import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
 
 import static org.junit.Assert.*;
 
@@ -30,7 +26,7 @@ public class External_Process_Test {
         //io = new DebugIO(io,System.out);
         state = new StateOnDisk(temp,io,fileSystem);
         state.delete();
-        state.setProcessor(new EchoProcessor());
+        state.setRequestProcessor(new EchoProcessor());
         state.persist();
     }
 

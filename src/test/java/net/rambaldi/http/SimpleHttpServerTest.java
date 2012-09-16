@@ -21,7 +21,7 @@ public class SimpleHttpServerTest {
     ByteArrayInputStream in;
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     FakeServerSocket serverSocket;
-    FakeTransactionProcessor processor = new FakeTransactionProcessor();
+    FakeHttpTransactionProcessor processor = new FakeHttpTransactionProcessor();
     HttpRequest request;
     SimpleHttpServer server;
     FakeExecutor executor = new FakeExecutor();
@@ -70,7 +70,7 @@ public class SimpleHttpServerTest {
     public void before() throws IOException {
         String requestString = "GET / HTTP/1.1\r\n\r\n";
         in = new ByteArrayInputStream(requestString.getBytes());
-        request = new HttpRequest(requestString,new Timestamp(7), HttpRequest.Method.GET);
+        request = HttpRequest.builder().build();
         serverSocket = new FakeServerSocket(port);
         serverSocket.socket.input = in;
         serverSocket.socket.output = out;

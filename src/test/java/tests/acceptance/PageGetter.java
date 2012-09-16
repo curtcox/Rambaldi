@@ -9,13 +9,15 @@ import java.net.URLConnection;
 
 public class PageGetter {
 
+    final int timeout = 10 * 1000;
+
     String getPage(String page) throws IOException {
         URL server = new URL(page);
         System.out.println("open connection");
         URLConnection connection = server.openConnection();
         System.out.println("timeout = " + connection.getConnectTimeout());
-        connection.setConnectTimeout(1000);
-        connection.setReadTimeout(1000);
+        connection.setConnectTimeout(timeout);
+        connection.setReadTimeout(timeout);
         System.out.println("timeout = " + connection.getConnectTimeout());
         System.out.println("reading");
         BufferedReader in = new BufferedReader(

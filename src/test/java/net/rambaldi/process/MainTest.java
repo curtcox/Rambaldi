@@ -30,7 +30,7 @@ public class MainTest {
     public void Before() throws Exception {
         //io = new DebugIO(io,System.out);
         state = new StateOnDisk(temp,io,new FakeFileSystem());
-        state.setProcessor(new EchoProcessor());
+        state.setRequestProcessor(new EchoProcessor());
         state.persist();
 
         processFactory = new ProcessFactory() {

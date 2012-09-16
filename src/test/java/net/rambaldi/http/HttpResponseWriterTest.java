@@ -41,7 +41,7 @@ public class HttpResponseWriterTest {
     }
 
     private HttpResponse newHttpResponse() {
-        HttpRequest request = new HttpRequest("",new Timestamp(0), HttpRequest.Method.GET);
+        HttpRequest request = HttpRequest.builder().build();
         return HttpResponse.builder()
                 .content("")
                 .request(request)
