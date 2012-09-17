@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.Log.Log;
+
 import java.io.*;
 
 import static java.util.Objects.requireNonNull;
@@ -13,9 +15,9 @@ public final class DebugIO
 {
 
     private final IO io;
-    private final PrintStream out;
+    private final Log out;
     
-    public DebugIO(IO io, PrintStream out) {
+    public DebugIO(IO io, Log out) {
         this.io = requireNonNull(io);
         this.out = requireNonNull(out);
     }
@@ -86,7 +88,7 @@ public final class DebugIO
     }
 
     private void print(String template, Object... args) {
-        out.println(String.format(template, formatObjects(args)));
+        out.info(String.format(template, formatObjects(args)));
     }
 
     private String[] formatObjects(Object[] args) {

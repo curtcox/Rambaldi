@@ -13,13 +13,9 @@ public class PageGetter {
 
     String getPage(String page) throws IOException {
         URL server = new URL(page);
-        System.out.println("open connection");
         URLConnection connection = server.openConnection();
-        System.out.println("timeout = " + connection.getConnectTimeout());
         connection.setConnectTimeout(timeout);
         connection.setReadTimeout(timeout);
-        System.out.println("timeout = " + connection.getConnectTimeout());
-        System.out.println("reading");
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         connection.getInputStream()));
@@ -27,9 +23,7 @@ public class PageGetter {
         for (String line = in.readLine(); line!= null; line = in.readLine()) {
             out.write(line);
         }
-        System.out.println("closing");
         in.close();
-        System.out.println("closed");
 
         return out.toString();
     }

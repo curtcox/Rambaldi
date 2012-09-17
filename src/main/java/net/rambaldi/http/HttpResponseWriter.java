@@ -24,20 +24,13 @@ public final class HttpResponseWriter
 
     @Override
     public void put(Transaction transaction) {
-        System.out.println("writing 1" + transaction);
         if (!(transaction instanceof HttpResponse)) {
             throw new IllegalArgumentException(transaction + " is not a HttpResponse");
         }
-        System.out.println("writing 2" + transaction);
         HttpResponse response = (HttpResponse) transaction;
-        System.out.println("writing 3" + transaction);
 
         try {
-            System.out.println("writing 4" + transaction);
-
             out.write(response.toString().getBytes());
-            System.out.println("writing 5" + transaction);
-
         } catch (IOException e) {
             throw new SerializationException(e);
         }

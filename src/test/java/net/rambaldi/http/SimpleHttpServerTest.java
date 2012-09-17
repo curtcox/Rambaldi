@@ -1,14 +1,11 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.FutureTask;
@@ -20,7 +17,7 @@ public class SimpleHttpServerTest {
     int port = 42;
     ByteArrayInputStream in;
     ByteArrayOutputStream out = new ByteArrayOutputStream();
-    FakeServerSocket serverSocket;
+    FakeHttpConnectionFactory connectionFactory;
     FakeHttpTransactionProcessor processor = new FakeHttpTransactionProcessor();
     HttpRequest request;
     SimpleHttpServer server;
@@ -46,23 +43,27 @@ public class SimpleHttpServerTest {
         }
     };
 
-    public class FakeServerSocket
-            extends ServerSocket
+    public class FakeHttpConnectionFactory
+        implements HttpConnection.Factory
     {
         public boolean acceptWasCalled;
-        public FakeSocket socket = new FakeSocket();
+        public FakeHttpConnection connection = new FakeHttpConnection();
         public boolean acceptWasCalledFromExecutor;
         public int port;
-        public FakeServerSocket(int port) throws IOException {
+        public FakeHttpConnectionFactory(int port) throws IOException {
             super();
             this.port = port;
         }
 
         @Override
-        public Socket accept() throws IOException {
+        public HttpConnection accept() throws IOException {
             acceptWasCalled = true;
             acceptWasCalledFromExecutor = executor.isExecuting;
-            return socket;
+            return connection;
+        }
+
+        @Override
+        public void close() throws Exception {
         }
     }
 
@@ -71,25 +72,25 @@ public class SimpleHttpServerTest {
         String requestString = "GET / HTTP/1.1\r\n\r\n";
         in = new ByteArrayInputStream(requestString.getBytes());
         request = HttpRequest.builder().build();
-        serverSocket = new FakeServerSocket(port);
-        serverSocket.socket.input = in;
-        serverSocket.socket.output = out;
-        server = new SimpleHttpServer(executor,serverSocket, processor);
+        connectionFactory = new FakeHttpConnectionFactory(port);
+        connectionFactory.connection.input = in;
+        connectionFactory.connection.output = out;
+        server = new SimpleHttpServer(executor, connectionFactory, processor);
     }
 
     @Test
     public void can_create() throws IOException {
-        new SimpleHttpServer(executor,processor,0);
+        new SimpleHttpServer(executor, connectionFactory,processor);
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_executor() throws IOException {
-        new SimpleHttpServer(null,processor,0);
+        new SimpleHttpServer(null, connectionFactory,processor);
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_processor() throws IOException {
-        new SimpleHttpServer(executor,null,0);
+        new SimpleHttpServer(executor, connectionFactory,null);
     }
 
     @Test(expected = NullPointerException.class)
@@ -100,13 +101,13 @@ public class SimpleHttpServerTest {
     @Test
     public void start_starts_accepting_from_socket() throws IOException {
         server.start();
-        assertTrue(serverSocket.acceptWasCalled);
+        assertTrue(connectionFactory.acceptWasCalled);
     }
 
     @Test
     public void start_uses_executor_to_accept_from_socket() throws IOException {
         server.start();
-        assertTrue(serverSocket.acceptWasCalledFromExecutor);
+        assertTrue(connectionFactory.acceptWasCalledFromExecutor);
     }
 
     @Test(expected = Exception.class)

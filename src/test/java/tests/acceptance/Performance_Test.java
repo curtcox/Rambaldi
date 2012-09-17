@@ -37,12 +37,12 @@ public class Performance_Test {
         readAndWriteRequestsTakesAtMost(100,1);
     }
 
-    @Test
+    @Test @Ignore // This passes, but takes a while
     public void Read_1_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
         readAndWriteRequestsTakesAtMost(1000, 10);
     }
 
-    @Test
+    @Test @Ignore // This passes, but takes a while
     public void Read_10_000_requests_from_standard_in_and_write_to_standard_out() throws Exception {
         readAndWriteRequestsTakesAtMost(10000,10);
     }

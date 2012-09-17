@@ -24,7 +24,7 @@ public final class StreamServerAsTransactionProcessor
 
     @Override
     public Response process(Request request) throws Exception {
-        sink.put(request);
+        sink.put(request);  //  <<<<<<< serialization error here causes mysterious failure -- better handling is needed
         out.flush();
         return (Response) source.take();
     }

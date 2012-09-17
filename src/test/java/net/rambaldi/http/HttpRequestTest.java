@@ -2,14 +2,15 @@ package net.rambaldi.http;
 
 import net.rambaldi.process.Timestamp;
 import org.junit.Test;
+import tests.acceptance.Copier;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static net.rambaldi.http.HttpRequest.Accept;
 import static net.rambaldi.http.HttpRequest.Connection;
 import static net.rambaldi.http.HttpRequest.Version;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class HttpRequestTest {
 
@@ -32,6 +33,11 @@ public class HttpRequestTest {
     @Test(expected = NullPointerException.class)
     public void method_must_not_be_null() {
         HttpRequest.builder().method(null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void connection_must_not_be_null() {
+        HttpRequest.builder().connection(null);
     }
 
     @Test
@@ -72,7 +78,16 @@ public class HttpRequestTest {
     }
 
     @Test
-    public void userAgent_line() {
+    public void accept_line() {
+        String expected = "Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2";
+        String actual = HttpRequest.builder()
+                .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
+                .build().accept();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void user_agent_line() {
         String expected = "User-Agent: HTTPTool/1.0";
         String actual = HttpRequest.builder()
                 .userAgent("HTTPTool/1.0")
@@ -85,7 +100,8 @@ public class HttpRequestTest {
         String expected = lines(
              "GET /path/file.html HTTP/1.0",
              "From: someuser@jmarshall.com",
-             "User-Agent: HTTPTool/1.0");
+             "User-Agent: HTTPTool/1.0",
+             "Connection: keep-alive");
         HttpRequest request = HttpRequest.builder()
             .resource("/path/file.html")
             .version(Version._1_0)
@@ -113,6 +129,40 @@ public class HttpRequestTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    public void toString_returns_formatted_request_3() throws Exception {
+        String expected = lines(
+            "GET / HTTP/1.1",
+            "User-Agent: Java/1.7.0",
+            "Host: localhost:4242",
+            "Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2",
+            "Connection: keep-alive"
+        );
+        HttpRequest request = HttpRequest.builder()
+                .resource("/")
+                .version(Version._1_1)
+                .userAgent("Java/1.7.0")
+                .host("localhost:4242")
+                .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
+                .connection(Connection.keep_alive)
+                .build();
+        String actual = request.toString();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void is_serializable() throws Exception {
+        HttpRequest original = HttpRequest.builder()
+                .resource("/")
+                .version(Version._1_1)
+                .userAgent("Java/1.7.0")
+                .host("localhost:4242")
+                .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
+                .connection(Connection.keep_alive)
+                .build();
+        HttpRequest copy = Copier.copy(original);
+        assertEquals(original,copy);
+    }
 
     private String lines(String... lines) {
         StringBuilder builder = new StringBuilder();
@@ -122,4 +172,21 @@ public class HttpRequestTest {
         return builder.toString();
     }
 
+    @Test
+    public void equals_implies_equal_hosts() {
+        HttpRequest.Builder builder = HttpRequest.builder();
+        assertEquals(builder.host("host1").build(),builder.host("host1").build());
+        assertNotEquals(builder.host("host1").build(),builder.host("host2").build());
+    }
+
+    @Test
+    public void equals_implies_equal_resources() {
+        HttpRequest.Builder builder = HttpRequest.builder();
+        assertEquals(builder.resource("resource1").build(),builder.resource("resource1").build());
+        assertNotEquals(builder.resource("resource1").build(),builder.resource("resource2").build());
+    }
+
+    void assertNotEquals(HttpRequest request1, HttpRequest request2) {
+        assertFalse(request1 + " should != " + request2,request1.equals(request2));
+    }
 }

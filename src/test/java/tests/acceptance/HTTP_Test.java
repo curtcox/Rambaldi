@@ -1,5 +1,6 @@
 package tests.acceptance;
 
+import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.http.*;
 import net.rambaldi.process.*;
 import org.junit.After;
@@ -25,7 +26,7 @@ public class HTTP_Test {
 
     @Before
     public void Before() throws Exception {
-        io = new DebugIO(io,System.out);
+        io = new DebugIO(io,new SimpleLog("Client IO",System.err));
         state = new StateOnDisk(temp,io,fileSystem);
         state.delete();
         HttpRequestProcessor httpEchoProcessor = new HttpRequestEchoProcessor();
@@ -40,19 +41,36 @@ public class HTTP_Test {
     }
 
     @Test
-    public void I_should_be_able_to_serve_a_page_via_HTTP() throws Exception {
+    public void I_should_be_able_to_serve_a_page_with_an_internal_processor_via_HTTP() throws Exception {
+        final int port = 4242;
+        HttpRequestProcessor httpRequestProcessor = new HttpRequestEchoProcessor();
+        Context context = new SimpleContext();
+        HttpTransactionProcessor httpProcessor = new SimpleHttpTransactionProcessor(httpRequestProcessor,context);
+        httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
+        HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
+        connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
+        Executor executor = Executors.newSingleThreadExecutor();
+        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);) {
+            server.start();
+            String page = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page, page.contains("HTTP"));
+        }
+    }
+
+    @Test
+    public void I_should_be_able_to_serve_a_page_with_an_external_processor_via_HTTP() throws Exception {
         final int port = 4242;
         TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
         HttpTransactionProcessor httpProcessor = new TransactionProcessorAsHttpTransactionProcessor(processor);
+        httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
+        HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
+        connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        SimpleHttpServer server = new SimpleHttpServer(executor,httpProcessor,port);
-        System.out.println("starting");
-        server.start();
-        System.out.println("processor started");
-
-        String page = pageGetter.getPage("http://localhost:" + port);
-        assertTrue(page,page.contains("HTTP"));
+        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);) {
+            server.start();
+            String page = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page, page.contains("HTTP"));
+        }
     }
-
 
 }

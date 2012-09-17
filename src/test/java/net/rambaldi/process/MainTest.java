@@ -22,7 +22,7 @@ public class MainTest {
     ProcessFactory processFactory;
     ByteArrayInputStream in = new ByteArrayInputStream(new byte[0]);
     ByteArrayOutputStream out = new ByteArrayOutputStream();
-    ByteArrayOutputStream err = new ByteArrayOutputStream();
+    PrintStream err = new PrintStream(new ByteArrayOutputStream());
     Main main;
     FakeProcess process = new FakeProcess();
 
