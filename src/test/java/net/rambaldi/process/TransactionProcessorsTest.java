@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.Log.Log;
+import net.rambaldi.log.FakeLog;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,7 @@ public class TransactionProcessorsTest {
     StateOnDisk state;
     Path path = Paths.get("tempDir");
     IO io = new SimpleIO();
+    Log log = new FakeLog();
     FileSystem fileSystem = new SimpleFileSystem();
 
     @Before
@@ -32,12 +35,12 @@ public class TransactionProcessorsTest {
     @Test(expected=NullPointerException.class)
     public void newExternal_requires_state() throws Exception {
         state = null;
-        TransactionProcessors.newExternal(state,io);
+        TransactionProcessors.newExternal(state,io,log);
     }
 
     @Test
     public void newExternal_returns_processor() throws Exception {
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
         assertNotNull(processor);
     }
 

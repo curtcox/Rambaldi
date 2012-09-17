@@ -1,12 +1,12 @@
 package net.rambaldi.process;
 
+import net.rambaldi.Log.Log;
 import net.rambaldi.http.FakeStreamServer;
+import net.rambaldi.log.FakeLog;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.EOFException;
-import java.io.InputStream;
+import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,28 +15,29 @@ import static org.junit.Assert.fail;
 public class StreamServerAsTransactionProcessorTest {
 
     IO io = new SimpleIO();
+    FakeLog log = new FakeLog();
     FakeStreamServer server = new FakeStreamServer();
     StreamServerAsTransactionProcessor processor;
 
     @Before
     public void before() {
         //io = new DebugIO(io,System.err);
-        processor = new StreamServerAsTransactionProcessor(server,io);
+        processor = new StreamServerAsTransactionProcessor(server,io,log);
     }
 
     @Test
     public void can_create() {
-        new StreamServerAsTransactionProcessor(new FakeStreamServer(),io);
+        new StreamServerAsTransactionProcessor(new FakeStreamServer(),io,log);
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_stream_server() {
-        new StreamServerAsTransactionProcessor(null,io);
+        new StreamServerAsTransactionProcessor(null,io,log);
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_io() {
-        new StreamServerAsTransactionProcessor(server,null);
+        new StreamServerAsTransactionProcessor(server,null,log);
     }
 
     @Test
@@ -59,17 +60,36 @@ public class StreamServerAsTransactionProcessorTest {
         return (Request) source.take();
     }
 
-
     @Test
     public void process_returns_response_from_server() throws Exception {
         Request request = new Request("",new Timestamp(0));
         Response expected = new Response("",request);
         server.output = responseFromServer(expected);
-        processor = new StreamServerAsTransactionProcessor(server,io);
+        processor = new StreamServerAsTransactionProcessor(server,io,log);
 
         Response response = processor.process(request);
 
         assertEquals(expected, response);
+    }
+
+    @Test
+    public void process_logs_exceptions() throws Exception {
+        Request request = new Request("",new Timestamp(0));
+        Response expected = new Response("",request);
+        server.output = responseFromServer(expected);
+
+        FakeLog log = new FakeLog();
+        FakeIO io = new FakeIO() {
+            @Override public void write(OutputStream out, Transaction transaction) { throw new NullPointerException();};
+        };
+        processor = new StreamServerAsTransactionProcessor(server,io,log);
+
+        try {
+            processor.process(request);
+            fail("Request is not serializable");
+        } catch (Exception e) {
+            assertEquals(e,log.exception);
+        }
     }
 
     private InputStream responseFromServer(final Response response) {

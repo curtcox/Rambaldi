@@ -2,7 +2,6 @@ package net.rambaldi.http;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 

@@ -1,7 +1,9 @@
 package tests.acceptance;
 
+import net.rambaldi.Log.Log;
 import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.http.*;
+import net.rambaldi.log.FakeLog;
 import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
@@ -20,6 +22,7 @@ public class HTTP_Test {
 
     final PageGetter pageGetter = new PageGetter();
     IO io = new SimpleIO();
+    Log log = new FakeLog();
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem();
@@ -60,7 +63,7 @@ public class HTTP_Test {
     @Test
     public void I_should_be_able_to_serve_a_page_with_an_external_processor_via_HTTP() throws Exception {
         final int port = 4242;
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
         HttpTransactionProcessor httpProcessor = new TransactionProcessorAsHttpTransactionProcessor(processor);
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);

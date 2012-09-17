@@ -15,6 +15,11 @@ public final class SimpleLog
 
     @Override
     public void info(Object message) {
-        //out.println(prefix + ":" + message);
+        out.println(prefix + ":" + message);
+    }
+
+    @Override
+    public void throwable(Throwable t) {
+        t.printStackTrace(out);
     }
 }

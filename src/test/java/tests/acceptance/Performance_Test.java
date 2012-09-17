@@ -1,5 +1,7 @@
 package tests.acceptance;
 
+import net.rambaldi.Log.Log;
+import net.rambaldi.log.FakeLog;
 import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
@@ -19,6 +21,7 @@ public class Performance_Test {
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem();
+    Log log = new FakeLog();
 
     @Before
     public void Before() throws Exception {
@@ -63,7 +66,7 @@ public class Performance_Test {
     private void readAndWriteRequests(int max) throws Exception {
         final Request request = request();
 
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
         for (int i=0; i<max; i++) {
             Response response = processor.process(request);
             assertEquals(request, response.request);

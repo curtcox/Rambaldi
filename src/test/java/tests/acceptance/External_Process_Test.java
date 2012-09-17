@@ -1,5 +1,7 @@
 package tests.acceptance;
 
+import net.rambaldi.Log.Log;
+import net.rambaldi.log.FakeLog;
 import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
@@ -19,6 +21,7 @@ public class External_Process_Test {
     IO io = new SimpleIO();
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
+    Log log = new FakeLog();
     FileSystem fileSystem = new SimpleFileSystem();
 
     @Before
@@ -38,7 +41,7 @@ public class External_Process_Test {
     @Test
     public void Read_from_standard_in_and_write_to_standard_out() throws Exception {
         Request request = request();
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
 
         Response response = processor.process(request);
         assertEquals(request,response.request);
@@ -47,7 +50,7 @@ public class External_Process_Test {
     @Test
     public void Read_2_requests_from_standard_in_and_write_to_standard_out() throws Exception {
         Request request = request();
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io);
+        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
 
         Response response1 = processor.process(request);
         assertEquals(request,response1.request);
