@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Executor;
@@ -26,6 +27,7 @@ public class HTTP_Test {
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem();
+    final int port = 4242;
 
     @Before
     public void Before() throws Exception {
@@ -45,7 +47,13 @@ public class HTTP_Test {
 
     @Test
     public void I_should_be_able_to_serve_a_page_with_an_internal_processor_via_HTTP() throws Exception {
-        final int port = 4242;
+        try (SimpleHttpServer server = newServer()) {
+            String page = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page, page.contains("HTTP"));
+        }
+    }
+
+    SimpleHttpServer newServer() throws IOException {
         HttpRequestProcessor httpRequestProcessor = new HttpRequestEchoProcessor();
         Context context = new SimpleContext();
         HttpTransactionProcessor httpProcessor = new SimpleHttpTransactionProcessor(httpRequestProcessor,context);
@@ -53,27 +61,38 @@ public class HTTP_Test {
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);) {
-            server.start();
-            String page = pageGetter.getPage("http://localhost:" + port);
-            assertTrue(page, page.contains("HTTP"));
+        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);
+        server.start();
+        return server;
+    }
+
+    @Test
+    public void I_should_be_able_to_serve_2_pages_with_an_internal_processor_via_HTTP() throws Exception {
+        try (SimpleHttpServer server = newServer()) {
+            String page1 = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page1, page1.contains("HTTP"));
+            String page2 = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page2, page2.contains("HTTP"));
         }
     }
 
     @Test
     public void I_should_be_able_to_serve_a_page_with_an_external_processor_via_HTTP() throws Exception {
-        final int port = 4242;
+        try (SimpleHttpServer server = newExternalServer()) {
+            String page = pageGetter.getPage("http://localhost:" + port);
+            assertTrue(page, page.contains("HTTP"));
+        }
+    }
+
+    SimpleHttpServer newExternalServer() throws ProcessCreationException, IOException {
         TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
         HttpTransactionProcessor httpProcessor = new TransactionProcessorAsHttpTransactionProcessor(processor);
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);) {
-            server.start();
-            String page = pageGetter.getPage("http://localhost:" + port);
-            assertTrue(page, page.contains("HTTP"));
-        }
+        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);
+        server.start();
+        return server;
     }
-
 }

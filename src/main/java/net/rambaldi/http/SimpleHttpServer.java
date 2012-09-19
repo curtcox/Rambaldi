@@ -41,7 +41,7 @@ public final class SimpleHttpServer
     private void acceptSocket() throws Exception {
         HttpConnection connection = connectionFactory.accept();
         HttpRequestReader  reader = new HttpRequestReader(connection.getInputStream());
-        HttpRequest request = reader.take();
+        HttpRequest       request = reader.take();
         HttpResponse     response = processor.process(request);
         HttpResponseWriter writer = new HttpResponseWriter(connection.getOutputStream());
         writer.put(response);

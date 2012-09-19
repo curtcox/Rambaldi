@@ -47,7 +47,7 @@ public class SimpleHttpServerTest {
         implements HttpConnection.Factory
     {
         public boolean acceptWasCalled;
-        public FakeHttpConnection connection = new FakeHttpConnection();
+        public SimpleHttpConnection connection = new SimpleHttpConnection(in,out);
         public boolean acceptWasCalledFromExecutor;
         public int port;
         public FakeHttpConnectionFactory(int port) throws IOException {
@@ -73,8 +73,6 @@ public class SimpleHttpServerTest {
         in = new ByteArrayInputStream(requestString.getBytes());
         request = HttpRequest.builder().build();
         connectionFactory = new FakeHttpConnectionFactory(port);
-        connectionFactory.connection.input = in;
-        connectionFactory.connection.output = out;
         server = new SimpleHttpServer(executor, connectionFactory, processor);
     }
 

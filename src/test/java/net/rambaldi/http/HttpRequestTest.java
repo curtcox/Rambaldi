@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 
 import static net.rambaldi.http.HttpRequest.Accept;
 import static net.rambaldi.http.HttpRequest.Connection;
+import static net.rambaldi.http.HttpRequest.Connection.keep_alive;
 import static net.rambaldi.http.HttpRequest.Version;
 import static org.junit.Assert.*;
 
@@ -144,7 +145,7 @@ public class HttpRequestTest {
                 .userAgent("Java/1.7.0")
                 .host("localhost:4242")
                 .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
-                .connection(Connection.keep_alive)
+                .connection(keep_alive)
                 .build();
         String actual = request.toString();
         assertEquals(expected,actual);
@@ -158,7 +159,7 @@ public class HttpRequestTest {
                 .userAgent("Java/1.7.0")
                 .host("localhost:4242")
                 .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
-                .connection(Connection.keep_alive)
+                .connection(keep_alive)
                 .build();
         HttpRequest copy = Copier.copy(original);
         assertEquals(original,copy);

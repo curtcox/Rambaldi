@@ -1,4 +1,4 @@
-package tests.acceptance;
+package tests.performance;
 
 import net.rambaldi.Log.Log;
 import net.rambaldi.log.FakeLog;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Performance_Test {
+public class Processor_Test {
 
     IO io = new SimpleIO();
     Path temp = Paths.get("tempDir");

@@ -9,7 +9,9 @@ import java.io.ByteArrayInputStream;
 import java.io.EOFException;
 
 import static net.rambaldi.http.HttpRequest.Connection;
+import static net.rambaldi.http.HttpRequest.Connection.close;
 import static net.rambaldi.http.HttpRequest.Method;
+import static net.rambaldi.http.HttpRequest.Method.GET;
 import static org.junit.Assert.*;
 
 public class HttpRequestReaderTest {
@@ -33,10 +35,10 @@ public class HttpRequestReaderTest {
     @Test
     public void get_root_with_close() {
         HttpRequest request = takeFrom("GET / HTTP/1.1\r\nHost: www.example.com\r\nConnection: close\r\n\r\n");
-        assertEquals(Method.GET,request.method);
+        assertEquals(GET,request.method);
         assertEquals("/",request.resource);
         assertEquals("www.example.com",request.host);
-        assertEquals(Connection.close,request.connection);
+        assertEquals(close,request.connection);
     }
 
     @Test
@@ -44,7 +46,7 @@ public class HttpRequestReaderTest {
         HttpRequest request = takeFrom(
             "GET / HTTP/1.1\r\nUser-Agent: Java/1.7.0\r\nHost: localhost:4242\r\nAccept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2\r\nConnection: keep-alive\r\n\r\n"
         );
-        assertEquals(Method.GET,request.method);
+        assertEquals(GET,request.method);
         assertEquals("/",request.resource);
         assertEquals("localhost:4242",request.host);
         assertEquals("Java/1.7.0",request.userAgent);
@@ -56,10 +58,10 @@ public class HttpRequestReaderTest {
     @Test
     public void get_named_resource_with_close() {
         HttpRequest request = takeFrom("GET /named_resource HTTP/1.1\r\nHost: named.net\r\nConnection: close\r\n\r\n");
-        assertEquals(Method.GET,request.method);
+        assertEquals(GET,request.method);
         assertEquals("/named_resource",request.resource);
         assertEquals("named.net",request.host);
-        assertEquals(Connection.close,request.connection);
+        assertEquals(close,request.connection);
     }
 
     @Test
