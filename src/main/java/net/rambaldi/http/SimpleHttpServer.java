@@ -1,5 +1,7 @@
 package net.rambaldi.http;
 
+import net.rambaldi.process.Context;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.FutureTask;
@@ -12,15 +14,15 @@ import static java.util.Objects.requireNonNull;
 public final class SimpleHttpServer
     implements AutoCloseable
 {
-    private final HttpTransactionProcessor processor;
+    private final HttpConnection.Handler handler;
     private final Executor executor;
     private final HttpConnection.Factory connectionFactory;
     private final Callable acceptCallable;
 
-    public SimpleHttpServer(Executor executor, HttpConnection.Factory serverSocketProvider, HttpTransactionProcessor processor) {
+    public SimpleHttpServer(Executor executor, HttpConnection.Factory serverSocketProvider, HttpConnection.Handler handler) {
         this.executor = requireNonNull(executor);
         this.connectionFactory = requireNonNull(serverSocketProvider);
-        this.processor = requireNonNull(processor);
+        this.handler = requireNonNull(handler);
         acceptCallable = acceptNewSocket();
     }
 
@@ -39,12 +41,7 @@ public final class SimpleHttpServer
     }
 
     private void acceptSocket() throws Exception {
-        HttpConnection connection = connectionFactory.accept();
-        HttpRequestReader  reader = new HttpRequestReader(connection.getInputStream());
-        HttpRequest       request = reader.take();
-        HttpResponse     response = processor.process(request);
-        HttpResponseWriter writer = new HttpResponseWriter(connection.getOutputStream());
-        writer.put(response);
+        handler.handle(connectionFactory.accept());
     }
 
     @Override

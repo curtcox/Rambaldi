@@ -31,7 +31,7 @@ public interface HttpConnection
          * Calling this method should read a HttpRequest from the input and write the HttpResponse to the output.
          * Depending on the request, everything might also be closed.
          */
-        void handle(HttpConnection connection, Context context) throws Exception;
+        void handle(HttpConnection connection) throws Exception;
     }
 
     boolean isClosed();

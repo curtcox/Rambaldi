@@ -2,26 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70635958-1d7b-48eb-bec8-4253b5afc08e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeInputStream.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeOutputStream.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java" />
-      <change type="DELETED" beforePath="C:\Users\Curt\Documents\GitHub\Rambaldi\src\test\java\net\rambaldi\http\FakeHttpConnection.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Curt\Documents\GitHub\Rambaldi\src\test\java\tests\acceptance\Performance_Test.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" afterPath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpTransactionProcessorTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/Log/SimpleLog.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/Log/SimpleLog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnection.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionFactory.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestReaderTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestReaderTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpServerTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpServerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/PageGetter.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/PageGetter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java" />
     </list>
     <ignored path="rambaldi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,23 +84,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimpleHttpConnectionHandlerTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="45" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1220#1412#0" expanded="true" />
-                <element signature="e#1401#1402#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleHttpServerTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SimpleHttpServerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.16221374">
+            <state line="125" column="16" selection-start="3867" selection-end="3867" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,7 +96,71 @@
       <file leaf-file-name="SimpleHttpConnection.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="11" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+            <state line="15" column="0" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HTTP_Test.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="16" selection-start="2668" selection-end="2668" vertical-scroll-proportion="0.4622871">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHttpConnectionHandlerTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="66" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#333#543#0" expanded="true" />
+                <element signature="e#536#537#0" expanded="true" />
+                <element signature="e#1371#1550#0" expanded="true" />
+                <element signature="e#1539#1540#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHttpTransactionProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="28" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHttpTransactionProcessorTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpTransactionProcessorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="118" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HTTP_Test.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="52" selection-start="2713" selection-end="2713" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleHttpServer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="49" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,7 +169,7 @@
       <file leaf-file-name="SimpleHttpConnectionHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0">
+            <state line="24" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,28 +177,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpRequestProcessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="17" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="HttpConnection.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="49" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Context.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/process/Context.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="17" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
+            <state line="33" column="45" selection-start="950" selection-end="950" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -176,20 +199,20 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/PageGetter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionFactory.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeInputStream.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeOutputStream.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/FakeHttpConnection.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnection.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestReaderTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/FakeHttpConnectionHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpTransactionProcessorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpServerTest.java" />
       </list>
@@ -533,8 +556,8 @@
       <recent name="tests.acceptance" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="net.rambaldi.process" />
       <recent name="net.rambaldi.http" />
+      <recent name="net.rambaldi.process" />
       <recent name="tests.acceptance" />
       <recent name="net.rambaldi" />
     </key>
@@ -546,94 +569,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.UATs">
-    <configuration default="false" name="StreamServerAsTransactionProcessorTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.process" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.process.StreamServerAsTransactionProcessorTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="HTTP_Test" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="tests.acceptance" />
-      <option name="MAIN_CLASS_NAME" value="tests.acceptance.HTTP_Test" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SimpleHttpConnectionHandlerTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpConnectionHandlerTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SimpleHttpConnectionTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpConnectionTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="SimpleHttpConnectionHandlerTest.handle_returns_response_from_RequestProcessor" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -641,6 +576,94 @@
       <option name="PACKAGE_NAME" value="net.rambaldi.http" />
       <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpConnectionHandlerTest" />
       <option name="METHOD_NAME" value="handle_returns_response_from_RequestProcessor" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SimpleHttpServerTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpServerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SimpleHttpTransactionProcessorTest.can_create" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpTransactionProcessorTest" />
+      <option name="METHOD_NAME" value="can_create" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SimpleHttpTransactionProcessorTest.constructor_requires_request_processor" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpTransactionProcessorTest" />
+      <option name="METHOD_NAME" value="constructor_requires_request_processor" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SimpleHttpTransactionProcessorTest.process_uses_processor_from_constructor" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.SimpleHttpTransactionProcessorTest" />
+      <option name="METHOD_NAME" value="process_uses_processor_from_constructor" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -902,12 +925,12 @@
       <item index="0" class="java.lang.String" itemvalue="JUnit.Unit Tests" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.UATs" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.StateOnDiskTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.StreamServerAsTransactionProcessorTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.Performance" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.HTTP_Test" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.SimpleHttpConnectionHandlerTest" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.SimpleHttpConnectionTest" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.SimpleHttpConnectionHandlerTest.handle_returns_response_from_RequestProcessor" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.Performance" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SimpleHttpConnectionHandlerTest.handle_returns_response_from_RequestProcessor" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.SimpleHttpServerTest" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.SimpleHttpTransactionProcessorTest.can_create" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.SimpleHttpTransactionProcessorTest.constructor_requires_request_processor" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.SimpleHttpTransactionProcessorTest.process_uses_processor_from_constructor" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -948,22 +971,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41456583" sideWeight="0.33285406" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24946082" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39709172" sideWeight="0.30037412" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3836689" sideWeight="0.27578834" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30536914" sideWeight="0.27151257" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18760021" sideWeight="0.6163311" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3836689" sideWeight="0.7204703" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18760021" sideWeight="0.5167785" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48322147" sideWeight="0.7247461" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41456583" sideWeight="0.3350108" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1027,52 +1050,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="22" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/process/FakeInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="22" selection-start="288" selection-end="288" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="20" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="563" selection-end="563" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="19" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpResponseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpResponseWriterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="13" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0">
@@ -1096,20 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="17" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="49" selection-start="954" selection-end="954" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/process/Context.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="17" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
@@ -1117,9 +1080,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpTransactionProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="17" selection-start="136" selection-end="136" vertical-scroll-proportion="0.24637681">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="17" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="45" selection-start="950" selection-end="950" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="52" selection-start="2713" selection-end="2713" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="49" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="28" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpTransactionProcessorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="118" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0">
+        <state line="24" column="0" selection-start="854" selection-end="854" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1128,25 +1146,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpConnectionHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="45" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0">
+        <state line="16" column="66" selection-start="526" selection-end="526" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1220#1412#0" expanded="true" />
-            <element signature="e#1401#1402#0" expanded="true" />
+            <element signature="e#333#543#0" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#1371#1550#0" expanded="true" />
+            <element signature="e#1539#1540#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="11" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0">
+        <state line="15" column="0" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/SimpleHttpServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="378" selection-end="378" vertical-scroll-proportion="0.16221374">
+        <state line="125" column="16" selection-start="3867" selection-end="3867" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="16" selection-start="2668" selection-end="2668" vertical-scroll-proportion="0.4622871">
           <folding />
         </state>
       </provider>

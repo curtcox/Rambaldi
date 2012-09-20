@@ -1,5 +1,7 @@
 package net.rambaldi.http;
 
+import net.rambaldi.process.Context;
+import net.rambaldi.process.SimpleContext;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,12 +18,23 @@ public class SimpleHttpServerTest {
 
     int port = 42;
     ByteArrayInputStream in;
-    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    ByteArrayOutputStream out;
     FakeHttpConnectionFactory connectionFactory;
-    FakeHttpTransactionProcessor processor = new FakeHttpTransactionProcessor();
+    SimpleHttpConnection connection;
+    FakeHttpConnectionHandler handler = new FakeHttpConnectionHandler();
     HttpRequest request;
     SimpleHttpServer server;
     FakeExecutor executor = new FakeExecutor();
+
+    class FakeHttpConnectionHandler implements HttpConnection.Handler {
+
+        HttpConnection connection;
+        @Override
+        public void handle(HttpConnection connection) throws Exception {
+            this.connection = connection;
+        }
+    }
+
     class FakeExecutor implements Executor {
         boolean isExecuting;
         ExecutionException threw;
@@ -43,13 +56,12 @@ public class SimpleHttpServerTest {
         }
     };
 
-    public class FakeHttpConnectionFactory
+    class FakeHttpConnectionFactory
         implements HttpConnection.Factory
     {
-        public boolean acceptWasCalled;
-        public SimpleHttpConnection connection = new SimpleHttpConnection(in,out);
-        public boolean acceptWasCalledFromExecutor;
-        public int port;
+        boolean acceptWasCalled;
+        boolean acceptWasCalledFromExecutor;
+        int port;
         public FakeHttpConnectionFactory(int port) throws IOException {
             super();
             this.port = port;
@@ -73,17 +85,19 @@ public class SimpleHttpServerTest {
         in = new ByteArrayInputStream(requestString.getBytes());
         request = HttpRequest.builder().build();
         connectionFactory = new FakeHttpConnectionFactory(port);
-        server = new SimpleHttpServer(executor, connectionFactory, processor);
+        server = new SimpleHttpServer(executor, connectionFactory, handler);
+        out = new ByteArrayOutputStream();
+        connection = new SimpleHttpConnection(in,out);
     }
 
     @Test
     public void can_create() throws IOException {
-        new SimpleHttpServer(executor, connectionFactory,processor);
+        new SimpleHttpServer(executor, connectionFactory,handler);
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_executor() throws IOException {
-        new SimpleHttpServer(null, connectionFactory,processor);
+        new SimpleHttpServer(null, connectionFactory,handler);
     }
 
     @Test(expected = NullPointerException.class)
@@ -93,7 +107,7 @@ public class SimpleHttpServerTest {
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_server_socket() throws IOException {
-        new SimpleHttpServer(executor,null,processor);
+        new SimpleHttpServer(executor,null,handler);
     }
 
     @Test
@@ -117,19 +131,9 @@ public class SimpleHttpServerTest {
     }
 
     @Test
-    public void start_causes_output_to_be_written_back_to_socket() throws Throwable {
-        processor.response = HttpResponse.builder().request(request).build();
+    public void start_handler_to_be_invoked_with_context() throws Throwable {
         server.start();
-        assertTrue(out.toByteArray().length>0);
-    }
-
-    @Test
-    public void start_causes_response_to_be_written_back_to_socket() throws Throwable {
-        HttpResponse expected = HttpResponse.builder().request(request).build();
-        processor.response = expected;
-        server.start();
-        String actual = new String(out.toByteArray());
-        assertEquals(expected.toString(),actual);
+        assertSame(connection,handler.connection);
     }
 
 }

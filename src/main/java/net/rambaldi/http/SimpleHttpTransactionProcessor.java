@@ -2,6 +2,10 @@ package net.rambaldi.http;
 
 import net.rambaldi.process.Context;
 
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
+
 public final class SimpleHttpTransactionProcessor
     implements HttpTransactionProcessor
 {
@@ -9,8 +13,8 @@ public final class SimpleHttpTransactionProcessor
     private final Context context;
 
     public SimpleHttpTransactionProcessor(HttpRequestProcessor httpRequestProcessor, Context context) {
-        this.requestProcessor = httpRequestProcessor;
-        this.context = context;
+        this.requestProcessor = requireNonNull(httpRequestProcessor);
+        this.context = requireNonNull(context);
     }
 
     @Override

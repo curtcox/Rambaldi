@@ -10,17 +10,17 @@ import static net.rambaldi.http.HttpRequest.Connection.*;
 public final class SimpleHttpConnectionHandler
     implements HttpConnection.Handler
 {
-    private final HttpRequestProcessor processor;
+    private final HttpTransactionProcessor processor;
 
-    public SimpleHttpConnectionHandler(HttpRequestProcessor processor) {
+    public SimpleHttpConnectionHandler(HttpTransactionProcessor processor) {
         this.processor = requireNonNull(processor);
     }
 
     @Override
-    public void handle(HttpConnection connection, Context context) throws Exception {
+    public void handle(HttpConnection connection) throws Exception {
         HttpRequestReader  reader = new HttpRequestReader(connection.getInputStream());
         HttpRequest       request = reader.take();
-        HttpResponse     response = processor.process(request,context);
+        HttpResponse     response = processor.process(request);
         HttpResponseWriter writer = new HttpResponseWriter(connection.getOutputStream());
         writer.put(response);
         if (request.connection!= keep_alive) {

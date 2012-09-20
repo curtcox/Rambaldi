@@ -61,7 +61,8 @@ public class HTTP_Test {
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);
+        HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
+        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
         server.start();
         return server;
     }
@@ -91,7 +92,8 @@ public class HTTP_Test {
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);
+        HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
+        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
         server.start();
         return server;
     }

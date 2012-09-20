@@ -1,6 +1,5 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Context;
 import net.rambaldi.process.FakeInputStream;
 import net.rambaldi.process.FakeOutputStream;
 import org.junit.Test;
@@ -12,7 +11,12 @@ import static org.junit.Assert.*;
 
 public class SimpleHttpConnectionHandlerTest {
 
-    HttpRequestProcessor processor = new HttpRequestEchoProcessor();
+    HttpTransactionProcessor processor = new HttpTransactionProcessor() {
+        @Override
+        public HttpResponse process(HttpRequest request) throws Exception {
+            return HttpResponse.builder().request(request).build();
+        }
+    };
 
     @Test
     public void implements_HttpConnectionHandler() {
@@ -32,15 +36,15 @@ public class SimpleHttpConnectionHandlerTest {
         FakeOutputStream output = new FakeOutputStream();
         HttpConnection connection = new SimpleHttpConnection(input,output);
         final HttpResponse fromProcessor = HttpResponse.builder().request(request).build();
-        HttpRequestProcessor processor = new HttpRequestProcessor() {
+        HttpTransactionProcessor processor = new HttpTransactionProcessor() {
             @Override
-            public HttpResponse process(HttpRequest request, Context context) {
+            public HttpResponse process(HttpRequest request) {
                 return fromProcessor;
             }
         };
 
         SimpleHttpConnectionHandler handler = new SimpleHttpConnectionHandler(processor);
-        handler.handle(connection,null);
+        handler.handle(connection);
 
         String written = output.toString();
 
@@ -55,7 +59,7 @@ public class SimpleHttpConnectionHandlerTest {
         HttpConnection connection = new SimpleHttpConnection(input,output);
 
         SimpleHttpConnectionHandler handler = new SimpleHttpConnectionHandler(processor);
-        handler.handle(connection,null);
+        handler.handle(connection);
 
         assertTrue(connection.isClosed());
         assertTrue(input.closed);
@@ -70,7 +74,7 @@ public class SimpleHttpConnectionHandlerTest {
         HttpConnection connection = new SimpleHttpConnection(input,output);
 
         SimpleHttpConnectionHandler handler = new SimpleHttpConnectionHandler(processor);
-        handler.handle(connection,null);
+        handler.handle(connection);
 
         assertFalse(connection.isClosed());
         assertFalse(input.closed);

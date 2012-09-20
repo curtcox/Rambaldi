@@ -63,7 +63,9 @@ public class HTTP_Test {
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
         Executor executor = Executors.newSingleThreadExecutor();
-        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,httpProcessor);) {
+        Context context = new SimpleContext();
+        HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
+        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);) {
             server.start();
             for (int i=0; i<max; i++) {
                 pageGetter.getPage("http://localhost:" + port);
