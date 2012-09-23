@@ -2,6 +2,7 @@ package net.rambaldi.http;
 
 import net.rambaldi.process.FakeInputStream;
 import net.rambaldi.process.FakeOutputStream;
+import net.rambaldi.process.SimpleContext;
 import org.junit.Test;
 
 import java.io.*;
@@ -67,23 +68,39 @@ public class SimpleHttpConnectionHandlerTest {
     }
 
     @Test
-    public void handle_does_not_close_connection_when_request_is_keep_alive() throws Exception {
+    public void handle_reads_two_connections_when_first_is_keep_alive() throws Exception {
 
-        FakeInputStream input = requestFromStream(builder().connection(Connection.keep_alive).build());
+        HttpRequest request1 = builder().resource("first_resource").connection(Connection.keep_alive).build();
+        HttpRequest request2 = builder().resource("second_resource").connection(Connection.close).build();
+        FakeInputStream input = requestFromStream(
+                request1,
+                request2
+        );
         FakeOutputStream output = new FakeOutputStream();
         HttpConnection connection = new SimpleHttpConnection(input,output);
 
+        HttpRequestEchoProcessor requestProcessor = new HttpRequestEchoProcessor();
+        HttpTransactionProcessor processor = new SimpleHttpTransactionProcessor(requestProcessor,new SimpleContext());
         SimpleHttpConnectionHandler handler = new SimpleHttpConnectionHandler(processor);
         handler.handle(connection);
 
-        assertFalse(connection.isClosed());
-        assertFalse(input.closed);
-        assertFalse(output.closed);
+        assertTrue(connection.isClosed());
+        assertTrue(input.closed);
+        assertTrue(output.closed);
+
+        String written = output.toString();
+        String response1 = requestProcessor.process(request1, null).toString();
+        String response2 = requestProcessor.process(request2, null).toString();
+        assertTrue(written + " does not contain" + response1,written.contains(response1));
+        assertTrue(written + " does not contain" + response2,written.contains(response2));
     }
 
-    private FakeInputStream requestFromStream(HttpRequest request) throws IOException {
+    FakeInputStream requestFromStream(HttpRequest... requests) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        out.write(request.toString().getBytes());
+        for (HttpRequest request : requests) {
+            out.write(request.toString().getBytes());
+            out.write("\r\n\r\n".getBytes());
+        }
         return new FakeInputStream(out.toByteArray());
     }
 

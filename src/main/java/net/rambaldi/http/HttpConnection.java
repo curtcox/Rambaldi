@@ -28,8 +28,8 @@ public interface HttpConnection
     interface Handler extends Immutable, Serializable
     {
         /**
-         * Calling this method should read a HttpRequest from the input and write the HttpResponse to the output.
-         * Depending on the request, everything might also be closed.
+         * Calling this method should read a HttpRequestS from the input and write the HttpResponse to the output.
+         * After handling requests, the connection should be closed.
          */
         void handle(HttpConnection connection) throws Exception;
     }

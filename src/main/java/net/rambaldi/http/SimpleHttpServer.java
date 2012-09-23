@@ -1,9 +1,7 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Context;
-
 import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 
 import static java.util.Objects.requireNonNull;
@@ -15,11 +13,11 @@ public final class SimpleHttpServer
     implements AutoCloseable
 {
     private final HttpConnection.Handler handler;
-    private final Executor executor;
+    private final ExecutorService executor;
     private final HttpConnection.Factory connectionFactory;
     private final Callable acceptCallable;
 
-    public SimpleHttpServer(Executor executor, HttpConnection.Factory serverSocketProvider, HttpConnection.Handler handler) {
+    public SimpleHttpServer(ExecutorService executor, HttpConnection.Factory serverSocketProvider, HttpConnection.Handler handler) {
         this.executor = requireNonNull(executor);
         this.connectionFactory = requireNonNull(serverSocketProvider);
         this.handler = requireNonNull(handler);
@@ -30,8 +28,10 @@ public final class SimpleHttpServer
         return new Callable() {
             @Override
             public Object call() throws Exception {
-               acceptSocket();
-               return null;
+                while (!executor.isShutdown()) {
+                    handle(connectionFactory.accept());
+                }
+                return null;
             }
         };
     }
@@ -40,8 +40,14 @@ public final class SimpleHttpServer
         executor.execute(new FutureTask(acceptCallable));
     }
 
-    private void acceptSocket() throws Exception {
-        handler.handle(connectionFactory.accept());
+    private void handle(final HttpConnection connection) throws Exception {
+        executor.submit(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+                handler.handle(connection);
+                return null;
+            }
+        });
     }
 
     @Override

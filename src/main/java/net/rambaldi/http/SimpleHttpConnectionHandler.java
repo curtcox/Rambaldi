@@ -19,12 +19,17 @@ public final class SimpleHttpConnectionHandler
     @Override
     public void handle(HttpConnection connection) throws Exception {
         HttpRequestReader  reader = new HttpRequestReader(connection.getInputStream());
-        HttpRequest       request = reader.take();
-        HttpResponse     response = processor.process(request);
         HttpResponseWriter writer = new HttpResponseWriter(connection.getOutputStream());
-        writer.put(response);
-        if (request.connection!= keep_alive) {
-            connection.close();
+        try (AutoCloseable x = connection) {
+            for (HttpRequest request = processSingleRequest(reader,writer);
+                 request.connection == keep_alive;
+                 request = processSingleRequest(reader,writer));
         }
+    }
+
+    private HttpRequest processSingleRequest(HttpRequestReader  reader, HttpResponseWriter writer) throws Exception {
+        HttpRequest request = reader.take();
+        writer.put(processor.process(request));
+        return request;
     }
 }

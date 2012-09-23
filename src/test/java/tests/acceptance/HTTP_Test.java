@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +24,7 @@ public class HTTP_Test {
 
     final PageGetter pageGetter = new PageGetter();
     IO io = new SimpleIO();
-    Log log = new FakeLog();
+    Log log = new SimpleLog("HTTP Test",System.err);
     Path temp = Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem();
@@ -60,7 +61,7 @@ public class HTTP_Test {
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
-        Executor executor = Executors.newSingleThreadExecutor();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
         SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
         server.start();
@@ -91,7 +92,7 @@ public class HTTP_Test {
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
-        Executor executor = Executors.newSingleThreadExecutor();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
         SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
         server.start();

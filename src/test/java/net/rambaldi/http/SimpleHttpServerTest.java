@@ -1,16 +1,12 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Context;
-import net.rambaldi.process.SimpleContext;
+import net.rambaldi.process.FakeExecutorService;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.FutureTask;
 
 import static org.junit.Assert.*;
 
@@ -24,42 +20,26 @@ public class SimpleHttpServerTest {
     FakeHttpConnectionHandler handler = new FakeHttpConnectionHandler();
     HttpRequest request;
     SimpleHttpServer server;
-    FakeExecutor executor = new FakeExecutor();
+    FakeExecutorService executor = new FakeExecutorService();
 
     class FakeHttpConnectionHandler implements HttpConnection.Handler {
 
         HttpConnection connection;
+        Exception exception;
         @Override
         public void handle(HttpConnection connection) throws Exception {
             this.connection = connection;
-        }
-    }
-
-    class FakeExecutor implements Executor {
-        boolean isExecuting;
-        ExecutionException threw;
-        boolean interrupted;
-        @Override
-        public void execute(Runnable command) {
-            isExecuting = true;
-            FutureTask task = (FutureTask) command;
-            try {
-                task.run();
-                task.get();
-            } catch (InterruptedException e) {
-                interrupted = true;
-            } catch (ExecutionException e) {
-                threw = e;
-            } finally {
-                isExecuting = false;
+            if (exception!=null) {
+                throw exception;
             }
         }
-    };
+    }
 
     class FakeHttpConnectionFactory
         implements HttpConnection.Factory
     {
-        boolean acceptWasCalled;
+        int acceptCalled;
+        int connectionsToAccept;
         boolean acceptWasCalledFromExecutor;
         int port;
         public FakeHttpConnectionFactory(int port) throws IOException {
@@ -69,8 +49,11 @@ public class SimpleHttpServerTest {
 
         @Override
         public HttpConnection accept() throws IOException {
-            acceptWasCalled = true;
+            acceptCalled++;
             acceptWasCalledFromExecutor = executor.isExecuting;
+            if (acceptCalled>connectionsToAccept) {
+                throw new IOException();
+            }
             return connection;
         }
 
@@ -113,7 +96,14 @@ public class SimpleHttpServerTest {
     @Test
     public void start_starts_accepting_from_socket() throws IOException {
         server.start();
-        assertTrue(connectionFactory.acceptWasCalled);
+        assertEquals(1, connectionFactory.acceptCalled);
+    }
+
+    @Test
+    public void start_accepts_two_connections_from_socket() throws IOException {
+        connectionFactory.connectionsToAccept = 1;
+        server.start();
+        assertEquals(2,connectionFactory.acceptCalled);
     }
 
     @Test
@@ -124,6 +114,7 @@ public class SimpleHttpServerTest {
 
     @Test(expected = Exception.class)
     public void failed_process_causes_exception_to_be_thrown() throws Throwable {
+        handler.exception = new Exception();
         server.start();
         if (executor.threw!=null) {
             throw executor.threw;
@@ -131,7 +122,8 @@ public class SimpleHttpServerTest {
     }
 
     @Test
-    public void start_handler_to_be_invoked_with_context() throws Throwable {
+    public void start_handler_to_be_invoked_with_connection() throws Throwable {
+        connectionFactory.connectionsToAccept = 2;
         server.start();
         assertSame(connection,handler.connection);
     }

@@ -1,5 +1,6 @@
 package net.rambaldi.http;
 
+import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.process.*;
 
 import java.io.BufferedReader;
@@ -84,7 +85,7 @@ public final class HttpRequestReader
     private Map<String,String> readLines() throws IOException {
         Map<String,String> lines = new HashMap<>();
         for (String line = reader.readLine(); line!=null; line=reader.readLine()) {
-            if (line.trim().isEmpty()) {
+            if (line.trim().isEmpty() && !lines.isEmpty()) {
                 return lines;
             }
             String[] parts = splitAfterFirstColon(line);
