@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 import static org.junit.Assert.assertTrue;
 
-public class HTTP_Test {
+public class HTTP_Performance_Test {
 
     final PageGetter pageGetter = new PageGetter();
     IO io = new SimpleIO();
@@ -45,7 +45,12 @@ public class HTTP_Test {
 
     @Test
     public void Serve_100_pages_using_an_external_process() throws Exception {
-        HttpTransactionsTakesAtMost(2, 10);
+        HttpTransactionsTakesAtMost(100, 10);
+    }
+
+    @Test
+    public void Serve_10_000_pages_using_an_external_process() throws Exception {
+        HttpTransactionsTakesAtMost(10* 1000, 40);
     }
 
     private void HttpTransactionsTakesAtMost(int max, int allowedSeconds) throws Exception {

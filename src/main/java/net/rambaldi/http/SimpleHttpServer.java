@@ -17,6 +17,11 @@ public final class SimpleHttpServer
     private final HttpConnection.Factory connectionFactory;
     private final Callable acceptCallable;
 
+    /**
+     * Note that the given ExecutorService is used both for accepting socket connections and servicing them.
+     * Thus, a single-threaded ExecutorService will cause a single keep-alive connection to block accepting
+     * and new connections.
+     */
     public SimpleHttpServer(ExecutorService executor, HttpConnection.Factory serverSocketProvider, HttpConnection.Handler handler) {
         this.executor = requireNonNull(executor);
         this.connectionFactory = requireNonNull(serverSocketProvider);
