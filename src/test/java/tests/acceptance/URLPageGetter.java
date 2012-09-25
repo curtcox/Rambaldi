@@ -8,7 +8,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
-public final class PageGetter {
+/**
+ * For getting a page from a URL.  It has a few problems for performance testing:
+ * <ul>
+ *     <li> It will throw an exception when used under heavy sustained load</li>
+ *         <pre>
+ *             java.net.SocketException: No buffer space available (maximum connections reached?): connect
+ *         </pre>
+ *     <li> It isn't particularly fast.</li>
+ * </ul>
+ */
+public final class URLPageGetter {
 
     final int timeout = 10 * 1000;
 

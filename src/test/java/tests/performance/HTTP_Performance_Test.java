@@ -3,24 +3,26 @@ package tests.performance;
 import net.rambaldi.Log.Log;
 import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.http.*;
-import net.rambaldi.log.FakeLog;
 import net.rambaldi.process.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import tests.acceptance.PageGetter;
+import tests.acceptance.URLPageGetter;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.UnknownHostException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import static net.rambaldi.http.HttpRequest.Connection.keep_alive;
 import static org.junit.Assert.assertTrue;
 
 public class HTTP_Performance_Test {
 
-    final PageGetter pageGetter = new PageGetter();
     IO io = new SimpleIO();
     Log log = new SimpleLog("HTTP Test",System.err);
     Path temp = Paths.get("tempDir");
@@ -44,13 +46,18 @@ public class HTTP_Performance_Test {
     }
 
     @Test
-    public void Serve_100_pages_using_an_external_process() throws Exception {
-        HttpTransactionsTakesAtMost(100, 10);
+    public void Serve_000_100_pages_using_HTTP_over_a_socket() throws Exception {
+        HttpTransactionsTakesAtMost(100, 5);
     }
 
     @Test
-    public void Serve_10_000_pages_using_an_external_process() throws Exception {
-        HttpTransactionsTakesAtMost(10* 1000, 40);
+    public void Serve_010_000_pages_using_HTTP_over_a_socket() throws Exception {
+        HttpTransactionsTakesAtMost(10* 1000, 5);
+    }
+
+    @Test
+    public void Serve_100_000_pages_using_HTTP_over_a_socket() throws Exception {
+        HttpTransactionsTakesAtMost(100 * 1000, 10);
     }
 
     private void HttpTransactionsTakesAtMost(int max, int allowedSeconds) throws Exception {
@@ -63,19 +70,21 @@ public class HTTP_Performance_Test {
 
     void httpTransactions(int max) throws Exception {
         final int port = 4242;
-        TransactionProcessor processor = TransactionProcessors.newExternal(state,io,log);
-        HttpTransactionProcessor httpProcessor = new TransactionProcessorAsHttpTransactionProcessor(processor);
-        httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
-        HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
-        connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
-        try (SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler)) {
-            server.start();
+        HttpRequest request = HttpRequest.builder().connection(keep_alive).build();
+        try (SimpleHttpServer server = EchoHttpServer.newServer(port); HttpConnection connection = newConnection(port)) {
+            final SimplePageGetter pageGetter = new SimplePageGetter(request,connection);
             for (int i=0; i<max; i++) {
-                pageGetter.getPage("http://localhost:" + port);
+                pageGetter.getPage();
             }
         }
+    }
+
+    private HttpConnection newConnection(int port) throws IOException {
+        Socket socket = new Socket();
+        int timeout = 1000;
+        SocketAddress address = new InetSocketAddress("localhost", port);
+        socket.connect(address,timeout);
+        return new SimpleHttpConnection(socket.getInputStream(),socket.getOutputStream());
     }
 
 }
