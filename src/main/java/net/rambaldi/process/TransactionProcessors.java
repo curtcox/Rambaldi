@@ -10,7 +10,7 @@ import java.nio.file.Path;
 public final class TransactionProcessors {
 
     public static TransactionProcessor newInstance(StateOnDisk state) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public static TransactionProcessor newExternal(StateOnDisk state, IO io, Log log) throws ProcessCreationException {

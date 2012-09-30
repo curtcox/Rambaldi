@@ -5,6 +5,9 @@ import java.io.OutputStream;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * A simple implementation of HttpConnection.
+ */
 public final class SimpleHttpConnection
     implements HttpConnection
 {

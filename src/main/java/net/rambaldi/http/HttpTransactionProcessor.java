@@ -1,7 +1,10 @@
 package net.rambaldi.http;
 
 /**
- * Something that processes an HTTP Transaction.
+ * Something that processes HTTP Transactions.
+ * Conceptually, a HttpTransaction is a type of TransactionProcessor.  There is no reasonable way to show that in
+ * the type system, however because HttpTransactionProcessors only accept HttpRequests.
+ *
  * See also TransactionProcessor.
  */
 public interface HttpTransactionProcessor

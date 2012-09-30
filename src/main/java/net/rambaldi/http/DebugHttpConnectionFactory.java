@@ -4,6 +4,9 @@ import net.rambaldi.Log.Log;
 
 import java.io.IOException;
 
+/**
+ * A wrapper for debugging HttpConnection.FactoryS.
+ */
 public final class DebugHttpConnectionFactory
     implements HttpConnection.Factory
 {

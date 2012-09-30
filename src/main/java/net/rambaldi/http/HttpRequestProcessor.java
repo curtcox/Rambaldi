@@ -11,5 +11,8 @@ import java.io.Serializable;
 public interface HttpRequestProcessor
     extends Immutable, Serializable
 {
+    /**
+     * Process the given request and produce a response.
+     */
     HttpResponse process(HttpRequest request, Context context);
 }

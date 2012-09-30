@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * A simple implementation of HttpConnection.Factory.
+ */
 public final class SimpleHttpConnectionFactory
     implements HttpConnection.Factory, AutoCloseable
 {

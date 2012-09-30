@@ -9,34 +9,42 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * An HTTP echo server.
- * This is for debugging and seeing how the pieces work with each other.
+ * A working HTTP echo server.
+ * This is for debugging and seeing how the pieces of this package work with each other.
  */
 public final class EchoHttpServer {
 
     public static SimpleHttpServer newDebugServer(int port) throws IOException {
-        HttpRequestProcessor httpRequestProcessor = new HttpRequestEchoProcessor();
-        Context context = new SimpleContext();
-        HttpTransactionProcessor httpProcessor = new SimpleHttpTransactionProcessor(httpRequestProcessor,context);
+        HttpTransactionProcessor httpProcessor =
+                new SimpleHttpTransactionProcessor(new HttpRequestEchoProcessor(), new SimpleContext());
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
-        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
+        SimpleHttpServer server = createNewServer(httpProcessor, connectionFactory);
         server.start();
         return server;
     }
 
+    private static SimpleHttpServer createNewServer(HttpTransactionProcessor httpProcessor, HttpConnection.Factory connectionFactory) {
+        return new SimpleHttpServer(
+                    Executors.newFixedThreadPool(2),
+                    connectionFactory,
+                    new SimpleHttpConnectionHandler(httpProcessor));
+    }
+
     public static SimpleHttpServer newServer(int port) throws IOException {
-        HttpTransactionProcessor httpProcessor =
-                new SimpleHttpTransactionProcessor(new HttpRequestEchoProcessor(), new SimpleContext());
-        SimpleHttpServer server = new SimpleHttpServer(
-                Executors.newFixedThreadPool(2),
-                new SimpleHttpConnectionFactory(port),
-                new SimpleHttpConnectionHandler(httpProcessor));
+        SimpleHttpServer server = createNewServer(
+            new SimpleHttpTransactionProcessor(new HttpRequestEchoProcessor(), new SimpleContext()),
+            new SimpleHttpConnectionFactory(port));
         server.start();
         return server;
+    }
+
+    public static void main(String[] args) throws IOException {
+        int port = (args.length==0)
+            ? 80
+            : Integer.parseInt(args[0]);
+        newDebugServer(port);
     }
 
 }

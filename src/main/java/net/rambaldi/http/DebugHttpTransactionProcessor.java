@@ -4,6 +4,9 @@ import net.rambaldi.Log.Log;
 
 import java.io.PrintStream;
 
+/**
+ * A wrapper for debugging HttpTransactionProcessors.
+ */
 public final class DebugHttpTransactionProcessor
     implements HttpTransactionProcessor
 {

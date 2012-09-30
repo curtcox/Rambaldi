@@ -10,6 +10,10 @@ import java.util.concurrent.Callable;
 
 import static java.util.Objects.*;
 
+/**
+ * For creating an operating-system process to use as a TransactionProcessor.
+ * The process reads requests from standard in and writes them to standard out.
+ */
 public final class Main {
 
     final IO io;
