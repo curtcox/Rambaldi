@@ -10,6 +10,8 @@ import java.net.URISyntaxException;
 import static net.rambaldi.http.HttpRequest.Accept;
 import static net.rambaldi.http.HttpRequest.Connection;
 import static net.rambaldi.http.HttpRequest.Connection.keep_alive;
+import static net.rambaldi.http.HttpRequest.ContentType.UrlEncodedForm;
+import static net.rambaldi.http.HttpRequest.Method.POST;
 import static net.rambaldi.http.HttpRequest.Version;
 import static org.junit.Assert.*;
 
@@ -146,6 +148,27 @@ public class HttpRequestTest {
                 .host("localhost:4242")
                 .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
                 .connection(keep_alive)
+                .build();
+        String actual = request.toString();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void toString_returns_formatted_request_4() throws Exception {
+        String expected = lines(
+            "POST /path/script.cgi HTTP/1.0",
+            "From: frog@jmarshall.com",
+            "User-Agent: HTTPTool/1.0",
+            "Content-Type: application/x-www-form-urlencoded",
+            "Content-Length: 32"
+        );
+        HttpRequest request = HttpRequest.builder()
+                .method(POST)
+                .resource("/path/script.cgi")
+                .version(Version._1_0)
+                .userAgent("HTTPTool/1.0")
+                .contentType(UrlEncodedForm)
+                .contentLength(32)
                 .build();
         String actual = request.toString();
         assertEquals(expected,actual);

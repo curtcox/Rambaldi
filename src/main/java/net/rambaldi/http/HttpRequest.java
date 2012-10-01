@@ -24,6 +24,8 @@ public final class HttpRequest
     public final Connection connection;
     public final Version version;
     public final Accept accept;
+    public final int contentLength = 0;
+    public final ContentType contentType = null;
 
     /**
      * In the future, this will be more than just a string wrapper
@@ -32,6 +34,18 @@ public final class HttpRequest
     public static final class Accept implements Immutable, Serializable {
         public final String value;
         Accept(String value) {
+            this.value = value;
+        }
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+
+    public static enum ContentType {
+        UrlEncodedForm("application/x-www-form-urlencoded");
+        String value;
+        ContentType(String value) {
             this.value = value;
         }
         @Override
@@ -88,14 +102,17 @@ public final class HttpRequest
         private Version version = Version._1_1;
         private Accept accept;
 
-        public Builder         resource(String resource) { this.resource = requireNonNull(resource); return this; }
-        public Builder             method(Method method) { this.method = requireNonNull(method); return this; }
-        public Builder                 from(String from) { this.from = from; return this; }
-        public Builder       userAgent(String userAgent) { this.userAgent = userAgent; return this; }
-        public Builder                 host(String host) { this.host = host; return this; }
-        public Builder connection(Connection connection) { this.connection = requireNonNull(connection); return this; }
-        public Builder          version(Version version) { this.version = requireNonNull(version); return this; }
-        public Builder             accept(Accept accept) { this.accept = requireNonNull(accept); return this; }
+        public Builder            resource(String resource) { this.resource = requireNonNull(resource); return this; }
+        public Builder                method(Method method) { this.method = requireNonNull(method); return this; }
+        public Builder                    from(String from) { this.from = from; return this; }
+        public Builder          userAgent(String userAgent) { this.userAgent = userAgent; return this; }
+        public Builder                    host(String host) { this.host = host; return this; }
+        public Builder    connection(Connection connection) { this.connection = requireNonNull(connection); return this; }
+        public Builder             version(Version version) { this.version = requireNonNull(version); return this; }
+        public Builder                accept(Accept accept) { this.accept = requireNonNull(accept); return this; }
+        public Builder             params(String... params) { throw new UnsupportedOperationException(); }
+        public Builder contentType(ContentType contentType) { throw new UnsupportedOperationException(); }
+        public Builder            contentLength(int length) { throw new UnsupportedOperationException(); }
 
         public HttpRequest build() {
             return new HttpRequest(this);
