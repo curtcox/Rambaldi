@@ -24,8 +24,8 @@ public final class HttpRequest
     public final Connection connection;
     public final Version version;
     public final Accept accept;
-    public final int contentLength = 0;
-    public final ContentType contentType = null;
+    public final int contentLength;
+    public final ContentType contentType;
 
     /**
      * In the future, this will be more than just a string wrapper
@@ -88,6 +88,8 @@ public final class HttpRequest
         this.connection = builder.connection;
         this.version = builder.version;
         this.accept = builder.accept;
+        this.contentLength = builder.contentLength;
+        this.contentType = builder.contentType;
     }
 
     public static class Builder {
@@ -101,6 +103,8 @@ public final class HttpRequest
         private Connection connection = Connection.keep_alive;
         private Version version = Version._1_1;
         private Accept accept;
+        private ContentType contentType;
+        private int contentLength;
 
         public Builder            resource(String resource) { this.resource = requireNonNull(resource); return this; }
         public Builder                method(Method method) { this.method = requireNonNull(method); return this; }
@@ -110,9 +114,9 @@ public final class HttpRequest
         public Builder    connection(Connection connection) { this.connection = requireNonNull(connection); return this; }
         public Builder             version(Version version) { this.version = requireNonNull(version); return this; }
         public Builder                accept(Accept accept) { this.accept = requireNonNull(accept); return this; }
-        public Builder             params(String... params) { throw new UnsupportedOperationException(); }
-        public Builder contentType(ContentType contentType) { throw new UnsupportedOperationException(); }
-        public Builder            contentLength(int length) { throw new UnsupportedOperationException(); }
+        public Builder             params(String... params) { return this; }
+        public Builder contentType(ContentType contentType) { this.contentType = contentType; return this; }
+        public Builder            contentLength(int length) { this.contentLength = length; return this; }
 
         public HttpRequest build() {
             return new HttpRequest(this);
@@ -127,16 +131,18 @@ public final class HttpRequest
         GET, POST
     }
 
-    public String     method() { return format("%s %s HTTP/%s",method,resource,version); }
-    public String       from() { return       from==null? "" : "From: "       + from; }
-    public String  userAgent() { return  userAgent==null? "" : "User-Agent: " + userAgent; }
-    public String     accept() { return     accept==null? "" : "Accept: "     + accept; }
-    public String       host() { return       host==null? "" : "Host: "       + host; }
-    public String connection() { return connection==null? "" : "Connection: " + connection; }
+    public String        method() { return format("%s %s HTTP/%s",method,resource,version); }
+    public String          from() { return        from==null? "" : "From: "           + from; }
+    public String     userAgent() { return   userAgent==null? "" : "User-Agent: "     + userAgent; }
+    public String        accept() { return      accept==null? "" : "Accept: "         + accept; }
+    public String          host() { return        host==null? "" : "Host: "           + host; }
+    public String    connection() { return  connection==null? "" : "Connection: "     + connection; }
+    public String   contentType() { return contentType==null? "" : "Content-Type: "   + contentType; }
+    public String contentLength() { return  contentLength==0? "" : "Content-Length: " + contentLength; }
 
     @Override
     public String toString() {
-        return join(method(), from(), userAgent(), host(), accept(), connection());
+        return join(method(), from(), userAgent(), host(), accept(), contentType(), contentLength(), connection());
     }
 
     private String join(String... lines) {

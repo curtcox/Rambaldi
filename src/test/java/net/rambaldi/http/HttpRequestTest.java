@@ -7,12 +7,10 @@ import tests.acceptance.Copier;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static net.rambaldi.http.HttpRequest.Accept;
-import static net.rambaldi.http.HttpRequest.Connection;
+import static net.rambaldi.http.HttpRequest.*;
 import static net.rambaldi.http.HttpRequest.Connection.keep_alive;
-import static net.rambaldi.http.HttpRequest.ContentType.UrlEncodedForm;
+import static net.rambaldi.http.HttpRequest.ContentType.*;
 import static net.rambaldi.http.HttpRequest.Method.POST;
-import static net.rambaldi.http.HttpRequest.Version;
 import static org.junit.Assert.*;
 
 public class HttpRequestTest {
@@ -99,6 +97,38 @@ public class HttpRequestTest {
     }
 
     @Test
+    public void content_type_line_when_specified() {
+        String expected = "Content-Type: application/x-www-form-urlencoded";
+        String actual = HttpRequest.builder()
+                .contentType(UrlEncodedForm)
+                .build().contentType();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void content_type_line_when_unspecified() {
+        String actual = HttpRequest.builder()
+                .build().contentType();
+        assertEquals("",actual);
+    }
+
+    @Test
+    public void content_length_line_when_specified() {
+        String expected = "Content-Length: 32";
+        String actual = HttpRequest.builder()
+                .contentLength(32)
+                .build().contentLength();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void content_length_line_when_unspecified() {
+        String actual = HttpRequest.builder()
+                .build().contentLength();
+        assertEquals("",actual);
+    }
+
+    @Test
     public void toString_returns_formatted_request_1() {
         String expected = lines(
              "GET /path/file.html HTTP/1.0",
@@ -160,10 +190,12 @@ public class HttpRequestTest {
             "From: frog@jmarshall.com",
             "User-Agent: HTTPTool/1.0",
             "Content-Type: application/x-www-form-urlencoded",
-            "Content-Length: 32"
+            "Content-Length: 32",
+            "Connection: keep-alive"
         );
         HttpRequest request = HttpRequest.builder()
                 .method(POST)
+                .from("frog@jmarshall.com")
                 .resource("/path/script.cgi")
                 .version(Version._1_0)
                 .userAgent("HTTPTool/1.0")
