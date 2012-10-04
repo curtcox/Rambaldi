@@ -2,6 +2,9 @@ package net.rambaldi.http.rack;
 
 import net.rambaldi.http.HttpRequest;
 
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 import static net.rambaldi.http.HttpRequest.ContentType;
 import static net.rambaldi.http.HttpRequest.Method;
 
@@ -122,16 +125,21 @@ public final class Environment
     }
 
     public static final class Builder {
-        private HttpRequest request;
-        private InputStream inputStream;
-        private ErrorStream errorStream;
-        private Session session;
-        private Logger logger;
-        private Version version;
+        private HttpRequest     request = HttpRequest.builder().build();
+        private InputStream inputStream = new InputStream();
+        private ErrorStream errorStream = new ErrorStream();
+        private Session         session = new Session();
+        private Logger           logger = new Logger();
+        private Version         version = new Version();
         public Environment build() {
             return new Environment(this);
         }
 
-        public Builder request(HttpRequest request) { return this; }
+        public Builder         request(HttpRequest request) { this.request     = requireNonNull(request);     return this; }
+        public Builder inputStream(InputStream inputStream) { this.inputStream = requireNonNull(inputStream); return this; }
+        public Builder errorStream(ErrorStream errorStream) { this.errorStream = requireNonNull(errorStream); return this; }
+        public Builder             session(Session session) { this.session     = requireNonNull(session);     return this; }
+        public Builder                logger(Logger logger) { this.logger      = requireNonNull(logger);      return this; }
+        public Builder             version(Version version) { this.version     = requireNonNull(version);     return this; }
     }
 }
