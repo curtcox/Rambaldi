@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70635958-1d7b-48eb-bec8-4253b5afc08e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" afterPath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
     </list>
     <ignored path="rambaldi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,50 +62,69 @@
     <favorites_list name="rambaldi" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Rack_Test.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="32" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Environment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="19" selection-start="460" selection-end="460" vertical-scroll-proportion="815.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpRequestTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="0.9141414">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="45" selection-start="4615" selection-end="4615" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.55884284">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Rack_Test.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="40" column="0" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Environment.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="138" column="30" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.7848101">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HttpRequestTest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="-271.5">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="134" column="45" selection-start="4615" selection-end="4615" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="EnvironmentTest.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="104" column="26" selection-start="3088" selection-end="3088" vertical-scroll-proportion="0.57117116">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -116,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/process/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Response.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/JRubyRack.java" />
@@ -129,9 +149,10 @@
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Version.java" />
         <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
       </list>
     </option>
   </component>
@@ -468,6 +489,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="net.rambaldi.http.rack" />
       <recent name="net.rambaldi.http" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -491,57 +513,13 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.Unit Tests">
-    <configuration default="false" name="HTTP_Test" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="EnvironmentTest.uses_error_stream_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="tests.acceptance" />
-      <option name="MAIN_CLASS_NAME" value="tests.acceptance.HTTP_Test" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="HTTP_Performance_Test" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="tests.performance" />
-      <option name="MAIN_CLASS_NAME" value="tests.performance.HTTP_Performance_Test" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="HTTP_Performance_Test.Serve_10_000_pages_using_an_external_process" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="tests.performance" />
-      <option name="MAIN_CLASS_NAME" value="tests.performance.HTTP_Performance_Test" />
-      <option name="METHOD_NAME" value="Serve_10_000_pages_using_an_external_process" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
+      <option name="METHOD_NAME" value="uses_error_stream_from_builder" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -557,13 +535,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="HTTP_Performance_Test.Serve_100_pages_using_an_external_process" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="EnvironmentTest.uses_request_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="tests.performance" />
-      <option name="MAIN_CLASS_NAME" value="tests.performance.HTTP_Performance_Test" />
-      <option name="METHOD_NAME" value="Serve_100_pages_using_an_external_process" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
+      <option name="METHOD_NAME" value="uses_request_from_builder" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -575,22 +553,60 @@
       </option>
       <envs />
       <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="HttpRequestTest" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="EnvironmentTest.uses_session_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.HttpRequestTest" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
+      <option name="METHOD_NAME" value="uses_session_from_builder" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="EnvironmentTest.uses_logger_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
+      <option name="METHOD_NAME" value="uses_logger_from_builder" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="EnvironmentTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -854,11 +870,11 @@
       <item index="1" class="java.lang.String" itemvalue="JUnit.UATs" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.StateOnDiskTest" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.Performance" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.HTTP_Test" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.HTTP_Performance_Test" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.HTTP_Performance_Test.Serve_10_000_pages_using_an_external_process" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.HTTP_Performance_Test.Serve_100_pages_using_an_external_process" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.HttpRequestTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_error_stream_from_builder" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_request_from_builder" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_session_from_builder" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_logger_from_builder" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.EnvironmentTest" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -900,18 +916,18 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24946082" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3347339" sideWeight="0.40402588" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3344519" sideWeight="0.40245858" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.303132" sideWeight="0.25975415" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30252102" sideWeight="0.2580877" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25173703" sideWeight="0.696868" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.303132" sideWeight="0.73650455" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18706574" sideWeight="0.6655481" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344519" sideWeight="0.5938001" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41456583" sideWeight="0.33285406" order="1" side_tool="false" content_ui="tabs" />
@@ -978,13 +994,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpTransactionProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="82" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/process/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="79" selection-start="416" selection-end="416" vertical-scroll-proportion="0.11764706">
@@ -1062,24 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="32" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="460" selection-end="460" vertical-scroll-proportion="815.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="134" column="45" selection-start="4615" selection-end="4615" vertical-scroll-proportion="0.0">
@@ -1089,7 +1080,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="0.9141414">
+        <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="-271.5">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="26" selection-start="3088" selection-end="3088" vertical-scroll-proportion="0.57117116">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="30" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.7848101">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
