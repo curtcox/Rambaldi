@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70635958-1d7b-48eb-bec8-4253b5afc08e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" afterPath="$PROJECT_DIR$/tempDir/net.rambaldi.process.RequestProcessor" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" />
     </list>
     <ignored path="rambaldi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,13 +62,13 @@
     <favorites_list name="rambaldi" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.55884284">
+    <splitter split-orientation="horizontal" split-proportion="0.48980933">
       <split-first>
         <leaf>
-          <file leaf-file-name="Rack_Test.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
+          <file leaf-file-name="Environment.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="0" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+                <state line="118" column="39" selection-start="4376" selection-end="4376" vertical-scroll-proportion="-136.0">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -76,10 +76,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Environment.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
+          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="138" column="30" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.7848101">
+                <state line="132" column="46" selection-start="4744" selection-end="4744" vertical-scroll-proportion="0.3027027">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="EnvironmentTest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="120" column="0" selection-start="3588" selection-end="3588" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -90,7 +103,7 @@
           <file leaf-file-name="HttpRequestTest.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="-271.5">
+                <state line="247" column="23" selection-start="7982" selection-end="7982" vertical-scroll-proportion="0.0">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -98,23 +111,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
+          <file leaf-file-name="Rack_Test.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="134" column="45" selection-start="4615" selection-end="4615" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="EnvironmentTest.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="104" column="26" selection-start="3088" selection-end="3088" vertical-scroll-proportion="0.57117116">
+                <state line="35" column="0" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.33274648">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -149,10 +149,10 @@
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Version.java" />
         <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
       </list>
     </option>
   </component>
@@ -255,188 +255,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="tests">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="performance">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="tests">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="acceptance">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="net/rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="net/rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="http">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="net/rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="net/rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="http">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main/java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="net/rambaldi">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="http">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="rack">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -512,14 +330,14 @@
       <recent name="net" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Unit Tests">
-    <configuration default="false" name="EnvironmentTest.uses_error_stream_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
+  <component name="RunManager" selected="JUnit.Rack_Test">
+    <configuration default="false" name="HttpRequestTest.query_string" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
-      <option name="METHOD_NAME" value="uses_error_stream_from_builder" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.HttpRequestTest" />
+      <option name="METHOD_NAME" value="query_string" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -535,13 +353,35 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="EnvironmentTest.uses_request_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="HttpRequestTest" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
-      <option name="METHOD_NAME" value="uses_request_from_builder" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.HttpRequestTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="HttpRequestTest.query_string_when_no_params" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="rambaldi" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="net.rambaldi.http" />
+      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.HttpRequestTest" />
+      <option name="METHOD_NAME" value="query_string_when_no_params" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -557,13 +397,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="EnvironmentTest.uses_session_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="EnvironmentTest.query_string_should_be_taken_from_request" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
       <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
-      <option name="METHOD_NAME" value="uses_session_from_builder" />
+      <option name="METHOD_NAME" value="query_string_should_be_taken_from_request" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
@@ -579,34 +419,12 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="EnvironmentTest.uses_logger_from_builder" type="JUnit" factoryName="JUnit" temporary="true">
+    <configuration default="false" name="Rack_Test" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
-      <option name="METHOD_NAME" value="uses_logger_from_builder" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="EnvironmentTest" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="rambaldi" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="net.rambaldi.http.rack" />
-      <option name="MAIN_CLASS_NAME" value="net.rambaldi.http.rack.EnvironmentTest" />
+      <option name="PACKAGE_NAME" value="tests.acceptance" />
+      <option name="MAIN_CLASS_NAME" value="tests.acceptance.Rack_Test" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -870,11 +688,11 @@
       <item index="1" class="java.lang.String" itemvalue="JUnit.UATs" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.StateOnDiskTest" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.Performance" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_error_stream_from_builder" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_request_from_builder" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_session_from_builder" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.uses_logger_from_builder" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.EnvironmentTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.HttpRequestTest.query_string" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.HttpRequestTest" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.HttpRequestTest.query_string_when_no_params" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.EnvironmentTest.query_string_should_be_taken_from_request" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.Rack_Test" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -927,7 +745,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18706574" sideWeight="0.6655481" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344519" sideWeight="0.5938001" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344519" sideWeight="0.5938001" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41456583" sideWeight="0.33285406" order="1" side_tool="false" content_ui="tabs" />
@@ -1071,25 +889,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="45" selection-start="4615" selection-end="4615" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="0" selection-start="6263" selection-end="6263" vertical-scroll-proportion="-271.5">
+        <state line="118" column="39" selection-start="4376" selection-end="4376" vertical-scroll-proportion="-136.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+        <state line="247" column="23" selection-start="7982" selection-end="7982" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1098,16 +909,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/rack/EnvironmentTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="26" selection-start="3088" selection-end="3088" vertical-scroll-proportion="0.57117116">
+        <state line="120" column="0" selection-start="3588" selection-end="3588" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="30" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.7848101">
+        <state line="132" column="46" selection-start="4744" selection-end="4744" vertical-scroll-proportion="0.3027027">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/Rack_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.33274648">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -17,34 +17,34 @@ public class HttpRequestTest {
 
     @Test
     public void can_create() {
-        HttpRequest request = HttpRequest.builder().build();
+        HttpRequest request = builder().build();
         assertNotNull(request);
     }
 
     @Test(expected = NullPointerException.class)
     public void resource_must_not_be_null() {
-        HttpRequest.builder().resource(null);
+        builder().resource(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void version_must_not_be_null() {
-        HttpRequest.builder().version(null);
+        builder().version(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void method_must_not_be_null() {
-        HttpRequest.builder().method(null);
+        builder().method(null);
     }
 
     @Test(expected = NullPointerException.class)
     public void connection_must_not_be_null() {
-        HttpRequest.builder().connection(null);
+        builder().connection(null);
     }
 
     @Test
     public void method_line() {
         String expected = "GET /path/file.html HTTP/1.0";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .resource("/path/file.html")
                 .version(Version._1_0)
                 .build().method();
@@ -54,7 +54,7 @@ public class HttpRequestTest {
     @Test
     public void from_line() {
         String expected = "From: someuser@jmarshall.com";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .from("someuser@jmarshall.com")
                 .build().from();
         assertEquals(expected,actual);
@@ -63,7 +63,7 @@ public class HttpRequestTest {
     @Test
     public void host_line() throws Exception {
         String expected = "Host: www.example.com";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .host("www.example.com")
                 .build().host();
         assertEquals(expected,actual);
@@ -72,7 +72,7 @@ public class HttpRequestTest {
     @Test
     public void connection_line() throws Exception {
         String expected = "Connection: close";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .connection(Connection.close)
                 .build().connection();
         assertEquals(expected,actual);
@@ -81,7 +81,7 @@ public class HttpRequestTest {
     @Test
     public void accept_line() {
         String expected = "Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .accept(new Accept("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"))
                 .build().accept();
         assertEquals(expected,actual);
@@ -90,7 +90,7 @@ public class HttpRequestTest {
     @Test
     public void user_agent_line() {
         String expected = "User-Agent: HTTPTool/1.0";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .userAgent("HTTPTool/1.0")
                 .build().userAgent();
         assertEquals(expected,actual);
@@ -99,7 +99,7 @@ public class HttpRequestTest {
     @Test
     public void content_type_line_when_specified() {
         String expected = "Content-Type: application/x-www-form-urlencoded";
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .contentType(UrlEncodedForm)
                 .build().contentType();
         assertEquals(expected,actual);
@@ -107,7 +107,7 @@ public class HttpRequestTest {
 
     @Test
     public void content_type_line_when_unspecified() {
-        String actual = HttpRequest.builder()
+        String actual = builder()
                 .build().contentType();
         assertEquals("",actual);
     }
@@ -115,16 +115,14 @@ public class HttpRequestTest {
     @Test
     public void content_length_line_when_specified() {
         String expected = "Content-Length: 32";
-        String actual = HttpRequest.builder()
-                .contentLength(32)
+        String actual = builder().contentLength(32)
                 .build().contentLength();
         assertEquals(expected,actual);
     }
 
     @Test
     public void content_length_line_when_unspecified() {
-        String actual = HttpRequest.builder()
-                .build().contentLength();
+        String actual = builder().build().contentLength();
         assertEquals("",actual);
     }
 
@@ -135,7 +133,7 @@ public class HttpRequestTest {
              "From: someuser@jmarshall.com",
              "User-Agent: HTTPTool/1.0",
              "Connection: keep-alive");
-        HttpRequest request = HttpRequest.builder()
+        HttpRequest request = builder()
             .resource("/path/file.html")
             .version(Version._1_0)
             .from("someuser@jmarshall.com")
@@ -152,7 +150,7 @@ public class HttpRequestTest {
                 "Host: www.example.com",
                 "Connection: close"
                 );
-        HttpRequest request = HttpRequest.builder()
+        HttpRequest request = builder()
                 .resource("/")
                 .version(Version._1_1)
                 .host("www.example.com")
@@ -171,7 +169,7 @@ public class HttpRequestTest {
             "Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2",
             "Connection: keep-alive"
         );
-        HttpRequest request = HttpRequest.builder()
+        HttpRequest request = builder()
                 .resource("/")
                 .version(Version._1_1)
                 .userAgent("Java/1.7.0")
@@ -193,7 +191,7 @@ public class HttpRequestTest {
             "Content-Length: 32",
             "Connection: keep-alive"
         );
-        HttpRequest request = HttpRequest.builder()
+        HttpRequest request = builder()
                 .method(POST)
                 .from("frog@jmarshall.com")
                 .resource("/path/script.cgi")
@@ -208,7 +206,7 @@ public class HttpRequestTest {
 
     @Test
     public void is_serializable() throws Exception {
-        HttpRequest original = HttpRequest.builder()
+        HttpRequest original = builder()
                 .resource("/")
                 .version(Version._1_1)
                 .userAgent("Java/1.7.0")
@@ -230,19 +228,29 @@ public class HttpRequestTest {
 
     @Test
     public void equals_implies_equal_hosts() {
-        HttpRequest.Builder builder = HttpRequest.builder();
-        assertEquals(builder.host("host1").build(),builder.host("host1").build());
-        assertNotEquals(builder.host("host1").build(),builder.host("host2").build());
+        assertEquals(builder().host("host1").build(),builder().host("host1").build());
+        assertNotEquals(builder().host("host1").build(),builder().host("host2").build());
     }
 
     @Test
     public void equals_implies_equal_resources() {
-        HttpRequest.Builder builder = HttpRequest.builder();
-        assertEquals(builder.resource("resource1").build(),builder.resource("resource1").build());
-        assertNotEquals(builder.resource("resource1").build(),builder.resource("resource2").build());
+        assertEquals(builder().resource("resource1").build(),builder().resource("resource1").build());
+        assertNotEquals(builder().resource("resource1").build(),builder().resource("resource2").build());
     }
 
     void assertNotEquals(HttpRequest request1, HttpRequest request2) {
         assertFalse(request1 + " should != " + request2,request1.equals(request2));
+    }
+
+    Builder builder() {
+        return HttpRequest.builder();
+    }
+
+    @Test public void query_string_when_no_params() { assertQueryString(""); }
+    @Test public void query_string_when_params_1()  { assertQueryString("k=v","k","v"); }
+
+    private void assertQueryString(String expected, String... params) {
+        String actual = builder().params(params).build().queryString;
+        assertEquals(expected,actual);
     }
 }

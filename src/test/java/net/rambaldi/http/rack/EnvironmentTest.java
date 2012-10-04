@@ -3,6 +3,7 @@ package net.rambaldi.http.rack;
 import net.rambaldi.http.HttpRequest;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 
@@ -115,4 +116,10 @@ public class EnvironmentTest {
         Environment.builder().version(null);
     }
 
+    @Test
+    public void query_string_should_be_taken_from_request() {
+        HttpRequest request = HttpRequest.builder().params("name","Fred").build();
+        Environment environment = Environment.builder().request(request).build();
+        assertEquals("name=Fred", environment.queryString);
+    }
 }

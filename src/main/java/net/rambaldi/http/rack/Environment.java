@@ -54,7 +54,8 @@ public final class Environment
 
     /**
        When combined with serverPort, scriptName, and path, this variable can be used to complete the URL.
-       Note, however, that HTTP_HOST, if present, should be used in preference to SERVER_NAME for reconstructing the request URL.
+       Note, however, that HTTP_HOST, if present, should be used in preference to SERVER_NAME
+       for reconstructing the request URL.
        SERVER_NAME and SERVER_PORT can never be empty strings, and so are always required.
      */
     public final String serverName;
@@ -80,7 +81,8 @@ public final class Environment
     public final boolean multiprocess = false;
 
     /**
-     true if the server expects (but does not guarantee!) that the application will only be invoked this one time during the life of its containing process.
+     true if the server expects (but does not guarantee!)
+     that the application will only be invoked this one time during the life of its containing process.
      Normally, this will only be true for a server based on CGI (or something similar).
      Additional environment specifications have approved to standardized middleware APIs.
      None of these are required to be implemented by the server.
@@ -102,7 +104,7 @@ public final class Environment
     public final Session session;
     public final Logger logger;
 
-    public Environment(Builder builder) {
+    private Environment(Builder builder) {
         this.request = builder.request;
         method = request.method;
         contentLength = request.contentLength;
@@ -114,7 +116,7 @@ public final class Environment
         logger = builder.logger;
         scriptName = null;
         path = null;
-        queryString = null;
+        queryString = request.queryString;
         serverName = null;
         serverPort = 0;
         urlScheme = null;
@@ -124,6 +126,9 @@ public final class Environment
         return new Builder();
     }
 
+    /**
+     * For creating a new environment.
+     */
     public static final class Builder {
         private HttpRequest     request = HttpRequest.builder().build();
         private InputStream inputStream = new InputStream();

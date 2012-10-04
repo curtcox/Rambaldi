@@ -7,6 +7,8 @@ import net.rambaldi.process.Timestamp;
 import java.io.Serializable;
 import java.net.URI;
 import java.nio.channels.AcceptPendingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
@@ -26,6 +28,7 @@ public final class HttpRequest
     public final Accept accept;
     public final int contentLength;
     public final ContentType contentType;
+    public final String queryString;
 
     /**
      * In the future, this will be more than just a string wrapper
@@ -90,6 +93,15 @@ public final class HttpRequest
         this.accept = builder.accept;
         this.contentLength = builder.contentLength;
         this.contentType = builder.contentType;
+        queryString = queryString(builder.params);
+    }
+
+    private static String queryString(Map<String,String> params) {
+        StringBuilder out = new StringBuilder();
+        for (String key : params.keySet()) {
+            out.append(key + "=" + params.get(key));
+        }
+        return out.toString();
     }
 
     public static class Builder {
@@ -105,6 +117,7 @@ public final class HttpRequest
         private Accept accept;
         private ContentType contentType;
         private int contentLength;
+        private Map<String,String> params = new HashMap<>();
 
         public Builder            resource(String resource) { this.resource = requireNonNull(resource); return this; }
         public Builder                method(Method method) { this.method = requireNonNull(method); return this; }
@@ -114,9 +127,14 @@ public final class HttpRequest
         public Builder    connection(Connection connection) { this.connection = requireNonNull(connection); return this; }
         public Builder             version(Version version) { this.version = requireNonNull(version); return this; }
         public Builder                accept(Accept accept) { this.accept = requireNonNull(accept); return this; }
-        public Builder             params(String... params) { return this; }
         public Builder contentType(ContentType contentType) { this.contentType = contentType; return this; }
         public Builder            contentLength(int length) { this.contentLength = length; return this; }
+        public Builder             params(String... params) {
+            for (int i=0; i<params.length; i= i+2) {
+                this.params.put(params[i],params[i+1]);
+            }
+            return this;
+        }
 
         public HttpRequest build() {
             return new HttpRequest(this);
