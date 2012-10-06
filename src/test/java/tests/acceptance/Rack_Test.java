@@ -7,11 +7,12 @@ import net.rambaldi.http.rack.Rack;
 import net.rambaldi.http.rack.Response;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static net.rambaldi.http.rack.Response.Body;
-import static net.rambaldi.http.rack.Response.Headers;
+
+import net.rambaldi.http.rack.ResponseHeaders;
+
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -27,7 +28,7 @@ public class Rack_Test {
         Rack app = new Rack(){
             @Override
             public Response call(Environment env) {
-                Headers headers = new Headers();
+                ResponseHeaders headers = new ResponseHeaders();
                 String name = env.queryString.split("=")[1];
                 Body body = new Body("Hello " + name);
                 return new Response(200,headers,body);
@@ -41,8 +42,8 @@ public class Rack_Test {
         Environment env = Environment.builder().request(request).build();
         Response response = app.call(env);
         int status = 200;
-        Map<String,String> headers = new HashMap<>();
-        String body = "Hello Fred";
+        ResponseHeaders headers = new ResponseHeaders();
+        Body body = new Body("Hello Fred");
         assertEquals(status,response.status);
         assertEquals(headers,response.headers);
         assertEquals(body,response.body);
