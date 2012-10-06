@@ -57,14 +57,15 @@ public final class ResponseHeaders
     }
 
     private boolean isValidKey(String key) {
-        if (key.length() == 0 || !in(key.charAt(0),"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")) {
+        String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (key.length() == 0 || !in(key.charAt(0), letters)) {
             return false;
         }
         if (in(key.charAt(key.length()-1),"-_")) {
             return false;
         }
         for (char c : key.toCharArray()) {
-            if (!in(c,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")) {
+            if (!in(c, letters + "0123456789-_")) {
                 return false;
             }
         }

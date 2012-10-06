@@ -25,7 +25,10 @@ public final class HttpResponse
     public final HttpRequest request;
 
     public static enum Status {
-        OK(200);
+                OK(200),
+           Created(201),
+        BadRequest(400),
+        ;
         int code;
         Status(int code) {
             this.code = code;
