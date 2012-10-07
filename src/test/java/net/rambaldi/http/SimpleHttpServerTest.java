@@ -68,29 +68,30 @@ public class SimpleHttpServerTest {
         in = new ByteArrayInputStream(requestString.getBytes());
         request = HttpRequest.builder().build();
         connectionFactory = new FakeHttpConnectionFactory(port);
-        server = new SimpleHttpServer(executor, connectionFactory, handler);
+        server = SimpleHttpServer.builder()
+                .executor(executor).connections(connectionFactory).handler(handler).build();
         out = new ByteArrayOutputStream();
         connection = new SimpleHttpConnection(in,out);
     }
 
     @Test
     public void can_create() throws IOException {
-        new SimpleHttpServer(executor, connectionFactory,handler);
+        assertNotNull(SimpleHttpServer.builder().build());
     }
 
     @Test(expected = NullPointerException.class)
     public void constructor_requires_executor() throws IOException {
-        new SimpleHttpServer(null, connectionFactory,handler);
+        SimpleHttpServer.builder().executor(null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void constructor_requires_processor() throws IOException {
-        new SimpleHttpServer(executor, connectionFactory,null);
+    public void constructor_requires_connections() throws IOException {
+        SimpleHttpServer.builder().connections(null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void constructor_requires_server_socket() throws IOException {
-        new SimpleHttpServer(executor,null,handler);
+    public void constructor_requires_handler() throws IOException {
+        SimpleHttpServer.builder().handler(null);
     }
 
     @Test

@@ -3,6 +3,7 @@ package tests.acceptance.ionic;
 import com.asynchrony.ionicmobile.Avatar;
 import com.asynchrony.ionicmobile.Poll;
 import com.asynchrony.ionicmobile.User;
+import net.rambaldi.http.HttpRequest;
 import net.rambaldi.http.HttpResponse;
 import net.rambaldi.process.Timestamp;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static net.rambaldi.http.HttpRequest.Method.GET;
 import static net.rambaldi.http.HttpResponse.Status.*;
 import static org.junit.Assert.assertEquals;
 
@@ -67,6 +69,7 @@ public class Polls_Test {
     }
 
     HttpResponse get(String url) {
+        HttpRequest request = HttpRequest.builder().method(GET).resource(url).build();
         return HttpResponse.builder().build();
     }
 

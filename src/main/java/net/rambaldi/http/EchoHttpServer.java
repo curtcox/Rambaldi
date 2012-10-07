@@ -26,10 +26,10 @@ public final class EchoHttpServer {
     }
 
     private static SimpleHttpServer createNewServer(HttpTransactionProcessor httpProcessor, HttpConnection.Factory connectionFactory) {
-        return new SimpleHttpServer(
-                    Executors.newFixedThreadPool(2),
-                    connectionFactory,
-                    new SimpleHttpConnectionHandler(httpProcessor));
+        return SimpleHttpServer.builder()
+                .connections(connectionFactory)
+                .handler(new SimpleHttpConnectionHandler(httpProcessor))
+                .build();
     }
 
     public static SimpleHttpServer newServer(int port) throws IOException {

@@ -1,6 +1,7 @@
 package net.rambaldi.http;
 
 import net.rambaldi.process.Context;
+import net.rambaldi.process.SimpleContext;
 
 import java.util.Objects;
 
@@ -11,6 +12,10 @@ public final class SimpleHttpConnectionHandler
     implements HttpConnection.Handler
 {
     private final HttpTransactionProcessor processor;
+
+    public SimpleHttpConnectionHandler() {
+        this(new SimpleHttpTransactionProcessor(new HttpRequestEchoProcessor(), new SimpleContext()));
+    }
 
     public SimpleHttpConnectionHandler(HttpTransactionProcessor processor) {
         this.processor = requireNonNull(processor);

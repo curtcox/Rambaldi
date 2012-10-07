@@ -77,9 +77,8 @@ public class HTTP_Test {
         httpProcessor = new DebugHttpTransactionProcessor(httpProcessor,new SimpleLog("HttpTransactionProcessor",System.err));
         HttpConnection.Factory connectionFactory = new SimpleHttpConnectionFactory(port);
         connectionFactory = new DebugHttpConnectionFactory(connectionFactory,new SimpleLog("Connection Factory",System.err));
-        ExecutorService executor = Executors.newFixedThreadPool(2);
         HttpConnection.Handler handler = new SimpleHttpConnectionHandler(httpProcessor);
-        SimpleHttpServer server = new SimpleHttpServer(executor,connectionFactory,handler);
+        SimpleHttpServer server = SimpleHttpServer.builder().connections(connectionFactory).handler(handler).build();
         server.start();
         return server;
     }

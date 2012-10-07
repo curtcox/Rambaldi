@@ -19,7 +19,6 @@ public final class SimpleHttpConnectionFactory
     @Override
     public HttpConnection accept() throws IOException {
         Socket socket = serverSocket.accept();
-
         return new SimpleHttpConnection(socket.getInputStream(), socket.getOutputStream());
     }
 
