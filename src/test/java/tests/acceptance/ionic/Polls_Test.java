@@ -3,15 +3,18 @@ package tests.acceptance.ionic;
 import com.asynchrony.ionicmobile.Avatar;
 import com.asynchrony.ionicmobile.Poll;
 import com.asynchrony.ionicmobile.User;
-import net.rambaldi.http.HttpRequest;
-import net.rambaldi.http.HttpResponse;
+import net.rambaldi.http.*;
+import net.rambaldi.process.FakeInputStream;
+import net.rambaldi.process.FakeOutputStream;
 import net.rambaldi.process.Timestamp;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static net.rambaldi.http.HttpRequest.Method.GET;
+import static net.rambaldi.http.HttpRequest.Method;
+import static net.rambaldi.http.HttpRequest.Method.*;
 import static net.rambaldi.http.HttpResponse.Status.*;
 import static org.junit.Assert.assertEquals;
 
@@ -64,13 +67,27 @@ public class Polls_Test {
         return "";
     }
 
-    HttpResponse post(String url, String json) {
-        return HttpResponse.builder().build();
+    HttpResponse post(String url, String json) throws Exception {
+        return request(POST, url,json);
     }
 
-    HttpResponse get(String url) {
-        HttpRequest request = HttpRequest.builder().method(GET).resource(url).build();
-        return HttpResponse.builder().build();
+    HttpResponse get(String url) throws Exception {
+        return request(GET,url,"");
+    }
+
+    HttpResponse request(Method method, String url, String content) throws Exception {
+        byte[] requestBytes = HttpRequest.builder()
+                .method(method)
+                .resource(url)
+                .content(content)
+                .build().toString().getBytes();
+        FakeInputStream in = new FakeInputStream(requestBytes);
+        FakeOutputStream out = new FakeOutputStream();
+        SimpleHttpConnectionHandler handler = new SimpleHttpConnectionHandler();
+        SimpleHttpConnection connection = new SimpleHttpConnection(in,out);
+        handler.handle(connection);
+        HttpResponseReader reader = new HttpResponseReader(new ByteArrayInputStream(out.toByteArray()));
+        return reader.take();
     }
 
     @Test

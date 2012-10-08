@@ -107,7 +107,7 @@ public final class Environment
     private Environment(Builder builder) {
         this.request = builder.request;
         method = request.method;
-        contentLength = request.contentLength;
+        contentLength = request.content.length();
         contentType = request.contentType;
         errorStream = builder.errorStream;
         session = builder.session;

@@ -26,7 +26,7 @@ public final class HttpRequest
     public final Connection connection;
     public final Version version;
     public final Accept accept;
-    public final int contentLength;
+    public final String content;
     public final ContentType contentType;
     public final String queryString;
 
@@ -91,7 +91,7 @@ public final class HttpRequest
         this.connection = builder.connection;
         this.version = builder.version;
         this.accept = builder.accept;
-        this.contentLength = builder.contentLength;
+        this.content = builder.content;
         this.contentType = builder.contentType;
         queryString = queryString(builder.params);
     }
@@ -116,7 +116,7 @@ public final class HttpRequest
         private Version version = Version._1_1;
         private Accept accept;
         private ContentType contentType;
-        private int contentLength;
+        private String content = "";
         private Map<String,String> params = new HashMap<>();
 
         public Builder            resource(String resource) { this.resource = requireNonNull(resource); return this; }
@@ -128,7 +128,7 @@ public final class HttpRequest
         public Builder             version(Version version) { this.version = requireNonNull(version); return this; }
         public Builder                accept(Accept accept) { this.accept = requireNonNull(accept); return this; }
         public Builder contentType(ContentType contentType) { this.contentType = contentType; return this; }
-        public Builder            contentLength(int length) { this.contentLength = length; return this; }
+        public Builder              content(String content) { this.content = requireNonNull(content); return this; }
         public Builder             params(String... params) {
             for (int i=0; i<params.length; i= i+2) {
                 this.params.put(params[i],params[i+1]);
@@ -156,11 +156,19 @@ public final class HttpRequest
     public String          host() { return        host==null? "" : "Host: "           + host; }
     public String    connection() { return  connection==null? "" : "Connection: "     + connection; }
     public String   contentType() { return contentType==null? "" : "Content-Type: "   + contentType; }
-    public String contentLength() { return  contentLength==0? "" : "Content-Length: " + contentLength; }
+    public String contentLength() { return content.isEmpty()? "" : "Content-Length: " + content.length(); }
+    public String       content() { return content;}
 
     @Override
     public String toString() {
-        return join(method(), from(), userAgent(), host(), accept(), contentType(), contentLength(), connection());
+        return join(
+                method(), from(), userAgent(), host(), accept(), contentType(), contentLength(), connection(),
+                separateIfNotEmpty(content())
+        );
+    }
+
+    private String separateIfNotEmpty(String content) {
+        return content.isEmpty() ? content() : "\r\n" + content();
     }
 
     private String join(String... lines) {

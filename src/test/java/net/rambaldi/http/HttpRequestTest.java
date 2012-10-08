@@ -41,6 +41,11 @@ public class HttpRequestTest {
         builder().connection(null);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void content_must_not_be_null() {
+        builder().content(null);
+    }
+
     @Test
     public void method_line() {
         String expected = "GET /path/file.html HTTP/1.0";
@@ -107,15 +112,14 @@ public class HttpRequestTest {
 
     @Test
     public void content_type_line_when_unspecified() {
-        String actual = builder()
-                .build().contentType();
+        String actual = builder().build().contentType();
         assertEquals("",actual);
     }
 
     @Test
-    public void content_length_line_when_specified() {
+    public void content_length_line_when_content_specified() {
         String expected = "Content-Length: 32";
-        String actual = builder().contentLength(32)
+        String actual = builder().content("home=Cosby&favorite+flavor=flies")
                 .build().contentLength();
         assertEquals(expected,actual);
     }
@@ -123,6 +127,20 @@ public class HttpRequestTest {
     @Test
     public void content_length_line_when_unspecified() {
         String actual = builder().build().contentLength();
+        assertEquals("",actual);
+    }
+
+    @Test
+    public void content_line_when_content_specified() {
+        String expected = "home=Cosby&favorite+flavor=flies";
+        String actual = builder().content("home=Cosby&favorite+flavor=flies")
+                .build().content();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void content_line_when_unspecified() {
+        String actual = builder().build().content();
         assertEquals("",actual);
     }
 
@@ -189,7 +207,9 @@ public class HttpRequestTest {
             "User-Agent: HTTPTool/1.0",
             "Content-Type: application/x-www-form-urlencoded",
             "Content-Length: 32",
-            "Connection: keep-alive"
+            "Connection: keep-alive",
+            "",
+            "home=Cosby&favorite+flavor=flies"
         );
         HttpRequest request = builder()
                 .method(POST)
@@ -197,8 +217,8 @@ public class HttpRequestTest {
                 .resource("/path/script.cgi")
                 .version(Version._1_0)
                 .userAgent("HTTPTool/1.0")
+                .content("home=Cosby&favorite+flavor=flies")
                 .contentType(UrlEncodedForm)
-                .contentLength(32)
                 .build();
         String actual = request.toString();
         assertEquals(expected,actual);
