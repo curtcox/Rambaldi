@@ -1,12 +1,10 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Immutable;
+import net.rambaldi.time.Immutable;
 import net.rambaldi.process.Request;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 
 import java.io.Serializable;
-import java.net.URI;
-import java.nio.channels.AcceptPendingException;
 import java.util.HashMap;
 import java.util.Map;
 

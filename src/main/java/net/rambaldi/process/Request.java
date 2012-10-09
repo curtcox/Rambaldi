@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.time.Timestamp;
+
 import java.util.Objects;
 
 /**

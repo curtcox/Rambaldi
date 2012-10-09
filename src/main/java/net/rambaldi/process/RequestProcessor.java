@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.time.Immutable;
+
 import java.io.Serializable;
 
 /**

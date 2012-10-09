@@ -1,8 +1,8 @@
 package net.rambaldi.process;
 
-import net.rambaldi.Log.Log;
 import net.rambaldi.http.FakeStreamServer;
 import net.rambaldi.log.FakeLog;
+import net.rambaldi.time.Timestamp;
 import org.junit.Before;
 import org.junit.Test;
 

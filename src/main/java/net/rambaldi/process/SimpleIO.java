@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.time.Timestamp;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;

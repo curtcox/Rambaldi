@@ -1,13 +1,11 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Request;
 import net.rambaldi.process.Response;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 import java.util.TimeZone;
 
 import static java.util.Objects.requireNonNull;

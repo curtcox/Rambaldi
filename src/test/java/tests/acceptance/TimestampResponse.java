@@ -2,7 +2,7 @@ package tests.acceptance;
 
 import net.rambaldi.process.Request;
 import net.rambaldi.process.Response;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 
 /**
  *

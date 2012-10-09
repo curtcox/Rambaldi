@@ -1,9 +1,8 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
-import static net.rambaldi.http.HttpRequest.Method;
 import static net.rambaldi.http.HttpResponse.ContentType;
 import static net.rambaldi.http.HttpResponse.Status;
 import static org.junit.Assert.assertEquals;

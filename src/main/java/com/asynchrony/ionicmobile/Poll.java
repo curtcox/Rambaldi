@@ -1,6 +1,6 @@
 package com.asynchrony.ionicmobile;
 
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 
 import java.net.URI;
 

@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.time.Timestamp;
+
 /**
  * An immutable response to a request.
  * @author Curt

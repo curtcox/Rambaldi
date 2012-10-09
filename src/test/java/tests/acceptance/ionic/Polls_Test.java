@@ -4,9 +4,10 @@ import com.asynchrony.ionicmobile.Avatar;
 import com.asynchrony.ionicmobile.Poll;
 import com.asynchrony.ionicmobile.User;
 import net.rambaldi.http.*;
+import net.rambaldi.json.Json;
 import net.rambaldi.process.FakeInputStream;
 import net.rambaldi.process.FakeOutputStream;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -36,7 +37,7 @@ public class Polls_Test {
     public void I_should_be_able_to_create_a_poll_with_a_title() throws Exception {
         HttpResponse response = post("polls.json",json("poll",json("title","the title of the poll")));
         assertEquals(Created, response.status);
-        Poll poll = parse(response.content,Poll.class);
+        Poll poll = parse(response.content);
         assertExpectedPoll(poll);
     }
 
@@ -59,12 +60,12 @@ public class Polls_Test {
         assertEquals(new URI("for_avatar_small"),avatar.small_uri);
     }
 
-    private Poll parse(String content, Class<Poll> pollClass) {
-        return null;
+    private Poll parse(String content) {
+        return new Json<Poll>(Poll.class).parse(content);
     }
 
     String json(String... parts) {
-        return "";
+        return Json.format(parts);
     }
 
     HttpResponse post(String url, String json) throws Exception {
@@ -100,7 +101,7 @@ public class Polls_Test {
     public void I_should_be_able_to_get_a_poll() throws Exception {
         HttpResponse response = get("1.json");
         assertEquals(OK, response.status);
-        Poll poll = parse(response.content,Poll.class);
+        Poll poll = parse(response.content);
         assertExpectedPoll(poll);
     }
 

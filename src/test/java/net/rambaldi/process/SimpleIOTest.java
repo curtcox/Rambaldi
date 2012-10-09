@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import static org.junit.Assert.assertEquals;
 
-import net.rambaldi.process.Request;
-import net.rambaldi.process.SimpleIO;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
 /**

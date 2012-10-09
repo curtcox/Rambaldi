@@ -2,10 +2,7 @@ package net.rambaldi.process;
 
 import static org.junit.Assert.*;
 
-import net.rambaldi.process.Request;
-import net.rambaldi.process.Response;
-import net.rambaldi.process.SimpleIO;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 import tests.acceptance.Copier;
 

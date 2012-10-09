@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
-import net.rambaldi.process.*;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
 /**

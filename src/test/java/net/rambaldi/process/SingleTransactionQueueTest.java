@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import static junit.framework.Assert.*;
 
-import net.rambaldi.process.*;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 import tests.acceptance.Copier;
 

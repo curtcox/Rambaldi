@@ -1,4 +1,4 @@
-package net.rambaldi.process;
+package net.rambaldi.time;
 
 /**
  * A marker interface for that which is immutable -- stateless, and unchanging.

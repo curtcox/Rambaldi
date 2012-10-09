@@ -3,6 +3,7 @@ package tests.acceptance;
 import net.rambaldi.Log.Log;
 import net.rambaldi.log.FakeLog;
 import net.rambaldi.process.*;
+import net.rambaldi.time.Timestamp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

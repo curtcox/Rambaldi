@@ -2,7 +2,6 @@ package net.rambaldi.http;
 
 import net.rambaldi.process.Request;
 import net.rambaldi.process.Response;
-import net.rambaldi.process.Timestamp;
 import net.rambaldi.process.TransactionProcessor;
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package net.rambaldi.http.rack;
 
-import net.rambaldi.process.Immutable;
+import net.rambaldi.time.Immutable;
 
 import java.util.*;
 

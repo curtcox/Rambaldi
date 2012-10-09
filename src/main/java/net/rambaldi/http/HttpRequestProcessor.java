@@ -1,7 +1,7 @@
 package net.rambaldi.http;
 
 import net.rambaldi.process.Context;
-import net.rambaldi.process.Immutable;
+import net.rambaldi.time.Immutable;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package net.rambaldi.process;
+package net.rambaldi.time;
 
 import java.util.Date;
 

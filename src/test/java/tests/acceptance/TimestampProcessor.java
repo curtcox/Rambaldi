@@ -1,7 +1,7 @@
 package tests.acceptance;
 
 import net.rambaldi.process.Context;
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import net.rambaldi.process.Request;
 import net.rambaldi.process.RequestProcessor;
 

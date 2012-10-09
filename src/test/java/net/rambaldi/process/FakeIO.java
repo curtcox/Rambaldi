@@ -1,8 +1,6 @@
 package net.rambaldi.process;
 
-import net.rambaldi.process.IO;
-import net.rambaldi.process.Timestamp;
-import net.rambaldi.process.Transaction;
+import net.rambaldi.time.Timestamp;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import net.rambaldi.process.IO;
 import net.rambaldi.process.*;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
 /**

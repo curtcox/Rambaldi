@@ -3,7 +3,7 @@ package net.rambaldi.process;
 import java.io.IOException;
 import static org.junit.Assert.*;
 
-import net.rambaldi.process.*;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 
 /**

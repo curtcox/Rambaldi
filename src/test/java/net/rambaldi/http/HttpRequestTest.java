@@ -1,11 +1,7 @@
 package net.rambaldi.http;
 
-import net.rambaldi.process.Timestamp;
 import org.junit.Test;
 import tests.acceptance.Copier;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import static net.rambaldi.http.HttpRequest.*;
 import static net.rambaldi.http.HttpRequest.Connection.keep_alive;

@@ -1,9 +1,9 @@
-package net.rambaldi.process;
+package net.rambaldi.time;
 
 import java.util.Date;
 import static org.junit.Assert.*;
 
-import net.rambaldi.process.Timestamp;
+import net.rambaldi.time.Timestamp;
 import org.junit.Test;
 import tests.acceptance.Copier;
 
