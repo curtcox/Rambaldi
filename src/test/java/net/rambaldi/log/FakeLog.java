@@ -1,8 +1,8 @@
-package net.rambaldi.log;
+package net.rambaldi.Log;
 
-import net.rambaldi.Log.Log;
-
-public class FakeLog implements Log {
+public class FakeLog
+    implements Log
+{
 
     public Object message;
     public Throwable exception;

@@ -1,7 +1,7 @@
 package tests.performance;
 
 import net.rambaldi.Log.Log;
-import net.rambaldi.log.FakeLog;
+import net.rambaldi.Log.FakeLog;
 import net.rambaldi.process.*;
 import net.rambaldi.time.Timestamp;
 import org.junit.After;

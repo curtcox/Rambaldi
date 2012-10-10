@@ -1,7 +1,7 @@
 package net.rambaldi.process;
 
 import net.rambaldi.Log.Log;
-import net.rambaldi.log.FakeLog;
+import net.rambaldi.Log.FakeLog;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

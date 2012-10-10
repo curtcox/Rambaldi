@@ -2,8 +2,6 @@ package net.rambaldi.process;
 
 import net.rambaldi.Log.Log;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.concurrent.Callable;
 
 public final class DebugCallable

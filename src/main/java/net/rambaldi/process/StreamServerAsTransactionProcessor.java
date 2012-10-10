@@ -2,7 +2,6 @@ package net.rambaldi.process;
 
 import net.rambaldi.Log.Log;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 import static java.util.Objects.requireNonNull;

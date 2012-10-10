@@ -1,6 +1,5 @@
 package net.rambaldi.http;
 
-import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.process.*;
 
 import java.io.BufferedReader;

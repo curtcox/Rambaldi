@@ -7,7 +7,6 @@ import com.asynchrony.ionicmobile.Poll;
  */
 public final class Json <T> {
 
-
     public Json(Class<T> clazz) {
     }
 

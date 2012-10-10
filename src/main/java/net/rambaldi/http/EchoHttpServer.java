@@ -1,12 +1,9 @@
 package net.rambaldi.http;
 
 import net.rambaldi.Log.SimpleLog;
-import net.rambaldi.process.Context;
 import net.rambaldi.process.SimpleContext;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * A working HTTP echo server.
