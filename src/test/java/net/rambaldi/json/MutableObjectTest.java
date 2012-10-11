@@ -1,24 +1,12 @@
 package net.rambaldi.json;
 
-import com.asynchrony.ionicmobile.Poll;
 import org.junit.Test;
-
-import java.nio.file.attribute.DosFileAttributes;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class MutableObjectTest {
-
-    public static class Dog extends MutableObject {
-        Dog() {}
-        Dog(String name) {this.name = name;}
-        public String name;
-        public String owner;
-    }
-
-    public static class Cat extends MutableObject {}
 
     @Test
     public void can_create() {

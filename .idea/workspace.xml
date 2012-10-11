@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70635958-1d7b-48eb-bec8-4253b5afc08e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/json/MutableObject.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/asynchrony/ionicmobile/PollTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/Cat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/Dog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/DebugHttpTransactionProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/DebugHttpTransactionProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/EchoHttpServer.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/EchoHttpServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestReader.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestReader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/process/DebugCallable.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/process/DebugCallable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/net/rambaldi/process/StreamServerAsTransactionProcessor.java" afterPath="$PROJECT_DIR$/src/main/java/net/rambaldi/process/StreamServerAsTransactionProcessor.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Curt\Documents\GitHub\Rambaldi\src\test\java\net\rambaldi\Log\FakeLog.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/Log/FakeLog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/StreamServerAsTransactionProcessorTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/StreamServerAsTransactionProcessorTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/TransactionProcessorsTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/process/TransactionProcessorsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/External_Process_Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/HTTP_Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Performance_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/performance/HTTP_Performance_Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/performance/Processor_Performance_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/performance/Processor_Performance_Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java" afterPath="$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java" afterPath="$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java" />
     </list>
     <ignored path="rambaldi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,19 +68,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.50347406">
       <split-first>
         <leaf>
-          <file leaf-file-name="Json.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Json.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="0" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="32" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.7005871">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MutableObject.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="MutableObject.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/json/MutableObject.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="35" column="48" selection-start="898" selection-end="898" vertical-scroll-proportion="0.74512744">
+                <state line="35" column="48" selection-start="898" selection-end="898" vertical-scroll-proportion="-248.5">
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -114,16 +106,25 @@
           <file leaf-file-name="Polls_Test.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="0" selection-start="621" selection-end="665" vertical-scroll-proportion="0.0">
+                <state line="63" column="24" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="JsonTest.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="HttpRequest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="128" column="0" selection-start="4441" selection-end="4441" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JsonTest.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="13" selection-start="370" selection-end="370" vertical-scroll-proportion="0.0">
+                <state line="39" column="34" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.7671233">
                   <folding />
                 </state>
               </provider>
@@ -140,10 +141,28 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MutableObjectTest.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="MutableObjectTest.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="34" column="82" selection-start="900" selection-end="900" vertical-scroll-proportion="0.61769116">
+                <state line="10" column="4" selection-start="223" selection-end="223" vertical-scroll-proportion="-27.5">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Cat.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/Cat.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="13" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Dog.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/Dog.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="13" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -164,22 +183,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpResponseReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequestWriter.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestWriterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/asynchrony/ionicmobile/PollTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/log/FakeLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/Log/Log.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/Log/FakeLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/json/MutableObject.java" />
         <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/json/Dog.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/json/Cat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java" />
       </list>
     </option>
   </component>
@@ -523,7 +542,7 @@
       <recent name="net" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MutableObjectTest">
+  <component name="RunManager" selected="JUnit.JsonTest">
     <configuration default="false" name="Polls_Test" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="rambaldi" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -922,7 +941,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -933,13 +952,13 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913166" sideWeight="0.4946082" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49581006" sideWeight="0.20560747" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39597315" sideWeight="0.20149653" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292595" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21998562" sideWeight="0.75910366" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22147651" sideWeight="0.78936017" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39597315" sideWeight="0.79476213" order="2" side_tool="true" content_ui="tabs" x="-477" y="359" width="1871" height="339" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41456583" sideWeight="0.33285406" order="1" side_tool="false" content_ui="tabs" />
@@ -1006,21 +1025,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/rack/Environment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="0" selection-start="4010" selection-end="4010" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="0" selection-start="6216" selection-end="6216" vertical-scroll-proportion="-128.5" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/http/HttpRequestTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="21" selection-start="370" selection-end="370" vertical-scroll-proportion="-93.5" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/SimpleHttpConnectionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="103" selection-start="1181" selection-end="1181" vertical-scroll-proportion="0.0" />
@@ -1034,20 +1038,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/asynchrony/ionicmobile/Poll.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="13" selection-start="109" selection-end="109" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="621" selection-end="665" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="370" selection-end="370" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/Log/Log.java">
@@ -1087,26 +1077,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/json/MutableObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="48" selection-start="898" selection-end="898" vertical-scroll-proportion="-248.5">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/http/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="0" selection-start="4441" selection-end="4441" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/tests/acceptance/ionic/Polls_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="24" selection-start="2478" selection-end="2478" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/MutableObjectTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="82" selection-start="900" selection-end="900" vertical-scroll-proportion="0.61769116">
+        <state line="10" column="4" selection-start="223" selection-end="223" vertical-scroll-proportion="-27.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/Cat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/Dog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/json/Json.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/rambaldi/json/MutableObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="48" selection-start="898" selection-end="898" vertical-scroll-proportion="0.74512744">
+        <state line="32" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.7005871">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/rambaldi/json/JsonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="34" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.7671233">
+          <folding />
         </state>
       </provider>
     </entry>

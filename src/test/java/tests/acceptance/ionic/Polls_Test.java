@@ -61,7 +61,7 @@ public class Polls_Test {
     }
 
     private Poll parse(String content) {
-        return new Json<Poll>(Poll.class).parse(content);
+        return new Json<>(Poll.class).parse(content);
     }
 
     String json(String... parts) {
