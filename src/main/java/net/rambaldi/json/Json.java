@@ -2,6 +2,8 @@ package net.rambaldi.json;
 
 import com.asynchrony.ionicmobile.Poll;
 
+import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
@@ -24,30 +26,38 @@ public final class Json <T> {
 
     public T parse(String content) {
         T t = newInstance();
-        JsonTokenizer tokenizer = new JsonTokenizer(content);
-        setProperties(t, tokenizer);
+        setProperties(t, new JsonTokenizer(content).iterator());
         return t;
     }
 
-    private void setProperties(T t, JsonTokenizer tokenizer) {
-        for (String token : tokenizer) {
+    private void setProperties(T t, Iterator<String> tokens) {
+        for (String token = tokens.next(); tokens.hasNext(); token = tokens.next()) {
             if (isKey(token)) {
-                Object value = getValue(tokenizer);
-                setProperty(token,value);
+                Object value = getValue(tokens);
+                setProperty(t,token,value);
             }
         }
     }
 
-    private void setProperty(String token, Object value) {
-
+    private void setProperty(T t,String fieldName, Object value) {
+        try {
+            Field field = t.getClass().getField(fieldName);
+            field.set(t,value);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    private Object getValue(JsonTokenizer tokenizer) {
-        return null;
+    private Object getValue(Iterator<String> tokens) {
+        if (!tokens.next().equals(":")) {
+            throw new IllegalArgumentException("Assignment missing colon (:)");
+        }
+
+        return tokens.next();
     }
 
     private boolean isKey(String token) {
-        return true;
+        return !(token.equals("{") || token.equals("}") || token.equals(":"));
     }
 
     private T newInstance() {

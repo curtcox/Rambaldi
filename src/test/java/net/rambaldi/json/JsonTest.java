@@ -42,6 +42,17 @@ public class JsonTest {
         assertEquals("Rover",rover.name);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void You_cannot_teach_a_dog_Pascal() {
+        Dog rover = new Json<>(Dog.class).parse(json("{ 'computer_languuages_mastered' : 'Pascal'}"));
+        assertEquals("Rover",rover.name);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void missing_colon_throws_exception() {
+        new Json<>(Dog.class).parse(json("{ 'name' 'Rover'}"));
+    }
+
     private String json(String s) {
         return s.replace("'","\"");
     }
