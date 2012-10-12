@@ -33,22 +33,25 @@ public final class Json <T> {
     private void setProperties(T t, Iterator<String> tokens) {
         for (String token = tokens.next(); tokens.hasNext(); token = tokens.next()) {
             if (isKey(token)) {
-                Object value = getValue(tokens);
+                String value = getValue(tokens);
                 setProperty(t,token,value);
             }
         }
     }
 
-    private void setProperty(T t,String fieldName, Object value) {
+    private void setProperty(T t,String fieldName, String value) {
         try {
             Field field = t.getClass().getField(fieldName);
-            field.set(t,value);
+            Class type = field.getType();
+                 if (type==int.class)     { field.setInt(t,Integer.parseInt(value));         }
+            else if (type==boolean.class) { field.setBoolean(t,Boolean.parseBoolean(value)); }
+            else                          { field.set(t,value);                              }
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    private Object getValue(Iterator<String> tokens) {
+    private String getValue(Iterator<String> tokens) {
         if (!tokens.next().equals(":")) {
             throw new IllegalArgumentException("Assignment missing colon (:)");
         }

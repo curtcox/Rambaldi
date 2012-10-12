@@ -37,6 +37,31 @@ public class JsonTest {
     }
 
     @Test
+    public void Fred_owns_Fido() {
+        Dog fido = new Json<>(Dog.class).parse(json(
+            "{ 'name' : 'Fido' 'owner' : 'Fred' }"
+        ));
+        assertEquals("Fido",fido.name);
+        assertEquals("Fred",fido.owner);
+    }
+
+    @Test
+    public void Thats_105_to_you_and_me() {
+        Dog rex = new Json<>(Dog.class).parse(json(
+                "{ 'age' : '105'}"
+        ));
+        assertEquals(105,rex.age);
+    }
+
+    @Test
+    public void The_cat_is_dead() {
+        Cat cat = new Json<>(Cat.class).parse(json(
+             "{ 'dead' : 'true'}"
+        ));
+        assertTrue(cat.dead);
+    }
+
+    @Test
     public void Rover_is_named_Rover() {
         Dog rover = new Json<>(Dog.class).parse(json("{ 'name' : 'Rover'}"));
         assertEquals("Rover",rover.name);
