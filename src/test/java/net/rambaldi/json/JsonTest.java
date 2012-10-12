@@ -31,9 +31,15 @@ public class JsonTest {
     }
 
     @Test
-    public void string_properties_will_be_assigned() {
-        Dog dog = new Json<>(Dog.class).parse(json("{ 'name' : 'Fido'}"));
-        assertEquals("Fido",dog.name);
+    public void Fido_is_named_Fido() {
+        Dog fido = new Json<>(Dog.class).parse(json("{ 'name' : 'Fido'}"));
+        assertEquals("Fido",fido.name);
+    }
+
+    @Test
+    public void Rover_is_named_Rover() {
+        Dog rover = new Json<>(Dog.class).parse(json("{ 'name' : 'Rover'}"));
+        assertEquals("Rover",rover.name);
     }
 
     private String json(String s) {

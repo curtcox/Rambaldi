@@ -23,7 +23,31 @@ public final class Json <T> {
     }
 
     public T parse(String content) {
-        return newInstance();
+        T t = newInstance();
+        JsonTokenizer tokenizer = new JsonTokenizer(content);
+        setProperties(t, tokenizer);
+        return t;
+    }
+
+    private void setProperties(T t, JsonTokenizer tokenizer) {
+        for (String token : tokenizer) {
+            if (isKey(token)) {
+                Object value = getValue(tokenizer);
+                setProperty(token,value);
+            }
+        }
+    }
+
+    private void setProperty(String token, Object value) {
+
+    }
+
+    private Object getValue(JsonTokenizer tokenizer) {
+        return null;
+    }
+
+    private boolean isKey(String token) {
+        return true;
     }
 
     private T newInstance() {
