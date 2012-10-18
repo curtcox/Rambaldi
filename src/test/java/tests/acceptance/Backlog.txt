@@ -48,3 +48,4 @@ I should be able to develop and deploy Enyo apps
 I should be able to replay and diagnose UAT failures using a single consolidated mechanism
 Review App Fuse for stack completeness
 I should be able to write apps in Javascript
+I should be able to server Strata.js apps http://stratajs.org/manual
