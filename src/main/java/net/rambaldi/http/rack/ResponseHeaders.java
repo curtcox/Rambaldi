@@ -147,4 +147,9 @@ public final class ResponseHeaders
     public Set<Entry<String, String>> entrySet() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Florida";
+    }
 }

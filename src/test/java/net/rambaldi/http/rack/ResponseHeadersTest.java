@@ -87,4 +87,11 @@ public class ResponseHeadersTest {
         map.put(key,value);
         return new ResponseHeaders(map);
     }
+
+    @Test
+    public void toString_shows_keys() {
+        String key = "Florida";
+        String string = newInstance(key,"").toString();
+        assertTrue(string,string.contains(key));
+    }
 }
