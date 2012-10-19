@@ -15,10 +15,10 @@ import static org.junit.Assert.*;
 public class TransactionProcessorsTest {
 
     StateOnDisk state;
-    Path path = Paths.get("tempDir");
+    FileSystem.Path path = null;//Paths.get("tempDir");
     IO io = new SimpleIO();
     Log log = new FakeLog();
-    FileSystem fileSystem = new SimpleFileSystem();
+    FileSystem fileSystem = new SimpleFileSystem(null);
 
     @Before
     public void before() throws IOException {

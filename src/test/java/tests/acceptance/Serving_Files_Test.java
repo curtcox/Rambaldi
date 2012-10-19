@@ -5,6 +5,7 @@ import net.rambaldi.http.*;
 import net.rambaldi.process.FileSystem;
 import net.rambaldi.process.SimpleContext;
 import net.rambaldi.process.SimpleFileSystem;
+import net.rambaldi.process.SimplePath;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,8 +20,8 @@ import static org.junit.Assert.assertEquals;
 
 public class Serving_Files_Test {
 
-    FileSystem fileSystem = new SimpleFileSystem();
-    Path dir = newDirectory();
+    FileSystem fileSystem = new SimpleFileSystem(null);
+    FileSystem.Path dir = newDirectory();
 
     @Before
     public void before() throws IOException {
@@ -49,11 +50,11 @@ public class Serving_Files_Test {
         return response.content;
     }
 
-    private void writeContentsTo(String fileName, Path dir, String contents) throws IOException {
+    private void writeContentsTo(String fileName, FileSystem.Path dir, String contents) throws IOException {
         fileSystem.write(dir.resolve(fileName),contents.getBytes());
     }
 
-    private Path newDirectory() {
-        return Paths.get("");
+    private FileSystem.Path newDirectory() {
+        return new SimplePath("tempDir");
     }
 }

@@ -9,16 +9,16 @@ import static java.util.Objects.*;
  */
 public final class StateOnDisk {
 
-    public final Path path;
+    public final FileSystem.Path path;
     private final FileSystem fileSystem;
     private final ObjectStore store;
     private RequestProcessor requestProcessor;
 
-    public StateOnDisk(Path dir, IO io, FileSystem fileSystem) {
+    public StateOnDisk(FileSystem.Path dir, IO io, FileSystem fileSystem) {
         this(dir,new SimpleObjectStore(dir,io,fileSystem),fileSystem);
     }
 
-    public StateOnDisk(Path dir, ObjectStore store, FileSystem fileSystem) {
+    public StateOnDisk(FileSystem.Path dir, ObjectStore store, FileSystem fileSystem) {
         path = requireNonNull(dir);
         this.store = requireNonNull(store);
         this.fileSystem = requireNonNull(fileSystem);

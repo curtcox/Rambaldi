@@ -21,9 +21,9 @@ public class HTTP_Test {
     final URLPageGetter pageGetter = new URLPageGetter();
     IO io = new SimpleIO();
     Log log = new SimpleLog("HTTP Test",System.err);
-    Path temp = Paths.get("tempDir");
+    FileSystem.Path temp = null;//Paths.get("tempDir");
     StateOnDisk state;
-    FileSystem fileSystem = new SimpleFileSystem();
+    FileSystem fileSystem = new SimpleFileSystem(null);
     final int port = 4242;
 
     @Before

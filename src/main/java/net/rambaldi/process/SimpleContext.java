@@ -21,7 +21,7 @@ public final class SimpleContext
     }
 
     public SimpleContext() {
-        this(new SimpleFileSystem());
+        this(new SimpleFileSystem(null));
     }
 
     @Override

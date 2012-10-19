@@ -22,9 +22,9 @@ public class HTTP_Performance_Test {
 
     IO io = new SimpleIO();
     Log log = new SimpleLog("HTTP Test",System.err);
-    Path temp = Paths.get("tempDir");
+    FileSystem.Path temp = null;//Paths.get("tempDir");
     StateOnDisk state;
-    FileSystem fileSystem = new SimpleFileSystem();
+    FileSystem fileSystem = new SimpleFileSystem(null);
 
     @Before
     public void Before() throws Exception {

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class StateOnDiskTest {
 
-    Path             path = Paths.get("dir");
+    FileSystem.Path      path = null;//Paths.get("dir");
 
     FakeObjectStore     store = new FakeObjectStore();
     FakeFileSystem fileSystem = new FakeFileSystem();
@@ -20,7 +20,7 @@ public class StateOnDiskTest {
 
     @Before
     public void Before() throws Exception {
-        Files.deleteIfExists(path);
+        Files.deleteIfExists(null);//path);
     }
 
     @Test(expected = NullPointerException.class)
@@ -77,7 +77,7 @@ public class StateOnDiskTest {
 
     @Test
     public void persist_preserves_path_on_disk() throws Exception{
-        assertFalse(Files.exists(path));
+        assertFalse(Files.exists(null));//path));
         StateOnDisk state1 = new StateOnDisk(path,store,fileSystem);
         EchoProcessor processor = new EchoProcessor();
         state1.setRequestProcessor(processor);

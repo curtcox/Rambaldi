@@ -7,11 +7,11 @@ import static java.util.Objects.*;
 
 public final class SimpleObjectStore implements ObjectStore {
 
-    private final Path path;
+    private final FileSystem.Path path;
     private final IO io;
     private final FileSystem fileSystem;
 
-    public SimpleObjectStore(Path path, IO io, FileSystem fileSystem) {
+    public SimpleObjectStore(FileSystem.Path path, IO io, FileSystem fileSystem) {
         this.path = requireNonNull(path);
         this.io = requireNonNull(io);
         this.fileSystem = requireNonNull(fileSystem);
@@ -35,7 +35,7 @@ public final class SimpleObjectStore implements ObjectStore {
         }
     }
 
-    private Path path(Class type) {
+    private FileSystem.Path path(Class type) {
         return path.resolve(type.getCanonicalName());
     }
 }

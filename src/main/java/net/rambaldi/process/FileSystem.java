@@ -11,6 +11,13 @@ import java.util.Objects;
 public interface FileSystem {
 
     /**
+     * The path to a resource on a FileSystem.
+     */
+    interface Path {
+        Path resolve(String canonicalName);
+    }
+
+    /**
      * Delete everything under this path.
      */
     void deleteRecursive(Path path) throws IOException;

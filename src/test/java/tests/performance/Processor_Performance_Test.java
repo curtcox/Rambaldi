@@ -18,9 +18,9 @@ import static org.junit.Assert.assertTrue;
 public class Processor_Performance_Test {
 
     IO io = new SimpleIO();
-    Path temp = Paths.get("tempDir");
+    FileSystem.Path temp = new SimplePath("tempDir");
     StateOnDisk state;
-    FileSystem fileSystem = new SimpleFileSystem();
+    FileSystem fileSystem = new SimpleFileSystem(null);
     Log log = new FakeLog();
 
     @Before

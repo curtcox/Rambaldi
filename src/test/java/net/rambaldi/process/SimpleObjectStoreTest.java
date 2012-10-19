@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class SimpleObjectStoreTest {
 
-    Path path = Paths.get("temp");
+    FileSystem.Path path = null;//Paths.get("temp");
     IO io = new SimpleIO();
     FileSystem fileSystem = new FakeFileSystem();
 
