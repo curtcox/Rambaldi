@@ -2,11 +2,15 @@ package net.rambaldi.process;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * A simple implementation of FileSystem.
+ */
 public final class SimpleFileSystem
-     implements FileSystem
+     implements FileSystem, Serializable
 {
     @Override
     public void deleteRecursive(Path path) throws IOException {

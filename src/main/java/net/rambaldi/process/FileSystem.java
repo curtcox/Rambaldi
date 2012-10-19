@@ -10,12 +10,24 @@ import java.util.Objects;
  */
 public interface FileSystem {
 
+    /**
+     * Delete everything under this path.
+     */
     void deleteRecursive(Path path) throws IOException;
 
+    /**
+     * Create as many directories as needed to create this path.
+     */
     void createDirectories(Path path) throws IOException;
 
+    /**
+     * Write the given bytes to this path.
+     */
     void write(Path path, byte[] bytes) throws IOException;
 
+    /**
+     * Return the contents at this path.
+     */
     byte[] readAllBytes(Path path) throws IOException;
 
 }

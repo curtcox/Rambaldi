@@ -1,6 +1,9 @@
 package net.rambaldi.process;
 
 import java.io.Serializable;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A simple implementation of Context.
@@ -11,7 +14,16 @@ public final class SimpleContext
 {
 
     private Serializable state;
-    
+    private final FileSystem fileSystem;
+
+    public SimpleContext(FileSystem fileSystem) {
+        this.fileSystem = requireNonNull(fileSystem);
+    }
+
+    public SimpleContext() {
+        this(new SimpleFileSystem());
+    }
+
     @Override
     public Entity getEntity(String name) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -26,5 +38,8 @@ public final class SimpleContext
     public void setState(Serializable state) {
         this.state = state;
     }
-    
+
+    public FileSystem getFileSystem() {
+        return fileSystem;
+    }
 }

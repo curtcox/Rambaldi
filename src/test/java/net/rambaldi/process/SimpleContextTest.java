@@ -8,10 +8,23 @@ import org.junit.Test;
 import tests.acceptance.Copier;
 
 /**
- *
+ * A simple implementation of Context.
  * @author Curt
  */
 public class SimpleContextTest {
+
+    @Test
+    public void uses_filesystem_from_constructor() {
+        FileSystem expected = new SimpleFileSystem();
+        SimpleContext context = new SimpleContext(expected);
+        FileSystem actual = context.getFileSystem();
+        assertSame(expected,actual);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void filesystem_is_required() {
+        new SimpleContext(null);
+    }
 
     @Test
     public void getState_returns_previously_setState() {
