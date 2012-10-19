@@ -1,10 +1,11 @@
-package net.rambaldi.process;
+package net.rambaldi.file;
+
+import net.rambaldi.file.FileSystem;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  * A simple implementation of FileSystem.
@@ -20,18 +21,18 @@ public final class SimpleFileSystem
     }
 
     @Override
-    public void deleteRecursive(Path path) throws IOException {
+    public void deleteRecursive(RelativePath path) throws IOException {
         deleteRecursive(file(path));
     }
 
-    private File file(Path path) {
+    private File file(RelativePath path) {
         return null;
     }
 
     /**
      * By default File#delete fails for non-empty directories, it works like "rm".
      * We need something a little more brutal - this does the equivalent of "rm -r"
-     * @param path Root File Path
+     * @param path Root File RelativePath
      */
     private static void deleteRecursive(File path) {
         if (!path.exists()) {
@@ -45,21 +46,21 @@ public final class SimpleFileSystem
     }
 
     @Override
-    public void createDirectories(Path path) throws IOException {
+    public void createDirectories(RelativePath path) throws IOException {
         Files.createDirectories(path(path));
     }
 
     @Override
-    public void write(Path path, byte[] bytes) throws IOException {
+    public void write(RelativePath path, byte[] bytes) throws IOException {
         Files.write(path(path),bytes);
     }
 
     @Override
-    public byte[] readAllBytes(Path path) throws IOException {
+    public byte[] readAllBytes(RelativePath path) throws IOException {
         return Files.readAllBytes(path(path));
     }
 
-    private java.nio.file.Path path(Path path) {
+    private java.nio.file.Path path(RelativePath path) {
         return null;
     }
 }

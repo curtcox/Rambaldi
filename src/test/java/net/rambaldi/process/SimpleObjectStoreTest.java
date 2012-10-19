@@ -1,13 +1,12 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.FakeFileSystem;
+import net.rambaldi.file.FileSystem;
 import org.junit.Test;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SimpleObjectStoreTest {
 
-    FileSystem.Path path = null;//Paths.get("temp");
+    FileSystem.RelativePath path = null;//Paths.get("temp");
     IO io = new SimpleIO();
     FileSystem fileSystem = new FakeFileSystem();
 

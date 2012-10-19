@@ -1,13 +1,10 @@
-package net.rambaldi;
+package net.rambaldi.http;
 
-import net.rambaldi.http.HttpRequest;
-import net.rambaldi.http.HttpResponse;
-import net.rambaldi.process.FakeFileSystem;
+import net.rambaldi.file.FakeFileSystem;
 import net.rambaldi.process.SimpleContext;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 import static net.rambaldi.http.HttpRequest.Method.GET;
 import static org.junit.Assert.assertEquals;
@@ -25,7 +22,7 @@ public class HttpFileRequestProcessorTest {
         HttpRequest request = HttpRequest.builder().method(GET).resource("resource_name").build();
         final String content = "contents of resource";
         FakeFileSystem fileSystem = new FakeFileSystem() {
-            @Override public byte[] readAllBytes(Path path) throws IOException {
+            @Override public byte[] readAllBytes(RelativePath path) throws IOException {
                 return content.getBytes();
             }
         };

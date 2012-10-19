@@ -2,14 +2,13 @@ package tests.acceptance;
 
 import net.rambaldi.Log.Log;
 import net.rambaldi.Log.FakeLog;
+import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
 import net.rambaldi.process.*;
 import net.rambaldi.time.Timestamp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +19,7 @@ import static org.junit.Assert.*;
 public class External_Process_Test {
 
     IO io = new SimpleIO();
-    FileSystem.Path temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
     StateOnDisk state;
     Log log = new FakeLog();
     FileSystem fileSystem = new SimpleFileSystem(null);

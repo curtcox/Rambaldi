@@ -1,5 +1,6 @@
-package net.rambaldi.process;
+package net.rambaldi.file;
 
+import net.rambaldi.file.SimpleFileSystem;
 import org.junit.Test;
 
 import java.nio.file.Paths;

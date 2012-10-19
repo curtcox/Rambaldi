@@ -1,4 +1,4 @@
-package net.rambaldi;
+package net.rambaldi.http;
 
 import net.rambaldi.http.HttpRequest;
 import net.rambaldi.http.HttpRequestProcessor;

@@ -1,19 +1,16 @@
 package tests.acceptance;
 
-import net.rambaldi.HttpFileRequestProcessor;
+import net.rambaldi.http.HttpFileRequestProcessor;
 import net.rambaldi.http.*;
-import net.rambaldi.process.FileSystem;
+import net.rambaldi.file.FileSystem;
 import net.rambaldi.process.SimpleContext;
-import net.rambaldi.process.SimpleFileSystem;
-import net.rambaldi.process.SimplePath;
+import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static net.rambaldi.http.HttpRequest.Method.GET;
 import static org.junit.Assert.assertEquals;
@@ -21,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class Serving_Files_Test {
 
     FileSystem fileSystem = new SimpleFileSystem(null);
-    FileSystem.Path dir = newDirectory();
+    FileSystem.RelativePath dir = newDirectory();
 
     @Before
     public void before() throws IOException {
@@ -50,11 +47,11 @@ public class Serving_Files_Test {
         return response.content;
     }
 
-    private void writeContentsTo(String fileName, FileSystem.Path dir, String contents) throws IOException {
+    private void writeContentsTo(String fileName, FileSystem.RelativePath dir, String contents) throws IOException {
         fileSystem.write(dir.resolve(fileName),contents.getBytes());
     }
 
-    private FileSystem.Path newDirectory() {
-        return new SimplePath("tempDir");
+    private FileSystem.RelativePath newDirectory() {
+        return new SimpleRelativePath("tempDir");
     }
 }

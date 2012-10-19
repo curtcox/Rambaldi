@@ -1,17 +1,19 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.FileSystem;
+
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Path;
+
 import static java.util.Objects.*;
 
 public final class SimpleObjectStore implements ObjectStore {
 
-    private final FileSystem.Path path;
+    private final FileSystem.RelativePath path;
     private final IO io;
     private final FileSystem fileSystem;
 
-    public SimpleObjectStore(FileSystem.Path path, IO io, FileSystem fileSystem) {
+    public SimpleObjectStore(FileSystem.RelativePath path, IO io, FileSystem fileSystem) {
         this.path = requireNonNull(path);
         this.io = requireNonNull(io);
         this.fileSystem = requireNonNull(fileSystem);
@@ -35,7 +37,7 @@ public final class SimpleObjectStore implements ObjectStore {
         }
     }
 
-    private FileSystem.Path path(Class type) {
+    private FileSystem.RelativePath path(Class type) {
         return path.resolve(type.getCanonicalName());
     }
 }

@@ -110,7 +110,7 @@ public class Polls_Test {
 //            .anchorTarget#Polls-list
 //    %h2 List all polls that were created by the authenticated user
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "poll's collection uri", "#Polls-URI"}
 //
 //    %h3 Request Type
@@ -161,7 +161,7 @@ public class Polls_Test {
 //
 //    %p fields are only updated if they are sent in the request.  To update only one field, exclude all others from the request data.
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "poll's member uri", "#Polls-URI"}
 //
 //    %h3 Request Type
@@ -253,7 +253,7 @@ public class Polls_Test {
 //            .anchorTarget#Questions-create
 //    %h2 Create a Question for a poll
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "question's collection uri", "#Questions-URI"}
 //
 //    %h3 Request Type
@@ -300,7 +300,7 @@ public class Polls_Test {
 //            .anchorTarget#Questions-list
 //    %h2 List Questions for a poll
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "question's collection uri", "#Questions-URI"}
 //
 //    %h3 Request Type
@@ -340,7 +340,7 @@ public class Polls_Test {
 //            .anchorTarget#Questions-show
 //    %h2 Shows a Question for a poll
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "question's member uri", "#Questions-URI"}
 //
 //    %h3 Request Type
@@ -393,7 +393,7 @@ public class Polls_Test {
 //            .anchorTarget#Participation-update_status
 //    %h2 Update the status you have with a poll
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "participation uri", "#Participation-URI"}
 //
 //    %h3 Request Type
@@ -481,7 +481,7 @@ public class Polls_Test {
 //            .anchorTarget#Participation-list
 //    %h2 Lists all polls the authenticated user is participating in
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "participation's collection uri", "#Participation-URI"}
 //
 //    %h3 Request Type
@@ -555,7 +555,7 @@ public class Polls_Test {
 //            .anchorTarget#Participants-list
 //    %h2 List Participants
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "participant's collection uri", "#Participants-URI"}
 //
 //    %h3 Request Type
@@ -595,7 +595,7 @@ public class Polls_Test {
 //            .anchorTarget#Participants-show
 //    %h2 Show Participant
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "participant's member uri", "#Participants-URI"}
 //
 //    %h3 Request Type
@@ -657,7 +657,7 @@ public class Polls_Test {
 //            .anchorTarget#Answers-create
 //    %h2 Create an Answer
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "answer's collection uri", "#Answers-URI"}
 //
 //    %h3 Request Type
@@ -700,7 +700,7 @@ public class Polls_Test {
 //            .anchorTarget#Answers-list
 //    %h2 List a poll's answers
 //
-//            %h3 Path
+//            %h3 RelativePath
 //    %p uses the #{link_to "answer's collection uri", "#Answers-URI"}
 //
 //    %h3 Request Type
@@ -749,7 +749,7 @@ public class Polls_Test {
 //            .anchorTarget#Answers-show
 //    %h2 Show an answer
 //
-//    %h3 Path
+//    %h3 RelativePath
 //    %p uses the #{link_to "answer's member uri", "#Answers-URI"}
 //
 //    %h3 Request Type
@@ -815,7 +815,7 @@ public class Polls_Test {
 //            .anchorTarget#ParticipantAnswers-list
 //    %h2 List a poll's answers by a given participant
 //
-//            %h3 Path
+//            %h3 RelativePath
 //    %p uses the #{link_to "participant's member uri", "#Participants-URI"}
 //
 //    %h3 Request Type

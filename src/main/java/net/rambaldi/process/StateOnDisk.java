@@ -1,7 +1,9 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.FileSystem;
+
 import java.io.IOException;
-import java.nio.file.Path;
+
 import static java.util.Objects.*;
 
 /**
@@ -9,16 +11,16 @@ import static java.util.Objects.*;
  */
 public final class StateOnDisk {
 
-    public final FileSystem.Path path;
+    public final FileSystem.RelativePath path;
     private final FileSystem fileSystem;
     private final ObjectStore store;
     private RequestProcessor requestProcessor;
 
-    public StateOnDisk(FileSystem.Path dir, IO io, FileSystem fileSystem) {
+    public StateOnDisk(FileSystem.RelativePath dir, IO io, FileSystem fileSystem) {
         this(dir,new SimpleObjectStore(dir,io,fileSystem),fileSystem);
     }
 
-    public StateOnDisk(FileSystem.Path dir, ObjectStore store, FileSystem fileSystem) {
+    public StateOnDisk(FileSystem.RelativePath dir, ObjectStore store, FileSystem fileSystem) {
         path = requireNonNull(dir);
         this.store = requireNonNull(store);
         this.fileSystem = requireNonNull(fileSystem);

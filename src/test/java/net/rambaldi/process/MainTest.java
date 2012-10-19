@@ -1,13 +1,12 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.*;
 import net.rambaldi.time.Timestamp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 public class MainTest {
 
     IO io = new SimpleIO();
-    FileSystem.Path temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
     StateOnDisk state;
     ProcessFactory processFactory;
     ByteArrayInputStream in = new ByteArrayInputStream(new byte[0]);

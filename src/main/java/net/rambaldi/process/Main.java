@@ -1,11 +1,12 @@
 package net.rambaldi.process;
 
 import net.rambaldi.Log.SimpleLog;
+import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
 import static java.util.Objects.*;
@@ -40,7 +41,7 @@ public final class Main {
     public static void main(String[] args) throws Exception {
         IO io = new SimpleIO();
            io = new DebugIO(io,new SimpleLog("Main IO",System.err));
-        StateOnDisk state = new StateOnDisk(new SimplePath(""),io,new SimpleFileSystem(null));
+        StateOnDisk state = new StateOnDisk(new SimpleRelativePath(""),io,new SimpleFileSystem(null));
         state.load();
         Main main = new Main(io,state,System.in,System.out,System.err);
         main.run();

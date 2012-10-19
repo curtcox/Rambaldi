@@ -2,6 +2,8 @@ package tests.performance;
 
 import net.rambaldi.Log.Log;
 import net.rambaldi.Log.SimpleLog;
+import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
 import net.rambaldi.http.*;
 import net.rambaldi.process.*;
 import org.junit.After;
@@ -12,8 +14,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static net.rambaldi.http.HttpRequest.Connection.keep_alive;
 import static org.junit.Assert.assertTrue;
@@ -22,7 +22,7 @@ public class HTTP_Performance_Test {
 
     IO io = new SimpleIO();
     Log log = new SimpleLog("HTTP Test",System.err);
-    FileSystem.Path temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem(null);
 

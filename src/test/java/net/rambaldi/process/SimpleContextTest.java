@@ -3,7 +3,8 @@ package net.rambaldi.process;
 import java.io.Serializable;
 import static org.junit.Assert.*;
 
-import net.rambaldi.process.SimpleContext;
+import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
 import org.junit.Test;
 import tests.acceptance.Copier;
 

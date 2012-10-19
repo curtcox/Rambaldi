@@ -2,14 +2,14 @@ package tests.performance;
 
 import net.rambaldi.Log.Log;
 import net.rambaldi.Log.FakeLog;
+import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import net.rambaldi.process.*;
 import net.rambaldi.time.Timestamp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class Processor_Performance_Test {
 
     IO io = new SimpleIO();
-    FileSystem.Path temp = new SimplePath("tempDir");
+    FileSystem.RelativePath temp = new SimpleRelativePath("tempDir");
     StateOnDisk state;
     FileSystem fileSystem = new SimpleFileSystem(null);
     Log log = new FakeLog();
