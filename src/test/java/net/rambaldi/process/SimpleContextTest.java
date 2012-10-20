@@ -16,7 +16,7 @@ public class SimpleContextTest {
 
     @Test
     public void uses_filesystem_from_constructor() {
-        FileSystem expected = new SimpleFileSystem(null);
+        FileSystem expected = new SimpleFileSystem();
         SimpleContext context = new SimpleContext(expected);
         FileSystem actual = context.getFileSystem();
         assertSame(expected,actual);

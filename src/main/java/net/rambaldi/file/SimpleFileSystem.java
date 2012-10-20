@@ -6,6 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A simple implementation of FileSystem.
@@ -14,10 +19,14 @@ import java.nio.file.Files;
 public final class SimpleFileSystem
      implements FileSystem, Serializable
 {
-    private final java.nio.file.Path root;
+    private final transient java.nio.file.Path root;
+
+    public SimpleFileSystem() {
+        this(Paths.get(""));
+    }
 
     public SimpleFileSystem(java.nio.file.Path root) {
-        this.root = root;
+        this.root = requireNonNull(root);
     }
 
     @Override
@@ -26,7 +35,7 @@ public final class SimpleFileSystem
     }
 
     private File file(RelativePath path) {
-        return null;
+        return path(path).toFile();
     }
 
     /**
@@ -60,7 +69,10 @@ public final class SimpleFileSystem
         return Files.readAllBytes(path(path));
     }
 
-    private java.nio.file.Path path(RelativePath path) {
-        return null;
+    private Path path(FileSystem.RelativePath path) {
+        String first = path.elements().get(0);
+        String[] rest = path.elements().subList(1,path.elements().size())
+                .toArray(new String[0]);
+        return Paths.get(first,rest);
     }
 }

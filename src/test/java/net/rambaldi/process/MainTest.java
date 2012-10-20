@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class MainTest {
 
     IO io = new SimpleIO();
-    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = new SimpleRelativePath("tempDir");
     StateOnDisk state;
     ProcessFactory processFactory;
     ByteArrayInputStream in = new ByteArrayInputStream(new byte[0]);

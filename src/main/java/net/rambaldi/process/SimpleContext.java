@@ -4,6 +4,7 @@ import net.rambaldi.file.FileSystem;
 import net.rambaldi.file.SimpleFileSystem;
 
 import java.io.Serializable;
+import java.nio.file.Paths;
 
 import static java.util.Objects.requireNonNull;
 
@@ -23,7 +24,7 @@ public final class SimpleContext
     }
 
     public SimpleContext() {
-        this(new SimpleFileSystem(null));
+        this(new SimpleFileSystem(Paths.get("")));
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
@@ -100,7 +101,10 @@ public class StateOnDiskTest {
     }
 
     private Path path(FileSystem.RelativePath path) {
-        return null;
+        String first = path.elements().get(0);
+        String[] rest = path.elements().subList(1,path.elements().size())
+                .toArray(new String[0]);
+        return Paths.get(first,rest);
     }
 
 }

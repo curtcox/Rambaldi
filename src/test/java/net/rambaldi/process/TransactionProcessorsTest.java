@@ -4,21 +4,23 @@ import net.rambaldi.Log.Log;
 import net.rambaldi.Log.FakeLog;
 import net.rambaldi.file.FileSystem;
 import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
 public class TransactionProcessorsTest {
 
     StateOnDisk state;
-    FileSystem.RelativePath path = null;//Paths.get("tempDir");
+    FileSystem.RelativePath path = new SimpleRelativePath("tempDir");
     IO io = new SimpleIO();
     Log log = new FakeLog();
-    FileSystem fileSystem = new SimpleFileSystem(null);
+    FileSystem fileSystem = new SimpleFileSystem(Paths.get(""));
 
     @Before
     public void before() throws IOException {
