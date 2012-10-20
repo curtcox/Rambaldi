@@ -4,6 +4,7 @@ import net.rambaldi.Log.Log;
 import net.rambaldi.Log.SimpleLog;
 import net.rambaldi.file.FileSystem;
 import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import net.rambaldi.http.*;
 import net.rambaldi.process.*;
 import org.junit.After;
@@ -21,9 +22,9 @@ public class HTTP_Test {
     final URLPageGetter pageGetter = new URLPageGetter();
     IO io = new SimpleIO();
     Log log = new SimpleLog("HTTP Test",System.err);
-    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = new SimpleRelativePath("tempDir");
     StateOnDisk state;
-    FileSystem fileSystem = new SimpleFileSystem(null);
+    FileSystem fileSystem = new SimpleFileSystem();
     final int port = 4242;
 
     @Before

@@ -39,7 +39,7 @@ public class SimpleTransactionProcessorTest {
     }
     
     @Test
-    public void call_takes_request_from_in() {
+    public void call_takes_request_from_in() throws Exception {
         Transaction transaction = request();
         in.put(transaction);
         assertFalse(in.isEmpty());
@@ -48,7 +48,7 @@ public class SimpleTransactionProcessorTest {
     }
     
     @Test(expected=IllegalArgumentException.class)
-    public void call_throws_exception_for_unknown_transaction_type() {
+    public void call_throws_exception_for_unknown_transaction_type() throws Exception {
         Transaction transaction = new Transaction(){
 
             @Override
@@ -61,7 +61,7 @@ public class SimpleTransactionProcessorTest {
     }
 
     @Test
-    public void call_echo_writes_requests_to_out() {
+    public void call_echo_writes_requests_to_out() throws Exception {
         Request request = request();
         in.put(request);
         processor().call();
@@ -71,7 +71,7 @@ public class SimpleTransactionProcessorTest {
     }
 
     @Test
-    public void call_uses_RequestProcessor_for_Requests() {
+    public void call_uses_RequestProcessor_for_Requests() throws Exception {
         final Request   request = request();
         final Map called = new HashMap();
         in.put(request);
@@ -89,7 +89,7 @@ public class SimpleTransactionProcessorTest {
     }
 
     @Test
-    public void call_discards_RequestProcessor_null_responses() {
+    public void call_discards_RequestProcessor_null_responses() throws Exception {
         final Request   request = request();
         in.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -106,7 +106,7 @@ public class SimpleTransactionProcessorTest {
     }
 
     @Test
-    public void call_puts_RequestProcessor_non_null_responses_to_out() {
+    public void call_puts_RequestProcessor_non_null_responses_to_out() throws Exception {
         final Request   request = request();
         final Response response = new Response("",request);
         in.put(request);

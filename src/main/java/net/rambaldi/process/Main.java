@@ -41,7 +41,7 @@ public final class Main {
     public static void main(String[] args) throws Exception {
         IO io = new SimpleIO();
            io = new DebugIO(io,new SimpleLog("Main IO",System.err));
-        StateOnDisk state = new StateOnDisk(new SimpleRelativePath(""),io,new SimpleFileSystem(null));
+        StateOnDisk state = new StateOnDisk(new SimpleRelativePath(),io,new SimpleFileSystem());
         state.load();
         Main main = new Main(io,state,System.in,System.out,System.err);
         main.run();

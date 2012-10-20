@@ -17,5 +17,5 @@ public interface RequestProcessor
      * @param context state to use for processing
      * @return the Response, or null if there is none
      */
-    Response process(Request request,Context context);
+    Response process(Request request,Context context) throws Exception;
 }

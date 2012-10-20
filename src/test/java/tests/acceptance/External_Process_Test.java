@@ -4,6 +4,7 @@ import net.rambaldi.Log.Log;
 import net.rambaldi.Log.FakeLog;
 import net.rambaldi.file.FileSystem;
 import net.rambaldi.file.SimpleFileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import net.rambaldi.process.*;
 import net.rambaldi.time.Timestamp;
 import org.junit.After;
@@ -19,10 +20,10 @@ import static org.junit.Assert.*;
 public class External_Process_Test {
 
     IO io = new SimpleIO();
-    FileSystem.RelativePath temp = null;//Paths.get("tempDir");
+    FileSystem.RelativePath temp = new SimpleRelativePath("tempDir");
     StateOnDisk state;
     Log log = new FakeLog();
-    FileSystem fileSystem = new SimpleFileSystem(null);
+    FileSystem fileSystem = new SimpleFileSystem();
 
     @Before
     public void Before() throws Exception {

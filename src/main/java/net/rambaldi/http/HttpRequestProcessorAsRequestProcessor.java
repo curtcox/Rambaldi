@@ -19,7 +19,7 @@ public final class HttpRequestProcessorAsRequestProcessor
     }
 
     @Override
-    public Response process(Request request, Context context) {
+    public Response process(Request request, Context context) throws Exception {
         HttpRequest httpRequest = (HttpRequest) request;
         return processor.process(httpRequest,context);
     }

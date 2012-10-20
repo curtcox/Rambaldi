@@ -1,9 +1,10 @@
 package net.rambaldi.http;
 
-import net.rambaldi.http.HttpRequest;
-import net.rambaldi.http.HttpRequestProcessor;
-import net.rambaldi.http.HttpResponse;
+import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleRelativePath;
 import net.rambaldi.process.Context;
+
+import java.io.IOException;
 
 /**
  * A processor that returns the requested file.
@@ -14,12 +15,16 @@ public class HttpFileRequestProcessor
 {
 
     @Override
-    public HttpResponse process(HttpRequest request, Context context) {
-          return null;
-//        return HttpResponse.builder()
-//                .request(request)
-//                .content(content(request))
-//                .build();
+    public HttpResponse process(HttpRequest request, Context context) throws Exception {
+        return HttpResponse.builder()
+                .request(request)
+                .content(content(request, context))
+                .build();
+    }
+
+    private String content(HttpRequest request, Context context) throws IOException {
+        FileSystem.RelativePath path = new SimpleRelativePath(request.resource);
+        return new String(context.getFileSystem().readAllBytes(path));
     }
 
 }

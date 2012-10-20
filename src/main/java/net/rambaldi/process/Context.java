@@ -1,5 +1,7 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.FileSystem;
+
 import java.io.Serializable;
 
 /**
@@ -22,4 +24,9 @@ public interface Context {
      * Set the current state.
      */
     void setState(Serializable state);
+
+    /**
+     * Return the FileSystem.
+     */
+    FileSystem getFileSystem();
 }

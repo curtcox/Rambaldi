@@ -85,14 +85,14 @@ public class StreamTransactionProcessorTest {
     }
 
     @Test(expected=IllegalArgumentException.class)
-    public void call_throws_exception_for_unknown_transaction_type() {
+    public void call_throws_exception_for_unknown_transaction_type() throws Exception {
         Transaction transaction = new UnsupportedTransaction();
         inQueue.put(transaction);
         processor().call();
     }
 
     @Test
-    public void call_takes_request_from_in() {
+    public void call_takes_request_from_in() throws Exception {
         Transaction transaction = new Request("",new Timestamp(0));
         inQueue.put(transaction);
 
@@ -103,7 +103,7 @@ public class StreamTransactionProcessorTest {
     
 
     @Test
-    public void call_echo_writes_requests_to_out() {
+    public void call_echo_writes_requests_to_out() throws Exception {
         Request request = new Request("",new Timestamp(0));
         inQueue.put(request);
 
@@ -115,7 +115,7 @@ public class StreamTransactionProcessorTest {
     }
 
     @Test
-    public void call_uses_RequestProcessor_for_Requests() {
+    public void call_uses_RequestProcessor_for_Requests() throws Exception {
         final Request   request = new Request("",new Timestamp(0));
         final Map called = new HashMap();
         inQueue.put(request);
@@ -133,7 +133,7 @@ public class StreamTransactionProcessorTest {
     }
 
     @Test
-    public void call_discards_RequestProcessor_null_responses() {
+    public void call_discards_RequestProcessor_null_responses() throws Exception {
         final Request   request = new Request("",new Timestamp(0));
         inQueue.put(request);
         RequestProcessor processor = new RequestProcessor() {
@@ -150,7 +150,7 @@ public class StreamTransactionProcessorTest {
     }
 
     @Test
-    public void call_puts_RequestProcessor_non_null_responses_to_out() {
+    public void call_puts_RequestProcessor_non_null_responses_to_out() throws Exception {
         final Request   request = new Request("",new Timestamp(0));
         final Response response = new Response("",request);
         inQueue.put(request);

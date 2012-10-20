@@ -28,7 +28,7 @@ public final class SimpleTransactionProcessor
     }
 
     @Override
-    public Void call() {
+    public Void call() throws Exception {
         Transaction transaction = in.take();
         if (transaction instanceof Request) {
             Request request = (Request) transaction;
@@ -42,7 +42,7 @@ public final class SimpleTransactionProcessor
     }
 
     @Override
-    public Response process(Request request) {
+    public Response process(Request request) throws Exception {
         return requests.process(request, context);
     }
 }

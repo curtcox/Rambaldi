@@ -18,7 +18,7 @@ public class Core_Test {
     final IO io = new SimpleIO();
     
     @Test
-    public void Read_from_queue_and_write_to_queue() {
+    public void Read_from_queue_and_write_to_queue() throws Exception {
         
         SingleTransactionQueue  in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
@@ -37,7 +37,7 @@ public class Core_Test {
     }
 
     @Test
-    public void Read_from_stream_and_write_to_stream() {
+    public void Read_from_stream_and_write_to_stream() throws Exception {
         SingleTransactionQueue  in = new SingleTransactionQueue(io); 
         SingleTransactionQueue out = new SingleTransactionQueue(io);
         SingleTransactionQueue err = new SingleTransactionQueue(io);
@@ -56,7 +56,7 @@ public class Core_Test {
     }
 
     @Test
-    public void Save_state_between_requests() {
+    public void Save_state_between_requests() throws Exception {
         SingleTransactionQueue in = new SingleTransactionQueue(io);
         SingleTransactionQueue out = new SingleTransactionQueue(io); 
         PrintStream            err = null;

@@ -1,9 +1,6 @@
 package net.rambaldi.http;
 
 import net.rambaldi.process.Context;
-import net.rambaldi.process.Request;
-import net.rambaldi.process.RequestProcessor;
-import net.rambaldi.process.Response;
 
 /**
  * A processor that echos the given request.
