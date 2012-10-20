@@ -4,6 +4,7 @@ import net.rambaldi.time.Immutable;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * How we need to interact with the file system.
@@ -16,6 +17,9 @@ public interface FileSystem {
      */
     interface RelativePath extends Immutable, Serializable {
         RelativePath resolve(String canonicalName);
+
+        List<String> elements();
+
     }
 
     /**

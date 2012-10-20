@@ -1,23 +1,33 @@
 package net.rambaldi.process;
 
+import net.rambaldi.file.FileSystem;
+
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import static java.util.Objects.*;
 
+/**
+ * For building a Java process.
+ * In other words, for building a process that is running a JVM instance.
+ */
 public final class JavaProcessBuilder {
 
     private final ProcessBuilder builder = new ProcessBuilder();
-    private final Path path;
+    private final FileSystem.RelativePath path;
 
-    public JavaProcessBuilder(Path path) {
+    public JavaProcessBuilder(FileSystem.RelativePath path) {
         this.path = requireNonNull(path);
     }
 
     public ProcessBuilder getConfigured() {
         builder.command(getCommand());
-        builder.directory(path.toFile());
+        builder.directory(file(path));
         return builder;
+    }
+
+    private File file(FileSystem.RelativePath path) {
+        return null;
     }
 
     String[] getCommand() {

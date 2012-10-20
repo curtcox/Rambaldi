@@ -14,8 +14,7 @@ public final class TransactionProcessors {
     }
 
     public static TransactionProcessor newExternal(StateOnDisk state, IO io, Log log) throws ProcessCreationException {
-        Path path = null;//state.path;
-        ProcessBuilder builder = new JavaProcessBuilder(path).getConfigured();
+        ProcessBuilder builder = new JavaProcessBuilder(state.path).getConfigured();
         ProcessFactory processFactory = new SimpleProcessFactory(builder);
         StreamServer streams = new ProcessAsStreamServer(processFactory, System.err);
         streams.start();
