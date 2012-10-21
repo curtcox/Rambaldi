@@ -69,7 +69,10 @@ public final class SimpleFileSystem
         return Files.readAllBytes(path(path));
     }
 
-    private Path path(FileSystem.RelativePath path) {
+    public static Path path(FileSystem.RelativePath path) {
+        if (path.elements().isEmpty()) {
+            return Paths.get("");
+        }
         String first = path.elements().get(0);
         String[] rest = path.elements().subList(1,path.elements().size())
                 .toArray(new String[0]);

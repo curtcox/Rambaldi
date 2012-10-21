@@ -1,11 +1,13 @@
 package net.rambaldi.process;
 
 import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
 
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import static java.util.Objects.*;
+import static net.rambaldi.file.SimpleFileSystem.path;
 
 /**
  * For building a Java process.
@@ -27,7 +29,7 @@ public final class JavaProcessBuilder {
     }
 
     private File file(FileSystem.RelativePath path) {
-        return null;
+        return SimpleFileSystem.path(path).toFile();
     }
 
     String[] getCommand() {

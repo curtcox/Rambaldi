@@ -23,7 +23,7 @@ public class HttpFileRequestProcessor
     }
 
     private String content(HttpRequest request, Context context) throws IOException {
-        FileSystem.RelativePath path = new SimpleRelativePath(request.resource);
+        FileSystem.RelativePath path = new SimpleRelativePath(request.resource.name.substring(1));
         return new String(context.getFileSystem().readAllBytes(path));
     }
 

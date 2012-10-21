@@ -19,7 +19,32 @@ public class HttpRequestTest {
 
     @Test(expected = NullPointerException.class)
     public void resource_must_not_be_null() {
-        builder().resource(null);
+        builder().resource((String)null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void resource_string_must_not_be_null() {
+        builder().resource((HttpRequest.Resource)null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void resource_must_start_with_a_slash() {
+        builder().resource("foo");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void resource_must_not_contain_spaces() {
+        builder().resource("foo bar");
+    }
+
+    @Test
+    public void resource_can_be_just_a_slash() {
+        builder().resource("/foo");
+    }
+
+    @Test
+    public void resource_can_contain_all_letters_in_both_cases() {
+        builder().resource("/abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
     }
 
     @Test(expected = NullPointerException.class)
@@ -250,8 +275,8 @@ public class HttpRequestTest {
 
     @Test
     public void equals_implies_equal_resources() {
-        assertEquals(builder().resource("resource1").build(),builder().resource("resource1").build());
-        assertNotEquals(builder().resource("resource1").build(),builder().resource("resource2").build());
+        assertEquals(builder().resource("/resource1").build(),builder().resource("/resource1").build());
+        assertNotEquals(builder().resource("/resource1").build(),builder().resource("/resource2").build());
     }
 
     void assertNotEquals(HttpRequest request1, HttpRequest request2) {

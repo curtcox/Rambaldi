@@ -17,7 +17,7 @@ public final class HttpRequest
     extends Request
 {
     public final Method method;
-    public final String resource;
+    public final Resource resource;
     public final String from;
     public final String userAgent;
     public final String host;
@@ -27,6 +27,34 @@ public final class HttpRequest
     public final String content;
     public final ContentType contentType;
     public final String queryString;
+
+    public static class Resource implements Immutable, Serializable {
+
+        public final String name;
+
+        public Resource(String name) {
+            this.name = requireNonNull(name);
+            if (!name.startsWith("/")) {
+                throw new IllegalArgumentException("Must start with /");
+            }
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            Resource that = (Resource) object;
+            return name.equals(that.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return name.hashCode();
+        }
+    }
 
     /**
      * In the future, this will be more than just a string wrapper
@@ -106,7 +134,7 @@ public final class HttpRequest
         private String value = "";
         private Timestamp timestamp = new Timestamp(0);
         private Method method = Method.GET;
-        private String resource = "/";
+        private Resource resource = new Resource("/");
         private String from;
         private String userAgent;
         private String host;
@@ -117,7 +145,8 @@ public final class HttpRequest
         private String content = "";
         private Map<String,String> params = new HashMap<>();
 
-        public Builder            resource(String resource) { this.resource = requireNonNull(resource); return this; }
+        public Builder                resource(String name) { this.resource(requireNonNull(new Resource(name))); return this; }
+        public Builder          resource(Resource resource) { this.resource = requireNonNull(resource); return this; }
         public Builder                method(Method method) { this.method = requireNonNull(method); return this; }
         public Builder                    from(String from) { this.from = from; return this; }
         public Builder          userAgent(String userAgent) { this.userAgent = userAgent; return this; }

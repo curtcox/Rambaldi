@@ -2,6 +2,7 @@ package net.rambaldi.process;
 
 import net.rambaldi.file.FakeFileSystem;
 import net.rambaldi.file.FileSystem;
+import net.rambaldi.file.SimpleFileSystem;
 import net.rambaldi.file.SimpleRelativePath;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static net.rambaldi.file.SimpleFileSystem.path;
 import static org.junit.Assert.*;
 
 public class StateOnDiskTest {
@@ -81,7 +83,7 @@ public class StateOnDiskTest {
 
     @Test
     public void persist_preserves_path_on_disk() throws Exception{
-        assertFalse(Files.exists(path(path)));;
+        assertFalse(Files.exists(SimpleFileSystem.path(path)));;
         StateOnDisk state1 = new StateOnDisk(path,store,fileSystem);
         EchoProcessor processor = new EchoProcessor();
         state1.setRequestProcessor(processor);
@@ -98,13 +100,6 @@ public class StateOnDiskTest {
         state.delete();
 
         assertSame(path, fileSystem.deleteRecursiveCalledWith);
-    }
-
-    private Path path(FileSystem.RelativePath path) {
-        String first = path.elements().get(0);
-        String[] rest = path.elements().subList(1,path.elements().size())
-                .toArray(new String[0]);
-        return Paths.get(first,rest);
     }
 
 }
