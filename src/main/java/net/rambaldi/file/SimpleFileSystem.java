@@ -19,13 +19,17 @@ import static java.util.Objects.requireNonNull;
 public final class SimpleFileSystem
      implements FileSystem, Serializable
 {
-    private final transient java.nio.file.Path root;
+    private final transient Path root;
+
+    public SimpleFileSystem(RelativePath dir) {
+        this(fromCurrent(dir));
+    }
 
     public SimpleFileSystem() {
         this(Paths.get(""));
     }
 
-    public SimpleFileSystem(java.nio.file.Path root) {
+    public SimpleFileSystem(Path root) {
         this.root = requireNonNull(root);
     }
 
@@ -35,7 +39,7 @@ public final class SimpleFileSystem
     }
 
     private File file(RelativePath path) {
-        return path(path).toFile();
+        return fromRoot(path).toFile();
     }
 
     /**
@@ -56,20 +60,34 @@ public final class SimpleFileSystem
 
     @Override
     public void createDirectories(RelativePath path) throws IOException {
-        Files.createDirectories(path(path));
+        Files.createDirectories(fromRoot(path));
     }
 
     @Override
     public void write(RelativePath path, byte[] bytes) throws IOException {
-        Files.write(path(path),bytes);
+        Files.write(fromRoot(path),bytes);
     }
 
     @Override
     public byte[] readAllBytes(RelativePath path) throws IOException {
-        return Files.readAllBytes(path(path));
+        return Files.readAllBytes(fromRoot(path));
     }
 
-    public static Path path(FileSystem.RelativePath path) {
+    /**
+     * Return the path relative to the root directory.
+     */
+    private Path fromRoot(FileSystem.RelativePath relative) {
+        Path path = root;
+        for (String element : relative.elements()) {
+            path = path.resolve(element);
+        }
+        return path;
+    }
+
+    /**
+     * Return the path relative to the current directory.
+     */
+    public static Path fromCurrent(FileSystem.RelativePath path) {
         if (path.elements().isEmpty()) {
             return Paths.get("");
         }

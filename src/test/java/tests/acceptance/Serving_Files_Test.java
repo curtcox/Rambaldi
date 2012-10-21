@@ -17,8 +17,8 @@ import static org.junit.Assert.assertEquals;
 
 public class Serving_Files_Test {
 
-    FileSystem fileSystem = new SimpleFileSystem();
     FileSystem.RelativePath dir = newDirectory();
+    FileSystem fileSystem = new SimpleFileSystem(dir);
 
     @Before
     public void before() throws IOException {

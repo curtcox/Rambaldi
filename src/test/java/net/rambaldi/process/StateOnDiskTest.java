@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static net.rambaldi.file.SimpleFileSystem.path;
+import static net.rambaldi.file.SimpleFileSystem.fromCurrent;
 import static org.junit.Assert.*;
 
 public class StateOnDiskTest {
@@ -26,7 +26,7 @@ public class StateOnDiskTest {
 
     @Before
     public void Before() throws Exception {
-        Files.deleteIfExists(path(path));
+        Files.deleteIfExists(fromCurrent(path));
     }
 
     @Test(expected = NullPointerException.class)
@@ -83,7 +83,7 @@ public class StateOnDiskTest {
 
     @Test
     public void persist_preserves_path_on_disk() throws Exception{
-        assertFalse(Files.exists(SimpleFileSystem.path(path)));;
+        assertFalse(Files.exists(SimpleFileSystem.fromCurrent(path)));;
         StateOnDisk state1 = new StateOnDisk(path,store,fileSystem);
         EchoProcessor processor = new EchoProcessor();
         state1.setRequestProcessor(processor);

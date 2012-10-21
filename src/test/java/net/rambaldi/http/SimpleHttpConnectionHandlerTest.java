@@ -70,8 +70,8 @@ public class SimpleHttpConnectionHandlerTest {
     @Test
     public void handle_reads_two_connections_when_first_is_keep_alive() throws Exception {
 
-        HttpRequest request1 = builder().resource("first_resource").connection(Connection.keep_alive).build();
-        HttpRequest request2 = builder().resource("second_resource").connection(Connection.close).build();
+        HttpRequest request1 = builder().resource("/first_resource").connection(Connection.keep_alive).build();
+        HttpRequest request2 = builder().resource("/second_resource").connection(Connection.close).build();
         FakeInputStream input = requestFromStream(
                 request1,
                 request2

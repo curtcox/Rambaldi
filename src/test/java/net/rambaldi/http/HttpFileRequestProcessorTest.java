@@ -32,13 +32,13 @@ public class HttpFileRequestProcessorTest {
 
     @Test
     public void process_returns_response() throws Exception {
-        HttpRequest request = HttpRequest.builder().method(GET).resource("resource_name").build();
+        HttpRequest request = HttpRequest.builder().method(GET).resource("/resource_name").build();
         assertNotNull(processor.process(request,context));
     }
 
     @Test
     public void content_matches_contents_of_filesystem_path() throws Exception {
-        HttpRequest request = HttpRequest.builder().method(GET).resource("resource_name").build();
+        HttpRequest request = HttpRequest.builder().method(GET).resource("/resource_name").build();
         HttpResponse response = processor.process(request,context);
         assertEquals(content,response.content);
     }

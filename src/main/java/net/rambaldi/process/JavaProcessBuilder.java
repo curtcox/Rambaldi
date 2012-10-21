@@ -7,7 +7,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 import static java.util.Objects.*;
-import static net.rambaldi.file.SimpleFileSystem.path;
+import static net.rambaldi.file.SimpleFileSystem.fromCurrent;
 
 /**
  * For building a Java process.
@@ -29,7 +29,7 @@ public final class JavaProcessBuilder {
     }
 
     private File file(FileSystem.RelativePath path) {
-        return SimpleFileSystem.path(path).toFile();
+        return fromCurrent(path).toFile();
     }
 
     String[] getCommand() {

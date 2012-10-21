@@ -20,7 +20,7 @@ public class Processor_Performance_Test {
     IO io = new SimpleIO();
     FileSystem.RelativePath temp = new SimpleRelativePath("tempDir");
     StateOnDisk state;
-    FileSystem fileSystem = new SimpleFileSystem(null);
+    FileSystem fileSystem = new SimpleFileSystem(temp);
     Log log = new FakeLog();
 
     @Before

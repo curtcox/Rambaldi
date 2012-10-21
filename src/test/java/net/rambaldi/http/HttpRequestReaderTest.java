@@ -35,7 +35,7 @@ public class HttpRequestReaderTest {
     public void get_root_with_close() {
         HttpRequest request = takeFrom("GET / HTTP/1.1\r\nHost: www.example.com\r\nConnection: close\r\n\r\n");
         assertEquals(GET,request.method);
-        assertEquals("/",request.resource);
+        assertEquals("/",request.resource.name);
         assertEquals("www.example.com",request.host);
         assertEquals(close,request.connection);
     }
@@ -46,7 +46,7 @@ public class HttpRequestReaderTest {
             "GET / HTTP/1.1\r\nUser-Agent: Java/1.7.0\r\nHost: localhost:4242\r\nAccept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2\r\nConnection: keep-alive\r\n\r\n"
         );
         assertEquals(GET,request.method);
-        assertEquals("/",request.resource);
+        assertEquals("/",request.resource.name);
         assertEquals("localhost:4242",request.host);
         assertEquals("Java/1.7.0",request.userAgent);
         assertEquals("text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2",request.accept.toString());
@@ -58,7 +58,7 @@ public class HttpRequestReaderTest {
     public void get_named_resource_with_close() {
         HttpRequest request = takeFrom("GET /named_resource HTTP/1.1\r\nHost: named.net\r\nConnection: close\r\n\r\n");
         assertEquals(GET,request.method);
-        assertEquals("/named_resource",request.resource);
+        assertEquals("/named_resource",request.resource.name);
         assertEquals("named.net",request.host);
         assertEquals(close,request.connection);
     }
@@ -97,8 +97,8 @@ public class HttpRequestReaderTest {
     @Test
     public void can_take_two_connections_when_first_is_keep_alive() throws Exception {
 
-        HttpRequest request1 = builder().resource("first_resource").connection(Connection.keep_alive).build();
-        HttpRequest request2 = builder().resource("second_resource").connection(Connection.close).build();
+        HttpRequest request1 = builder().resource("/first_resource").connection(Connection.keep_alive).build();
+        HttpRequest request2 = builder().resource("/second_resource").connection(Connection.close).build();
         FakeInputStream input = requestFromStream(
                 request1,
                 request2
