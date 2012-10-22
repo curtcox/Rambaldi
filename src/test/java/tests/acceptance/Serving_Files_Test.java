@@ -33,7 +33,7 @@ public class Serving_Files_Test {
     @Test
     public void I_can_serve_a_file_from_the_filesystem() throws Exception {
         String contents = "Stuff in file";
-        writeContentsTo("file.txt", dir, contents);
+        writeContentsTo("file.txt", contents);
         HttpRequestProcessor processor = new HttpFileRequestProcessor();
         HttpTransactionProcessor httpProcessor = new SimpleHttpTransactionProcessor(processor, new SimpleContext(fileSystem));
         String contentsServed = getPage(httpProcessor,"/file.txt");
@@ -47,8 +47,8 @@ public class Serving_Files_Test {
         return response.content;
     }
 
-    private void writeContentsTo(String fileName, FileSystem.RelativePath dir, String contents) throws IOException {
-        fileSystem.write(dir.resolve(fileName),contents.getBytes());
+    private void writeContentsTo(String fileName, String contents) throws IOException {
+        fileSystem.write(new SimpleRelativePath(fileName),contents.getBytes());
     }
 
     private FileSystem.RelativePath newDirectory() {
