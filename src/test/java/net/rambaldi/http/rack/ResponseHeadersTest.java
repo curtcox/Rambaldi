@@ -2,11 +2,9 @@ package net.rambaldi.http.rack;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class ResponseHeadersTest {
 
@@ -94,4 +92,72 @@ public class ResponseHeadersTest {
         String string = newInstance(key,"").toString();
         assertTrue(string,string.contains(key));
     }
+
+    @Test
+    public void toString_shows_values() {
+        String key = "key";
+        String value = "Capital of Florida";
+        String string = newInstance(key,value).toString();
+        assertTrue(string,string.contains(value));
+    }
+
+    @Test
+    public void toString_maps_keys_to_values() {
+        String key = "color";
+        String value = "red";
+        String actual = newInstance(key,value).toString();
+        String expected = quote("'color'='red'");
+        assertEquals(expected, actual);
+    }
+
+    String quote(String s) {
+        return s.replace("'","\"");
+    }
+
+    @Test
+    public void size_is_0_when_headers_is_empty() {
+        ResponseHeaders headers = new ResponseHeaders();
+        assertTrue(headers.isEmpty());
+        assertEquals(0, headers.size());
+    }
+
+    @Test
+    public void size_is_1_when_headers_contains_1_item() {
+        ResponseHeaders headers = newInstance("key","value");
+        assertFalse(headers.isEmpty());
+        assertEquals(1,headers.size());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void put_is_forbidden() {
+        new ResponseHeaders().put("","");
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void clear_is_forbidden() {
+        new ResponseHeaders().clear();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void remove_is_forbidden() {
+        new ResponseHeaders().remove("");
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void putAll_is_forbidden() {
+        new ResponseHeaders().putAll(new HashMap());
+    }
+
+    @Test
+    public void keySet_returns_keys() {
+        Set<String> keys = newInstance("key","value").keySet();
+        assertEquals(Collections.singleton("key"),keys);
+    }
+
+    @Test
+    public void values_returns_values() {
+        Collection<String> values = newInstance("key","value").values();
+        assertEquals(Collections.singleton("value"),values);
+    }
+
 }
